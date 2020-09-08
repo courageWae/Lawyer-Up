@@ -72,7 +72,7 @@
                     <div class="col col-xs-12">
                         <h2>Shop Details</h2>
                         <ol class="breadcrumb">
-                            <li><a href="index-2.html">Home</a></li>
+                            <li><a href="{{ route('Legal_Support_Home') }}">Home</a></li>
                             <li>Shop Details</li>
                         </ol>
                     </div>
@@ -88,7 +88,7 @@
                 <div class="row">
                     <div class="col col-md-6">
                         <div class="shop-single-slider-wrapper">    
-                            <div><img src="{{ asset('uploads/lawyer/'. $lawyer->photo ) }}" class="img img-responsive" alt></div>   
+                            <div><img src="{{ asset('uploads/pictures/user/'. $lawyer->photo ) }}" class="img img-responsive" alt></div>   
                         </div>
                     </div>
 

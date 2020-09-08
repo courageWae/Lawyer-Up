@@ -47,14 +47,25 @@ class legalSupportController extends Controller
     }
 
     public function flpp_categories(){
-        return view('legal_support/web/flpp_categories');
+        $plans = Plan::all();
+        return view('legal_support/web/flpp_categories')->with('plans',$plans);
     }
 
      public function blpp_categories(){
+        $plans = Plan::all();
+        foreach($plans as $plans){
+            if($plans->id == 2) 
+                request()->session()->put('name',$plans->plan_name);
+        }
         return view('legal_support/web/blpp_categories');
     }
 
      public function plpp_categories(){
+        $plans = Plan::all();
+        foreach($plans as $plans){
+            if($plans->id == 3) 
+                request()->session()->put('name',$plans->plan_name);
+        }
         return view('legal_support/web/plpp_categories');
     }
 

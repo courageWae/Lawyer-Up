@@ -28,6 +28,13 @@
                         
                         <div class="entry-details">
                             <div class="entry-body">
+                              @foreach($plans as $plans)
+                                @if($plans->id == 1)
+                                  {{ request()->session()->put('name',$plans->plan_name)}}
+                                  {{ request()->session()->put('category_name','Bronze')}}
+                                  {{ request()->session()->put('price',$plans->bronze)}}
+                                @endif
+                              @endforeach
                                 <center>
                                     <h3>BRONZE </h3>
                                     <h2>GH&cent 300</h2>
@@ -58,12 +65,13 @@
                                  Contingency Discount for Legal Casse ( 10%)
                                 </p>   
                                 <hr>
+
                                 @if(auth()->user()->role_id == 4 )
                                 <a class ="btn btn-success" href="{{ route('checkout') }}">Purchase Plan</a>
                                 @elseif((auth()->user()->role_id == 3) && (auth()->user()->role_id == 2) && (auth()->user()->role_id == 1))
                                 <h2>SORRY YOU CAN'T HAVE ACCESS TO THIS SERVICE</h2>
                                 @else
-                                <a class ="btn btn-success" href="/user_login">Purchase Plan</a>
+                                <a class ="btn btn-success" href="/login">Purchase Plan</a>
                                 @endif
                             </div>
                         </div>

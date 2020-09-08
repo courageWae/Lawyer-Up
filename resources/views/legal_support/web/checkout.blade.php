@@ -1,217 +1,87 @@
-<!doctype html>
-<html>
-<head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
     <meta charset="utf-8">
-    <title>A simple, clean, and responsive HTML invoice template</title>
+    <title>Example 2</title>
+    <link rel="stylesheet" href="/style.css" media="all" />
+   
     
-    <style>
-    .invoice-box {
-        max-width: 800px;
-        margin: auto;
-        padding: 30px;
-        border: 1px solid #eee;
-        box-shadow: 0 0 10px rgba(0, 0, 0, .15);
-        font-size: 16px;
-        line-height: 24px;
-        font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-        color: #555;
-    }
-    
-    .invoice-box table {
-        width: 100%;
-        line-height: inherit;
-        text-align: left;
-    }
-    
-    .invoice-box table td {
-        padding: 5px;
-        vertical-align: top;
-    }
-    
-    .invoice-box table tr td:nth-child(2) {
-        text-align: right;
-    }
-    
-    .invoice-box table tr.top table td {
-        padding-bottom: 20px;
-    }
-    
-    .invoice-box table tr.top table td.title {
-        font-size: 45px;
-        line-height: 45px;
-        color: #333;
-    }
-    
-    .invoice-box table tr.information table td {
-        padding-bottom: 40px;
-    }
-    
-    .invoice-box table tr.heading td {
-        background: #eee;
-        border-bottom: 1px solid #ddd;
-        font-weight: bold;
-    }
-    
-    .invoice-box table tr.details td {
-        padding-bottom: 20px;
-    }
-    
-    .invoice-box table tr.item td{
-        border-bottom: 1px solid #eee;
-    }
-    
-    .invoice-box table tr.item.last td {
-        border-bottom: none;
-    }
-    
-    .invoice-box table tr.total td:nth-child(2) {
-        border-top: 2px solid #eee;
-        font-weight: bold;
-    }
-    
-    @media only screen and (max-width: 600px) {
-        .invoice-box table tr.top table td {
-            width: 100%;
-            display: block;
-            text-align: center;
-        }
-        
-        .invoice-box table tr.information table td {
-            width: 100%;
-            display: block;
-            text-align: center;
-        }
-    }
-    
-    /** RTL **/
-    .rtl {
-        direction: rtl;
-        font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-    }
-    
-    .rtl table {
-        text-align: right;
-    }
-    
-    .rtl table tr td:nth-child(2) {
-        text-align: left;
-    }
-    </style>
-</head>
+  </head>
+  <body>
+    <header class="clearfix">
+      <div id="logo">
+        <img src="../assets/images/logo-2.png">
+      </div>
+      <div id="company">
+        <h2 class="name">Lexicon Support Services</h2>
+        <div>John Nii Owoo Street</div>
+        <div>+233 123456789</div>
+        <div><a href="#">info@Lexiconsupportservices</a></div>
+      </div>
+      </div>
+    </header>
+    <main>
+      <div id="details" class="clearfix">
+        <div id="client">
+          <div class="to">INVOICE TO:</div>
+          <h2 class="name">{{ Auth::user()->name }}</h2>
+          <div class="address">{{ Auth::user()->phone }}</div>
+          <div class="email"><a href="#">{{ Auth::user()->email }}</a></div>
+        </div>
+        <div id="invoice">
+          <h1> Invoice No:: 0{{ count($invoice) + 1 }}</h1>
+          <div class="date">Date of Invoice : {{ $date = now()->toDayDateTimeString() }}</div>
+          <div class="date"> Due Date : {{ now()->addyear()->toDayDateTimeString() }}</div>
+        </div>
+      </div>
+      <table border="0" cellspacing="0" cellpadding="0">
+        <thead>
+          <tr>
+            <th class="no">#</th>
+            <th class="desc">DESCRIPTION</th>
+            <th class="unit">CATEGORY</th>
+            <th class="desc">UNIT PRICE</th>
+            <th class="unit">QUANTITY</th>
+            <th class="total">TOTAL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="no">01</td>
+            <td class="desc"><h3>PLAN</h3>{{ strtoupper(request()->session()->get('name')) }}</td>
+            <td class="unit">{{ strtoupper(request()->session()->get('category_name')) }}</td>
 
-<body>
-    <hr>
-    <div class="invoice-box rtl">
-        <table cellpadding="0" cellspacing="0">
-            <tr class="top">
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td class="title">
-                                <img src="../assets/images/logo-2.png" style="width:100%; max-width:300px;">
-                            </td>
-                            
-                            <td>
-                                <strong>
-                                  Invoice No:: 0{{ count($invoice) + 1 }}<br>
-                                  {{ $date = now()->toDayDateTimeString() }}<br>
-                                   Due Date : {{ now()->addyear()->toDayDateTimeString()}}
-                                </strong>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            
-            <tr class="information">
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td>
-                                Lexicon Support Services<br>
-                                John nii owoo Street 10<br>
-                                Accra Ghana.
-                            </td>
-                            
-                            <td>
-                                {{ Auth::user()->name }}<br>
-                                {{ Auth::user()->email }}<br>
-                                {{ Auth::user()->phone }}
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            
-            <tr class="heading">
-                <td>
-                    Payment Method
-                </td>
-                
-                <td>
-                    Check #
-                </td>
-            </tr>
-            
-            <tr class="details">
-                <td>
-                    Mobile Money
-                </td>
-                
-                <td>
-                    1000
-                </td>
-            </tr>
-            
-         <!--    <tr class="heading">
-                <td>
-                    Item
-                </td>
-                
-                <td>
-                    Price
-                </td>
-            </tr>
-            
-            <tr class="item">
-                <td>
-                    Website design
-                </td>
-                
-                <td>
-                    $300.00
-                </td>
-            </tr>
-            
-            <tr class="item">
-                <td>
-                    Hosting (3 months)
-                </td>
-                
-                <td>
-                    $75.00
-                </td>
-            </tr>
-            
-            <tr class="item last">
-                <td>
-                    Domain name (1 year)
-                </td>
-                
-                <td>
-                    $10.00
-                </td>
-            </tr> -->
-            
-            <tr class="total">
-                <td></td>
-                
-                <td>
-                   Total: $385.00
-                </td>
-            </tr>
-        </table>
-        
-    </div>
-</body>
+            <td class="desc">{{ request()->session()->get('price') }}</td>
+            <td class="unit">1</td>
+            <td class="total">&cent0.00</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2"></td>
+            <td colspan="2">SUBTOTAL</td>
+            <td>&cent0.00</td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td colspan="2">TAX 0%</td>
+            <td>&cent 0.00</td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td colspan="2">GRAND TOTAL</td>
+            <td>&cent0.00</td>
+          </tr>
+        </tfoot>
+      </table>
+      <div id="thanks">Thank you!</div>
+      <div id="notices">
+        <div>MODE OF PAYMENT</div>
+        <div class="notice">Payment is through mobile money</div>
+      </div>
+    </main>
+    <footer>
+      Invoice was created on a computer and is valid without the signature and seal.
+    </footer>
+  </body>
 </html>

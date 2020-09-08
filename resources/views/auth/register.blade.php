@@ -35,9 +35,7 @@
                               @csrf
                              <!-- Hidden fields -->
                             <input type="hidden" name="role_id" value="4">
-                            <input type="hidden" name="address_name" value="null">
-                            <input type="hidden" name="address_number"value="null">
-                            <input type="hidden" name="address_city" value="null">
+                            <input type="hidden" name="address" value="null">
                             <input type="hidden" name="house_address" value="null">
                             <input type="hidden" name="education" value="null">
                             <input type="hidden" name="experience" value="null">
@@ -90,9 +88,9 @@
                             <div class="col-md-8">
                                 <select class = "form-control" name="insurer" required>
                                     <option disabled="disabled" selected="selected">-- CHOOSE AN INSURER --</option>
-                                    <option>Serene Insurance</option>
-                                    <option>Star Insurance</option>
-                                    <option>Enterprise Insurance</option>
+                                    @foreach((\App\User::where('role_id',2)->get()) as $insurer)
+                                    <option>{{ $insurer->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>

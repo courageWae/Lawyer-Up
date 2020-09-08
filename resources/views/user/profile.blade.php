@@ -31,7 +31,7 @@
                         <div class="card">
                            <center><h3>My Dashboard</h3></center>
                            <hr>
-                           <center><img class="card-img-top" src="{{ asset('uploads/user/'. Auth::user()->photo ) }}" alt="Card image" width="100" height="100" style="border-radius: 20px;"></center>
+                           <center><img class="card-img-top" src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" alt="Card image" width="100" height="100" style="border-radius: 20px;"></center>
                            <hr>
                          <div class="card-body">
                            <center>
@@ -110,7 +110,7 @@
                                             <option>Serene Insurance<option>
                                             
                                           </select>
-                                            <!-- <input type="text" value = "{{ Auth::user()->insurer }}" class="form-control form-control-line"> -->
+                                            <!-- <input type="text" value = "" class="form-control form-control-line"> -->
                                         </div>
                                     </div>
 

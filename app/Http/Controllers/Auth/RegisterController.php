@@ -56,15 +56,13 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone' =>['required'],
             'role_id' => ['required'],
-            'insurer' =>['required'],
-            'address_name'=>['required'],
-            'address_number'=>['required'],
-            'address_city'=>['required'],
-            'house_address'=>['required'],
-            'education'=>['required'],
-            'experience'=>['required'],
-            'type_of_lawyer'=>['required'],
-            'personal_statement'=>['required']
+            // 'insurer' =>['required'],
+            // 'address'=>['required'],
+            // 'house_address'=>['required'],
+            // 'education'=>['required'],
+            // 'experience'=>['required'],
+            // 'type_of_lawyer'=>['required'],
+            // 'personal_statement'=>['required']
         ]);
     }
 
@@ -80,7 +78,7 @@ class RegisterController extends Controller
            $file = request()->file('photo');
            $extension = $file->getClientOriginalExtension(); //getting image exension
            $filename = time().'.'.$extension;
-           $file->move('uploads/user/',$filename);
+           $file->move('uploads/pictures/user/',$filename);
            request()->photo =$filename;
         }else{
            return $request;
@@ -94,9 +92,7 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'role_id' => $data['role_id'],
             'insurer' => $data['insurer'],
-            'address_name'=>$data['address_name'],
-            'address_number'=>$data['address_number'],
-            'address_city'=>$data['address_city'],
+            'address'=>$data['address'],
             'house_address'=>$data['house_address'],
             'education'=>$data['education'],
             'experience'=>$data['experience'],

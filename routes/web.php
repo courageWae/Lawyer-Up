@@ -57,8 +57,9 @@ Route::group(['middleware'=>['user','auth'],'namespace'=>'user'],function(){
 /////////////////////////////////////////////////////////////////////////////////////////////////
                    /// ADMIN ROUTES ////
 Route::group(['middleware'=>['admin','auth'],'namespace'=>'admin'],function(){
-	Route::get('admin_dashboard','adminController@dashboard')->name('admin.dashboard');
-	Route::get('profile/{id}','adminController@profile');
+	Route::get('admin/dashboard','adminController@dashboard')->name('admin.dashboard');
+	Route::get('admin_profile','adminController@profile');
+	Route::patch('admin_profile_edit/{id}','adminController@update');
 	Route::get('admin_add','adminController@adminAdd')->name('admin.add');
 	Route::post('admin_add','adminController@adminStore')->name('admin.store');
 	Route::get('insurer_add','adminController@insurerAdd')->name('insurer.add');
@@ -71,8 +72,12 @@ Route::group(['middleware'=>['admin','auth'],'namespace'=>'admin'],function(){
 	Route::get('user_list','adminController@userList')->name('users.list');
 	Route::delete('/admin/{id}','adminController@adminDelete');
 	Route::delete('/insurer/{id}','adminController@insurerDelete');
+	Route::delete('/user/{id}','adminController@userDelete');
+	Route::delete('/lawyer/{id}','adminController@lawyerDelete');
+	Route::delete('typeOfLawyer/{id}','adminController@typeOfLawyerDelete');
+	Route::get('admin/typeOfLawyerAdd','adminController@typeOfLawyerAdd')->name('type.add');
+	Route::post('admin/typeOfLawyerAdd','adminController@storeTypeOfLawyer')->name('type.store');
 	
-
 });
 
 
@@ -80,8 +85,8 @@ Route::group(['middleware'=>['admin','auth'],'namespace'=>'admin'],function(){
 ////////////////////////////////////////////////////////////////////////////////////////////////////
                        /// LAWYERS ROUTES ///
 Route::group(['middleware'=>['lawyer','auth'],'namespace'=>'lawyer'],function(){
-	Route::get('lawyer_dashboard','lawyerController@index')->name('lawyer.dashboard');
-	Route::get('lawyer_profile','lawyerController@profile')->name('lawyer.profile');
+	Route::get('lawyer/dashboard','lawyerController@index')->name('lawyer.dashboard');
+	Route::get('lawyer/profile','lawyerController@profile')->name('lawyer.profile');
 	Route::patch('lawyer_profile_edit/{id}','lawyerController@update');
 
 

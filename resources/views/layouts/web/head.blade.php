@@ -49,11 +49,22 @@
                           
                         </div>
                         <div class="col col-sm-3">
-                            @if(Auth::check())
+                            @if(Auth::check() && Auth::user()->role_id == 4)
                              <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
-                                <a href="javascript:void(0)">{{ Auth::user()->name }}</a>
+                                <a href="/user_profile">{{ Auth::user()->name }}</a>
                              </div>
-                                
+                             @elseif(Auth::check() && Auth::user()->role_id == 3)
+                             <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
+                                <a href="/user_profile">{{ Auth::user()->name }}</a>
+                             </div>
+                             @elseif(Auth::check() && Auth::user()->role_id == 2)
+                             <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
+                                <a href="/user_profile">{{ Auth::user()->name }}</a>
+                             </div>
+                             @elseif(Auth::check() && Auth::user()->role_id == 1)
+                             <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
+                                <a href="/user_profile">{{ Auth::user()->name }}</a>
+                             </div>   
                             @else
                             <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
                               <span>

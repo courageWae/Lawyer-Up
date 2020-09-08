@@ -1,106 +1,283 @@
-@extends('layouts/admin/master')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
- <div class="page-wrapper">
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
-            <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Bread crumb and right sidebar toggle -->
-                <!-- ============================================================== -->
-                <div class="row page-titles">
-                    <div class="col-md-5 align-self-center">
-                        <h4 class="text-themecolor">Profile</h4>
-                    </div>
-                    <div class="col-md-7 align-self-center text-right">
-                        <div class="d-flex justify-content-end align-items-center">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                                <li class="breadcrumb-item active">Profile</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Bread crumb and right sidebar toggle -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
-                <!-- Row -->
-                <div class="row">
-                    <!-- Column -->
-                    <div class="col-lg-4 col-xlg-3 col-md-5">
-                        <div class="card">
-                            <div class="card-body">
-                                <center class="m-t-30"> <img src="../assets/images/users/5.jpg" class="img-circle" width="150" />
-                                    <h4 class="card-title m-t-10" style="color:black;">{{ Auth::user()->name }}</h4>
-                                    <h5 class="card-subtitle">{{ Auth::user()->email }}</h5>
-                                    <h5 class="card-subtitle">{{ Auth::user()->phone }} </h5>
-                                    <hr style="width:100px">
-                                    <div class="row text-center justify-content-md-center">
-                                       <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-power" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                       <path fill-rule="evenodd" d="M5.578 4.437a5 5 0 1 0 4.922.044l.5-.866a6 6 0 1 1-5.908-.053l.486.875z"/>
-                                       <path fill-rule="evenodd" d="M7.5 8V1h1v7h-1z"/>
-                                       </svg>
-                                       <a href="/user_logout">&nbsp&nbsp&nbsp&nbsp&nbsp Logout</a>
-                                    </div>
-                                </center>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column -->
-                    <!-- Column -->
-                    <div class="col-lg-8 col-xlg-9 col-md-7">
-                        <div class="card">
-                            <!-- Tab panes -->
-                            <div class="card-body">
-                                <form class="form-horizontal form-material">
-                                    <div class="form-group">
-                                        <label class="col-md-12">Full Name</label>
-                                        <div class="col-md-12">
-                                            <input type="text" value="{{ Auth::user()->name }}" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="example-email" class="col-md-12">Email Address</label>
-                                        <div class="col-md-12">
-                                            <input type="email" value = "{{ Auth::user()->email }}" class="form-control form-control-line" name="example-email" id="example-email">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Password</label>
-                                        <div class="col-md-12">
-                                            <input type="password" value="{{ Auth::user()->password }}" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Phone Number</label>
-                                        <div class="col-md-12">
-                                            <input type="text" value = "{{ Auth::user()->number }}" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                   
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <button class="btn btn-success">Update Profile</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column -->
-                </div>
-                <!-- Row -->
-                <!-- ============================================================== -->
-                <!-- End PAge Content -->
-                <!-- ============================================================== -->
-            </div>
-            <!-- ============================================================== -->
-            <!-- End Container fluid  -->
-            <!-- ============================================================== -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+  <meta name="author" content="GeeksLabs">
+  <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+  <link rel="shortcut icon" href="img/favicon.png">
+
+  <title>Lexicon Support Services</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="../admin/css/bootstrap.min.css" rel="stylesheet">
+  <!-- bootstrap theme -->
+  <link href="../admin/css/bootstrap-theme.css" rel="stylesheet">
+  <!--external css-->
+  <!-- font icon -->
+  <link href="../admin/css/elegant-icons-style.css" rel="stylesheet" />
+  <link href="../admin/css/font-awesome.min.css" rel="stylesheet" />
+  <!-- Custom styles -->
+  <link href="../admin/css/style.css" rel="stylesheet">
+  <link href="../admin/css/style-responsive.css" rel="stylesheet" />
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
+  <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+      <script src="js/lte-ie7.js"></script>
+    <![endif]-->
+
+    <!-- =======================================================
+      Theme Name: NiceAdmin
+      Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+      Author: BootstrapMade
+      Author URL: https://bootstrapmade.com
+    ======================================================= -->
+</head>
+
+<body>
+  <!-- container section start -->
+  <section id="container" class="">
+    <!--header start-->
+    @include('layouts/admin/header')
+    <!--header end-->
+
+    <!--sidebar start-->
+    @include('layouts/admin/sidebar')
+    <!--sidebar end-->
+
+    <!--main content start-->
+    <section id="main-content">
+      <section class="wrapper">
+        <div class="row">
+          <div class="col-lg-12">
+            <h3 class="page-header"><i class="fa fa-user-md"></i> Profile</h3>
+            <ol class="breadcrumb">
+              <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+              <li><i class="icon_documents_alt"></i>Pages</li>
+              <li><i class="fa fa-user-md"></i>Profile</li>
+            </ol>
+          </div>
         </div>
-        
-@endsection
+        <div class="row">
+          <!-- profile-widget -->
+          <div class="col-lg-12">
+            <div class="profile-widget profile-widget-info">
+              <div class="panel-body">
+                <div class="col-lg-2 col-sm-2">
+                  <h4>{{ Auth::user()->name }}</h4>
+                  <div class="follow-ava">
+                    <img src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" alt>
+                  </div>
+                  <h6>Administrator</h6>
+                </div>
+                <div class="col-lg-4 col-sm-4 follow-info">
+                  <p>Hello I’m {{ Auth::user()->name }}, Lexicon Support Adminstrator</p>
+                  <p>{{ $admin->email }}</p>
+                  <!-- <p><i class="fa fa-twitter">jenifertweet</i></p> -->
+                  <h6>
+                    <span><i class="icon_clock_alt"></i>{{ now()->toFormattedDateString() }}</span>
+                    <span><i class="icon_calendar"></i>{{ now()->toTimeString() }}</span>
+                    <span><i class="icon_pin_alt"></i>Accra Ghana</span>
+                  </h6>
+                </div>
+                <!-- <div class="col-lg-2 col-sm-6 follow-info weather-category">
+                  <ul>
+                    <li class="active">
+
+                      <i class="fa fa-comments fa-2x"> </i><br> Contrary to popular belief, Lorem Ipsum is not simply
+                    </li>
+
+                  </ul>
+                </div>
+                <div class="col-lg-2 col-sm-6 follow-info weather-category">
+                  <ul>
+                    <li class="active">
+
+                      <i class="fa fa-bell fa-2x"> </i><br> Contrary to popular belief, Lorem Ipsum is not simply
+                    </li>
+
+                  </ul>
+                </div>
+                <div class="col-lg-2 col-sm-6 follow-info weather-category">
+                  <ul>
+                    <li class="active">
+
+                      <i class="fa fa-tachometer fa-2x"> </i><br> Contrary to popular belief, Lorem Ipsum is not simply
+                    </li>
+
+                  </ul>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- page start-->
+        <div class="row">
+          <div class="col-lg-12">
+            <section class="panel">
+              <header class="panel-heading tab-bg-info">
+                <ul class="nav nav-tabs">
+                  <li>
+                    <a data-toggle="tab" href="#profile">
+                                          <i class="icon-user"></i>
+                                          Profile
+                                      </a>
+                  </li>
+                  <li class="">
+                    <a data-toggle="tab" href="#edit-profile">
+                                          <i class="icon-envelope"></i>
+                                          Edit Profile
+                                      </a>
+                  </li>
+                </ul>
+              </header>
+              <div class="panel-body">
+                <div class="tab-content">
+                  <!-- profile -->
+                  <div id="profile" class="tab-pane active">
+                    <section class="panel">
+                      <div class="bio-graph-heading">
+                        <h2>Your Profile Details</h2>
+                      </div>
+                      <div class="panel-body bio-graph-info">
+                        <h1><strong>My Profile</strong></h1>
+                        <div class="row">
+                          <div class="bio-row">
+                            <p><span>First Name </span>: {{ $str[0] }} </p>
+                          </div>
+                          <div class="bio-row">
+                            <p><span>Last Name </span>: {{ $str[1] }}</p>
+                          </div>
+                          <div class="bio-row">
+                            <p><span>Role </span>: Administrator</p>
+                          </div>
+                          <div class="bio-row">
+                            <p><span>Email </span>: {{ $admin->email }}</p>
+                          </div>
+                          <div class="bio-row">
+                            <p><span>Mobile </span>: {{ $admin->phone }}</p>
+                          </div>
+                          <div class="bio-row">
+                            <p><span>Country </span>: Ghana</p>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                    <section>
+                      <div class="row">
+                      </div>
+                    </section>
+                  </div>
+                  <!-- edit-profile -->
+                  <div id="edit-profile" class="tab-pane">
+                    <section class="panel">
+                      <div class="panel-body bio-graph-info">
+                        <h1> Profile Info</h1>
+
+                        <!-- FORM STARTS -->
+                        <form class="form-horizontal" method="post" action="/admin_profile_edit/{{ Auth::user()->id }}">
+            
+                           {{ csrf_field() }}
+                           @method('PATCH')
+
+                          <div class="form-group">
+                            <label class="col-lg-2 control-label">Full Name</label>
+                            <div class="col-lg-6">
+                              <input type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" required>
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="col-lg-2 control-label">Email</label>
+                            <div class="col-lg-6">
+                              <input type="text" class="form-control" name="email" value="{{ Auth::user()->email }}" required>
+                               @error('phone')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="col-lg-2 control-label">Phone</label>
+                            <div class="col-lg-6">
+                              <input type="text" class="form-control" name="phone" value="{{ Auth::user()->phone }}" required>
+                               @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label class="col-lg-2 control-label">Password</label>
+                            <div class="col-lg-6">
+                              <input type="password" class="form-control" name="password" value="{{ Auth::user()->password }}" required>
+                              @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="col-lg-2 control-label">Confirm Password</label>
+                            <div class="col-lg-6">
+                              <input type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                              <button type="submit" class="btn btn-success">Save</button>
+                            </div>
+                          </div>
+
+                        </form>
+                        <!-- END OF FORM -->
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <!-- page end-->
+      </section>
+    </section>
+  </section>
+  <!-- container section end -->
+  <!-- javascripts -->
+  <script src="../admin/js/jquery.js"></script>
+  <script src="../admin/js/bootstrap.min.js"></script>
+  <!-- nice scroll -->
+  <script src="../admin/js/jquery.scrollTo.min.js"></script>
+  <script src="../admin/js/jquery.nicescroll.js" type="text/javascript"></script>
+  <!-- jquery knob -->
+  <script src="../admin/assets/jquery-knob/js/jquery.knob.js"></script>
+  <!--custome script for all page-->
+  <script src="../admin/js/scripts.js"></script>
+
+  <script>
+    //knob
+    $(".knob").knob();
+  </script>
+
+
+</body>
+
+</html>

@@ -20,9 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('phone');
             $table->string('insurer')->nullable();
             $table->unsignedBigInteger('role_id')->nullable();
-            $table->string('address_name')->nullable();
-            $table->string('address_number')->nullable();
-            $table->string('address_city')->nullable();
+            $table->string('address')->nullable();
             $table->string('house_address')->nullable();
             $table->string('education')->nullable();
             $table->string('type_of_lawyer')->nullable();
