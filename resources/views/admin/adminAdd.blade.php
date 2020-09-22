@@ -12,23 +12,23 @@
   <title>Lexicon Support Services</title>
 
   <!-- Bootstrap CSS -->
-  <link href="../admin/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ asset('admin/css/bootstrap.min.css') }}" rel="stylesheet">
   <!-- bootstrap theme -->
-  <link href="../admin/css/bootstrap-theme.css" rel="stylesheet">
+  <link href="{{ asset('admin/css/bootstrap-theme.css') }}" rel="stylesheet">
   <!--external css-->
   <!-- font icon -->
-  <link href="../admin/css/elegant-icons-style.css" rel="stylesheet" />
-  <link href="../admin/css/font-awesome.min.css" rel="stylesheet" />
-  <link href="../admin/css/daterangepicker.css" rel="stylesheet" />
-  <link href="../admin/css/bootstrap-datepicker.css" rel="stylesheet" />
-  <link href="../admin/css/bootstrap-colorpicker.css" rel="stylesheet" />
+  <link href="{{ asset('admin/css/elegant-icons-style.css') }}" rel="stylesheet" />
+  <link href="{{ asset('admin/css/font-awesome.min.css') }}" rel="stylesheet" />
+  <link href="{{ asset('admin/css/daterangepicker.css') }}" rel="stylesheet" />
+  <link href="{{ asset('admin/css/bootstrap-datepicker.css') }}" rel="stylesheet" />
+  <link href="{{ asset('admin/css/bootstrap-colorpicker.css') }}" rel="stylesheet" />
   <!-- date picker -->
 
   <!-- color picker -->
 
   <!-- Custom styles -->
-  <link href="../admin/css/style.css" rel="stylesheet">
-  <link href="../admin/css/style-responsive.css" rel="stylesheet" />
+  <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
+  <link href="{{ asset('admin/css/style-responsive.css') }}" rel="stylesheet" />
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
   <!--[if lt IE 9]>
@@ -168,38 +168,38 @@
   </section>
   <!-- container section end -->
   <!-- javascripts -->
-  <script src="../admin/js/jquery.js"></script>
-  <script src="../admin/js/bootstrap.min.js"></script>
+  <script src="{{ asset('admin/js/jquery.js') }}"></script>
+  <script src="{{ asset('admin/js/bootstrap.min.js') }}"></script>
   <!-- nice scroll -->
-  <script src="../admin/js/jquery.scrollTo.min.js"></script>
-  <script src="../admin/js/jquery.nicescroll.js" type="text/javascript"></script>
+  <script src="{{ asset('admin/js/jquery.scrollTo.min.js') }}"></script>
+  <script src="{{ asset('admin/js/jquery.nicescroll.js') }}" type="text/javascript"></script>
 
   <!-- jquery ui -->
-  <script src="../admin/js/jquery-ui-1.9.2.custom.min.js"></script>
+  <script src="{{ asset('admin/js/jquery-ui-1.9.2.custom.min.js') }}"></script>
 
   <!--custom checkbox & radio-->
-  <script type="text/javascript" src="../admin/js/ga.js"></script>
+  <script type="text/javascript" src="{{ asset('admin/js/ga.js') }}"></script>
   <!--custom switch-->
-  <script src="../admin/js/bootstrap-switch.js"></script>
+  <script src="{{ asset('admin/js/bootstrap-switch.js') }}"></script>
   <!--custom tagsinput-->
-  <script src="../admin/js/jquery.tagsinput.js"></script>
+  <script src="{{ asset('admin/js/jquery.tagsinput.js') }}"></script>
 
   <!-- colorpicker -->
 
   <!-- bootstrap-wysiwyg -->
-  <script src="../admin/js/jquery.hotkeys.js"></script>
-  <script src="../admin/js/bootstrap-wysiwyg.js"></script>
-  <script src="../admin/js/bootstrap-wysiwyg-custom.js"></script>
-  <script src="../admin/js/moment.js"></script>
-  <script src="../admin/js/bootstrap-colorpicker.js"></script>
-  <script src="../admin/js/daterangepicker.js"></script>
-  <script src="../admin/js/bootstrap-datepicker.js"></script>
+  <script src="{{ asset('admin/js/jquery.hotkeys.js') }}"></script>
+  <script src="{{ asset('admin/js/bootstrap-wysiwyg.js') }}"></script>
+  <script src="{{ asset('admin/js/bootstrap-wysiwyg-custom.js') }}"></script>
+  <script src="{{ asset('admin/js/moment.js"></script>
+  <script src="{{ asset('admin/js/bootstrap-colorpicker.js') }}"></script>
+  <script src="{{ asset('admin/js/daterangepicker.js"></script>
+  <script src="{{ asset('admin/js/bootstrap-datepicker.js') }}"></script>
   <!-- ck editor -->
-  <script type="text/javascript" src="../admin/assets/ckeditor/ckeditor.js"></script>
+  <script type="text/javascript" src="{{ asset('admin/assets/ckeditor/ckeditor.js') }}"></script>
   <!-- custom form component script for this page-->
-  <script src="../admin/js/form-component.js"></script>
+  <script src="{{ asset('admin/js/form-component.js') }}"></script>
   <!-- custome script for all page -->
-  <script src="../admin/js/scripts.js"></script>
+  <script src="{{ asset('admin/js/scripts.js') }}"></script>
 
 
 </body>

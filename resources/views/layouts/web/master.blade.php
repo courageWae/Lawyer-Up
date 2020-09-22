@@ -10,7 +10,7 @@
         <!-- start preloader -->
         <div class="preloader">
             <div class="preloader-inner">
-                <img src="assets/images/preloader.gif" alt>
+                <img src="{{ asset('assets/images/preloader.gif') }}" alt>
             </div>
         </div>
         <!-- end preloader -->

@@ -26,7 +26,7 @@
         <section class="products-section shop section-padding">
             <div class="container">
                 <div class="row products-grids">
-                    @include('lawyer.board')
+                    @include('lawyer.dashbox')
                     <div class="col col-lg-9" style ="padding-left:20px;">   
                         <table class="table table-striped table-bordered">
                            <thead>

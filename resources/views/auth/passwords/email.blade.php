@@ -1,13 +1,35 @@
-@extends('layouts.app')
-
+@extends('layouts/web/master')
+@section('head')
+   @include('layouts/web/head')
+@endsection
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+   <!-- start page-title -->
+        <section class="page-title">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-xs-12">
+                        <h2>Register with us</h2>
+                        <ol class="breadcrumb">
+                            <li><a href="index-2.html">Home</a></li>
+                            <li>Register</li>
+                        </ol>
+                    </div>
+                </div> <!-- end row -->
+            </div> <!-- end container -->
+        </section>        
+        <!-- end page-title -->
 
-                <div class="card-body">
+
+
+<section class="contact-pg-section section-padding">
+            <div class="container">
+               <div class="row justify-content-center">
+                 <div class ="col-md-2"></div>
+                 <div class="col-md-8">
+                   <div class="card">
+                   <div class="card-header" style="font-size: 20px;">Reset Password</div>
+                 <hr>
+                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -30,7 +52,7 @@
                                 @enderror
                             </div>
                         </div>
-
+                        <hr>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -40,8 +62,10 @@
                         </div>
                     </form>
                 </div>
-            </div>
-        </div>
-    </div>
+               </div>
+           </div>
 </div>
+            </div> <!-- end container -->
+        </section>
+
 @endsection

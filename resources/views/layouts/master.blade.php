@@ -25,6 +25,4 @@
     @include('layouts/web/script')
     @include('layouts/footer')
 </body>
-
-<!-- index 19:57:41 GMT -->
 </html>

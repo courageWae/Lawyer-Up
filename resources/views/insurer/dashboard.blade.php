@@ -1,147 +1,90 @@
-@extends('layouts/insurer/master')
-
+@extends('/layouts/web/master')
+@section('head')
+   @include('/layouts/web/head')
+@endsection
 @section('content')
 
-<div class="page-wrapper">
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
-            <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Bread crumb and right sidebar toggle -->
-                <!-- ============================================================== -->
-                <div class="row page-titles">
-                    <div class="col-md-5 align-self-center">
-                        <h4 class="text-themecolor">Dashboard</h4>
-                    </div>
-                    <div class="col-md-7 align-self-center text-right">
-                        <div class="d-flex justify-content-end align-items-center">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                                <li class="breadcrumb-item active">Dashboard</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Bread crumb and right sidebar toggle -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Yearly Sales -->
-                <!-- ============================================================== -->
+
+        <!-- start page-title -->
+        <section class="page-title">
+            <div class="container">
                 <div class="row">
-                    <div class="col-lg-8">
-                        <div class="card oh">
-                            <div class="card-body">
-                                <div class="d-flex m-b-30 align-items-center no-block">
-                                    <h5 class="card-title ">Yearly Sales</h5>
-                                    <div class="ml-auto">
-                                        <ul class="list-inline font-12">
-                                            <li><i class="fa fa-circle text-info"></i> Iphone</li>
-                                            <li><i class="fa fa-circle text-primary"></i> Ipad</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div id="morris-area-chart" style="height: 350px;"></div>
-                            </div>
-                            <div class="card-body bg-light">
-                                <div class="row text-center m-b-20">
-                                    <div class="col-lg-4 col-md-4 m-t-20">
-                                        <h2 class="m-b-0 font-light">6000</h2><span class="text-muted">Total sale</span>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 m-t-20">
-                                        <h2 class="m-b-0 font-light">4000</h2><span class="text-muted">Iphone</span>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 m-t-20">
-                                        <h2 class="m-b-0 font-light">2000</h2><span class="text-muted">Ipad</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col col-xs-12">
+                        <h2>DashBoard</h2>
+                        <ol class="breadcrumb">
+                            <li><a href="index-2.html">Home</a></li>
+                            <li>Dashboard</li>
+                        </ol>
                     </div>
+                </div> <!-- end row -->
+            </div> <!-- end container -->
+        </section>        
+        <!-- end page-title -->
 
-                    <!-- SUMMARY -->
-                    <div class="col-lg-4">
-                        <div class = "row">
-                            <div class = "col-lg-6">
-                            <div class="card border-secondary mb-3" style="max-width: 18rem;">
-                               <div class="card-header"><strong>TOTAL NUMBER OF USERS</strong></div>
-                               <div class="card-body text-info">
-                                   <center><h5 class="card-title"><img src = "../assets/images/user.png"></h5>
-                                   <p class="card-text">hold</p></center>
-                               </div>
-                            </div>
-                            </div>
-                            <div class = "col-lg-6">
-                            <div class="card border-secondary mb-3" style="max-width: 18rem;">
-                                <div class="card-header"><strong>TOTAL NUMBER OF LAWYERS</strong></div>
-                                <div class="card-body text-info">
-                                   <center><h5 class="card-title"><img src = "../assets/images/user.png"></h5>
-                                   <p class="card-text">hold</p></center>
-                                </div>
-                            </div>
-                            </div>
-                            <div class = "col-lg-6">
-                               <div class="card border-secondary mb-3" style="max-width: 18rem;">
-                               <div class="card-header"><strong>TOTAL NUMBER OF ADMINISTATORS</strong></div>
-                               <div class="card-body text-info">
-                                    <center><h5 class="card-title"><img src = "../assets/images/user.png"></h5>
-                                    <p class="card-text">hold</p></center>
-                                </div>
-                               </div>
-                            </div>
-                            <div class = "col-lg-6">
-                            <div class="card border-secondary mb-3" style="max-width: 18rem;">
-                               <div class="card-header"><strong>TOTAL NUMBER OF INSURERS</strong></div>
-                               <div class="card-body text-info">
-                                   <center><h5 class="card-title"><img src = "../assets/images/user.png"></h5>
-                                   <p class="card-text"> hold</p></center>
-                               </div>
-                            </div>
-                             </div>
-                        </div>
+
+        <!-- start products-section -->
+        <section class="products-section shop section-padding">
+            <div class="container">
+                <div class="row products-grids">
+                    <!-- PACKAGE ONE -->
+                    @include('insurer.dashBox')
                     </div>
-                    <!-- END SUMMARY -->
-                </div>
-                
+                    <div class="col col-lg-8" style ="padding-left:20px;">   
+                        <table class="table table-striped table-bordered">
+                           <thead>
+                               <tr style="background-color:rgb(245, 197, 66);">
+                                   <th colspan="3">My Packages</th>
+                               </tr>
+                            </thead>
+                            <tbody>
+                               <tr>
+                                   <th colspan="3" style="padding:15px;"><span class="label label-danger" style="padding:5px;font-size: 15px;">All Client Packages</span></th>
+                               </tr>
+                               <tr>
+                                  <th>Clients Name</th>
+                                  <th>Package Name</th>
+                                  <th>Category</th>
+                                  <th>Price</th>
+                                  <th>Status</th>
+                                  <th>Image</th>
+                                  <th>Date</th>
+                                  <th>Confirmed By</th>
+                                  <th>Date Confirmed</th>
 
-               
-
-                <!-- MESSAGES AND ACTIVITIES COLUMN -->
-                <div class="row">
-
-                    <!-- ACTIVITIES COLUMN -->
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title"><b>USERS ACTIVITIES</b></h4>
-                            </div>
-                            <ul class="feeds p-b-20">
-                                <li>
-                                    <div class="bg-info"><i class="fa fa-bell-o"></i></div> You have 4 pending tasks. <span class="text-muted">Just Now</span></li>
-                                <!--<li>
-                                     <div class="bg-success"><i class="ti-server"></i></div> Server #1 overloaded.<span class="text-muted">2 Hours ago</span></li>
-                                <li>
-                                    <div class="bg-warning"><i class="ti-shopping-cart"></i></div> New order received.<span class="text-muted">31 May</span></li>
-                                <li>
-                                    <div class="bg-danger"><i class="ti-user"></i></div> New user registered.<span class="text-muted">30 May</span></li>
-                                <li>
-                                    <div class="bg-dark"><i class="fa fa-bell-o"></i></div> New Version just arrived. <span class="text-muted">27 May</span></li>
-                                <li>
-                                    <div class="bg-info"><i class="fa fa-bell-o"></i></div> You have 4 pending tasks. <span class="text-muted">Just Now</span></li>
-                                <li>
-                                    <div class="bg-danger"><i class="ti-user"></i></div> New user registered.<span class="text-muted">30 May</span></li>
-                                <li>
-                                    <div class="bg-dark"><i class="fa fa-bell-o"></i></div> New Version just arrived. <span class="text-muted">27 May</span></li> -->
-                            </ul>
-                        </div>
+                                </tr>
+                                @if(count($clientPackage))
+                                @forelse($clientPackage as $clientPackage) 
+                                <tr>
+                                    <td style="padding:10px;font-size: 15px;">{{ $clientPackage->client_name }}</td>
+                                    <td style="padding:10px;font-size: 15px;">
+                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5 8 5.961 14.154 3.5 8.186 1.113zM15 4.239l-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z"/>
+                                        </svg>
+                                        &nbsp&nbsp{{ $clientPackage->package_name }}
+                                    </td>
+                                    <td style="padding:10px;font-size: 15px;">{{ $clientPackage->category }}</td>
+                                    <td style="padding:10px;font-size: 15px;">{{ $clientPackage->price }}</td>
+                                    <td style="padding:10px;font-size: 20px; color: red;">{{ $clientPackage->status }}</td>
+                                    <td style="padding:10px;font-size: 15px;"><img src="{{ asset('/uploads/pictures/user/'.$clientPackage->photo) }}" style="width:30px; height: 30px;" alt></td>
+                                    <td style="padding:10px;font-size: 15px;">{{ $clientPackage->created_at }}</td>
+                                    <td style="padding:10px;font-size: 30px; color: red;"></td> 
+                                    <td style="padding:10px;font-size: 15px;">{{ $clientPackage->updated_at }}</td>         
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td>
+                                        You Have no Active Packages
+                                    </td>
+                                </tr>
+                                @endforelse
+                                @endif
+                                
+                           </tbody>
+                        </table>
                     </div>
-                </div>
-
-            <!-- ============================================================== -->
-            <!-- End Container fluid  -->
-            <!-- ============================================================== -->
-    </div>
-</div>
+               </div> <!-- end row -->
+            </div> <!-- end container -->
+        </section>
+        <!-- end products-section -->       
 
 @endsection

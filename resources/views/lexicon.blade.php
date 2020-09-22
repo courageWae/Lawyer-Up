@@ -210,7 +210,7 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipi scing elit, sed do eiusmod tempor incidi dunt ut labore et dolore magna aliqua.</p>
 
                         <div class="contact-form-s1 form">
-                            <form method="post" class="wpcf7-form contact-validation-active" action="/lexicon_message">
+                            <form method="post" class="wpcf7-form contact-validation-active" action="{{ route('lexicon.message') }}">
                                 {{ csrf_field() }}
                                 <div>
                                     <label for="name">Name</label>
@@ -279,7 +279,7 @@
                                     </div>
                                 </div>
                                 <div class="member-info">
-                                    <h3>Simon Nertey</h3>
+                                    <h3>Simon Martey</h3>
                                     <p>Director of the board</p>
                                 </div>
                             </div>
@@ -303,7 +303,7 @@
                                     </div>
                                 </div>
                                 <div class="member-info">
-                                    <h3>Lizbeth MacClen</h3>
+                                    <h3>Elizabeth Brew Smith</h3>
                                     <p>Director of the board</p>
                                 </div>
                             </div>
@@ -327,7 +327,7 @@
                                     </div>
                                 </div>
                                 <div class="member-info">
-                                    <h3>Man Paul</h3>
+                                    <h3>Paul K. Anomah</h3>
                                     <p>Director of the board</p>
                                 </div>
                             </div>
@@ -338,10 +338,6 @@
             </div> <!-- end container -->
         </section>
         <!-- end our-team -->         
-    
-
-
-
 
 
 @endsection

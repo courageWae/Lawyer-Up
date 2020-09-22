@@ -12,16 +12,16 @@
   <title>Lexicon Support Services</title>
 
   <!-- Bootstrap CSS -->
-  <link href="../admin/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ asset('admin/css/bootstrap.min.css') }}" rel="stylesheet">
   <!-- bootstrap theme -->
-  <link href="../admin/css/bootstrap-theme.css" rel="stylesheet">
+  <link href="{{ asset('admin/css/bootstrap-theme.css') }}" rel="stylesheet">
   <!--external css-->
   <!-- font icon -->
-  <link href="../admin/css/elegant-icons-style.css" rel="stylesheet" />
-  <link href="../admin/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="{{ asset('admin/css/elegant-icons-style.css') }}" rel="stylesheet" />
+  <link href="{{ asset('admin/css/font-awesome.min.css') }}" rel="stylesheet" />
   <!-- Custom styles -->
-  <link href="../admin/css/style.css" rel="stylesheet">
-  <link href="../admin/css/style-responsive.css" rel="stylesheet" />
+  <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
+  <link href="{{ asset('admin/css/style-responsive.css') }}" rel="stylesheet" />
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
   <!--[if lt IE 9]>
@@ -117,13 +117,13 @@
   </section>
   <!-- container section end -->
   <!-- javascripts -->
-  <script src="../admin/js/jquery.js"></script>
-  <script src="../admin/js/bootstrap.min.js"></script>
+  <script src="{{ asset('admin/js/jquery.js') }}"></script>
+  <script src="{{ asset('admin/js/bootstrap.min.js') }}"></script>
   <!-- nicescroll -->
-  <script src="../admin/js/jquery.scrollTo.min.js"></script>
-  <script src="../admin/js/jquery.nicescroll.js" type="text/javascript"></script>
+  <script src="{{ asset('admin/js/jquery.scrollTo.min.js') }}"></script>
+  <script src="{{ asset('admin/js/jquery.nicescroll.js') }}" type="text/javascript"></script>
   <!--custome script for all page-->
-  <script src="../admin/js/scripts.js"></script>
+  <script src="{{ asset('admin/js/scripts.js') }}"></script>
 
   <script>
   $(document).ready(function(){

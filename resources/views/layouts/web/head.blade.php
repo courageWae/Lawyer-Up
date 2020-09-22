@@ -42,7 +42,7 @@
                     <div class="row">
                         <div class="col col-sm-3">
                             <div class="site-logo">
-                                <a href="index-2.html"><img src="../assets/images/logo-2.png" alt></a>
+                                <a href="index-2.html"><img src="{{ asset('assets/images/logo-2.png') }}" alt></a>
                             </div>
                         </div>
                         <div class="col col-sm-6">
@@ -51,19 +51,27 @@
                         <div class="col col-sm-3">
                             @if(Auth::check() && Auth::user()->role_id == 4)
                              <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
-                                <a href="/user_profile">{{ Auth::user()->name }}</a>
+                                <a href="{{ route('user.dashboard') }}">
+                                <img class="card-img-top" src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" alt="Card image" width="30" height="30" style="border-radius: 20px;"> |
+                               {{ Auth::user()->name }}</a>
                              </div>
                              @elseif(Auth::check() && Auth::user()->role_id == 3)
                              <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
-                                <a href="/user_profile">{{ Auth::user()->name }}</a>
+                                <a href="{{ route('lawyer.dashboard') }}">
+                                    <img class="card-img-top" src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" alt="Card image" width="30" height="30" style="border-radius: 20px;"> |
+                                    {{ Auth::user()->name }}</a>
                              </div>
                              @elseif(Auth::check() && Auth::user()->role_id == 2)
                              <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
-                                <a href="/user_profile">{{ Auth::user()->name }}</a>
+                                <a href="{{ route('insurer.dashboard') }}">
+                                    <img class="card-img-top" src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" alt="Card image" width="30" height="30" style="border-radius: 20px;"> |
+                                    {{ Auth::user()->name }}</a>
                              </div>
                              @elseif(Auth::check() && Auth::user()->role_id == 1)
                              <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
-                                <a href="/user_profile">{{ Auth::user()->name }}</a>
+                                <a href="{{ route('admin.dashboard') }}">
+                                    <img class="card-img-top" src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" alt="Card image" width="30" height="30" style="border-radius: 20px;"> |
+                                    {{ Auth::user()->name }}</a>
                              </div>   
                             @else
                             <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">

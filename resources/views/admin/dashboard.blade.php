@@ -144,19 +144,19 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach($package as $package)
+                    
                     <tr>
-                      <td>{{ $package->name }}</td>
-                      <td>{{ $package->category }}</td>
-                      <td>{{ $package->price }}</td>
-                      <td>{{ $package->client_name }}</td>
-                      <td>{{ $package->client_email }}</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
                       <td><img src="/admin/img/Germany.png" style="height:30px; margin-top:-2px;"></td>   
-                      <td>{{ $package->status }}</td>
-                      <td>{{ $package->authority }} </td>
-                      <td>{{ ($package->created_at)->toFormattedDateString() }}</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
                     </tr>
-                    @endforeach
+ 
                   </tbody>
                 </table>
               </div>

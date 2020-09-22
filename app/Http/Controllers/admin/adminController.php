@@ -200,7 +200,7 @@ class adminController extends Controller
 
        
         $lawyer->save();
-        return redirect('/lawyer_list');
+        return redirect('/lawyer/list');
     }
 
 

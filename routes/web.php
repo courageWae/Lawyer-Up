@@ -18,26 +18,26 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('lexicon');
 });
-Route::get('/legal_support_home','legalSupportController@home')->name('Legal_Support_Home');
-Route::get('/legal_support_contact','legalSupportController@contact')->name('Legal_Support_Contact');
-Route::get('/legal_support_packages','legalSupportController@packages')->name('Legal_Support_Packages');
-Route::get('/legal_support_about','legalSupportController@about')->name('Legal_Support_About');
-Route::get('/legal_support_lawyers','legalSupportController@lawyers')->name('Legal_Support_Lawyers');
-Route::get('/lawyer_details/{id}','legalSupportController@showLawyer');
-Route::get('/legal_support_family_life_protection_paln','legalSupportController@flpp')->name('flpp');
-Route::get('/legal_support_personal_life_protection_paln','legalSupportController@plpp')->name('plpp');
-Route::get('/legal_support_business_life_protection_paln','legalSupportController@blpp')->name('blpp');
-Route::get('/legal_support_flpp_categories','legalSupportController@flpp_categories')->name('flpp_cat');
-Route::get('/legal_support_plpp_categories','legalSupportController@plpp_categories')->name('plpp_cat');
-Route::get('/legal_support_blpp_categories','legalSupportController@blpp_categories')->name('blpp_cat');
-Route::get('/checkout','legalSupportController@checkout')->name('checkout');
+Route::get('legalSupport/home','legalSupportController@home')->name('Legal_Support_Home');
+Route::get('legalSupport/contact','legalSupportController@contact')->name('Legal_Support_Contact');
+Route::get('legalSupport/packages','legalSupportController@packages')->name('Legal_Support_Packages');
+Route::get('legalSupport/about','legalSupportController@about')->name('Legal_Support_About');
+Route::get('legalSupport/lawyers','legalSupportController@lawyers')->name('Legal_Support_Lawyers');
+Route::get('legalSupport/lawyer/details/{id}','legalSupportController@showLawyer');
+Route::get('legalSupport/packages/family_life_protection_plan','legalSupportController@flpp')->name('flpp');
+Route::get('legalSupport/packages/personal_life_protection_plan','legalSupportController@plpp')->name('plpp');
+Route::get('legalSupport/packages/business_life_protection_plan','legalSupportController@blpp')->name('blpp');
+Route::get('legalSupport/packages/flpp/categories','legalSupportController@flpp_categories');
+Route::get('legalSupport/packages/plpp/categories','legalSupportController@plpp_categories')->name('plpp_cat');
+Route::get('legalSupport/packages/blpp/categories','legalSupportController@blpp_categories')->name('blpp_cat');
+Route::get('/categories/checkout/{id}','Checkout@index');
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
                       ////MESSAGES ROUTE//////
-Route::post('/lexicon_message','messagesController');
-Route::post('/legal_support_message','messagesController');
-Route::post('/lawyer_message','messagesController');
+Route::post('/lexicon/message','messagesController')->name('lexicon.message');
+Route::post('/legalSupport/message','messagesController')->name('legalSupport.message');
+Route::post('/lawyer/message','messagesController')->name('lawyer.message');
 
 
 
@@ -46,9 +46,9 @@ Auth::routes();
 /////////////////////////////////////////////////////////////////////////////////////
                         ///// USERS ROUTE ///////////
 Route::group(['middleware'=>['user','auth'],'namespace'=>'user'],function(){
-	Route::get('user_dashboard','userController@index')->name('user.dashboard');
-	Route::get('user_profile','userController@profile')->name('user.profile');
-	Route::patch('user_profile_edit/{id}','userController@update');
+	Route::get('user/dashboard','userController@index')->name('user.dashboard');
+	Route::get('user/profile','userController@profile')->name('user.profile');
+	Route::patch('user/profile/edit/{id}','userController@update');
 });
 
 
@@ -58,18 +58,18 @@ Route::group(['middleware'=>['user','auth'],'namespace'=>'user'],function(){
                    /// ADMIN ROUTES ////
 Route::group(['middleware'=>['admin','auth'],'namespace'=>'admin'],function(){
 	Route::get('admin/dashboard','adminController@dashboard')->name('admin.dashboard');
-	Route::get('admin_profile','adminController@profile');
-	Route::patch('admin_profile_edit/{id}','adminController@update');
-	Route::get('admin_add','adminController@adminAdd')->name('admin.add');
-	Route::post('admin_add','adminController@adminStore')->name('admin.store');
-	Route::get('insurer_add','adminController@insurerAdd')->name('insurer.add');
-	Route::post('insurer_add','adminController@insurerStore')->name('insurer.store');
-	Route::get('lawyer_add','adminController@lawyerAdd')->name('lawyer.add');
-	Route::post('lawyer_add','adminController@lawyerStore')->name('lawyer.store');
-	Route::get('admin_list','adminController@adminList')->name('admins.list');
-	Route::get('insurer_list','adminController@insurerList')->name('insurers.list');
-	Route::get('lawyer_list','adminController@lawyerList')->name('lawyers.list');
-	Route::get('user_list','adminController@userList')->name('users.list');
+	Route::get('admin/profile','adminController@profile');
+	Route::patch('admin/profile/{id}/edit','adminController@update');
+	Route::get('admin/add','adminController@adminAdd')->name('admin.add');
+	Route::post('admin/add','adminController@adminStore')->name('admin.store');
+	Route::get('insurer/add','adminController@insurerAdd')->name('insurer.add');
+	Route::post('insurer/add','adminController@insurerStore')->name('insurer.store');
+	Route::get('lawyer/add','adminController@lawyerAdd')->name('lawyer.add');
+	Route::post('lawyer/add','adminController@lawyerStore')->name('lawyer.store');
+	Route::get('admin/list','adminController@adminList')->name('admins.list');
+	Route::get('insurer/list','adminController@insurerList')->name('insurers.list');
+	Route::get('lawyer/list','adminController@lawyerList')->name('lawyers.list');
+	Route::get('user/list','adminController@userList')->name('users.list');
 	Route::delete('/admin/{id}','adminController@adminDelete');
 	Route::delete('/insurer/{id}','adminController@insurerDelete');
 	Route::delete('/user/{id}','adminController@userDelete');
@@ -98,8 +98,10 @@ Route::group(['middleware'=>['lawyer','auth'],'namespace'=>'lawyer'],function(){
                          /// INSURER ROUTES ///
 Route::group(['middleware'=>['insurer','auth'],'namespace'=>'insurer'],function(){
 	Route::get('insurer/dashboard','insurerController@index')->name('insurer.dashboard');
-	Route::get('insurer/client_add','insurerController@clientAdd')->name('client.add');
-	Route::get('insurer/profile','insurerController@profile')->name('insurer.profile');
+	Route::get('insurer_client_add','insurerController@clientAdd')->name('client.add');
+	Route::post('/clientAdd','insurerController@storeClient')->name('client.store');
+	Route::get('/insurer_profile','insurerController@profile')->name('insurer.profile');
+	Route::patch('/insurer_profile/{id}','insurerController@update');
 
 });
 

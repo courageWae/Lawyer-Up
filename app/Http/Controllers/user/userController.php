@@ -5,7 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-use \App\Package;
+use \App\clientPackage;
 use \App\User;
 use Auth;
 
@@ -18,8 +18,8 @@ class userController extends Controller
     }
 
     public function index(){
-    	$package = Package::where('client_email', Auth::user()->email)->get();
-    	return view('user.dashboard')->with('package',$package);
+    	$clientPackage = clientPackage::where('client_email', Auth::user()->email)->get();
+    	return view('user.dashboard')->with('clientPackage',$clientPackage);
     }
 
     public function profile(){

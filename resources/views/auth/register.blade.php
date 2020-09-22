@@ -88,10 +88,17 @@
                             <div class="col-md-8">
                                 <select class = "form-control" name="insurer" required>
                                     <option disabled="disabled" selected="selected">-- CHOOSE AN INSURER --</option>
+                                    @if(count(\App\User::where('role_id',2)->get()))
                                     @foreach((\App\User::where('role_id',2)->get()) as $insurer)
                                     <option>{{ $insurer->name }}</option>
                                     @endforeach
+                                    @endif
                                 </select>
+                                 @error('insurer')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         

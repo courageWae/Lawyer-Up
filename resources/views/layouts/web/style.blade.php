@@ -16,24 +16,24 @@
     <link href="assets/images/favicon/apple-touch-icon-144x144.png" rel="apple-touch-icon" sizes="144x144">
 
     <!-- Icon fonts -->
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/css/flaticon.css" rel="stylesheet">
+    <link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/flaticon.css') }}" rel="stylesheet">
 
     <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Plugins for this template -->
-    <link href="assets/css/animate.css" rel="stylesheet">
-    <link href="assets/css/owl.carousel.css" rel="stylesheet">
-    <link href="assets/css/owl.theme.css" rel="stylesheet">
-    <link href="assets/css/slick.css" rel="stylesheet">
-    <link href="assets/css/slick-theme.css" rel="stylesheet">
-    <link href="assets/css/owl.transitions.css" rel="stylesheet">
-    <link href="assets/css/jquery.fancybox.css" rel="stylesheet">
-    <link href="assets/css/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+    <link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/owl.carousel.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/owl.theme.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/slick.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/slick-theme.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/owl.transitions.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/jquery.fancybox.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/jquery.mCustomScrollbar.min.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
