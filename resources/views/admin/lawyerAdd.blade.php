@@ -9,7 +9,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Lexicon Support Services</title>
+  <title>{{ config('app.name','Lexicon Support Service') }}</title>
 
   <!-- Bootstrap CSS -->
   <link href="{{ asset('admin/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -151,7 +151,7 @@
                         <select name="type_of_lawyer" class="form-control">
                           <option selected="selected" disabled="disabled">--  CHOOSE A TYPE OF LAWYER</option>
                           @foreach($types as $types)
-                          <option>{{ $types->type_of_lawyer }}</option>
+                          <option>{{ $types->type }}</option>
                           @endforeach
                         </select>
                       </div>

@@ -2,7 +2,7 @@
                         <div class="card">
                            <center><h3>My Dashboard</h3></center>
                            <hr style="background-color:rgb(245, 197, 66); height: 10px;">
-                           <center><a href="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}"><img class="card-img-top" src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" alt="Card image" width="40" height="40" style="border-radius: 20px;"></a></center>
+                           <center><a href="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" target="blank"><img class="card-img-top" src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" alt="Card image" width="40" height="40" style="border-radius: 20px;"></a></center>
                            <hr>
                          <div class="card-body">
                            <center>
@@ -25,17 +25,17 @@
                                &nbsp&nbspEdit Profile
                            </a>
                            <hr>
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="font-size: 20px;">
-                               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-power" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                   <path fill-rule="evenodd" d="M5.578 4.437a5 5 0 1 0 4.922.044l.5-.866a6 6 0 1 1-5.908-.053l.486.875z"/>
-                                   <path fill-rule="evenodd" d="M7.5 8V1h1v7h-1z"/>
-                               </svg>
-                               <i class="icon_key_alt"></i>
-                                        &nbsp&nbspLog Out</a>
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                               @csrf
-                            </form>
+                           <div style="font-size: 20px;">
+                             <a class="dropdown-item" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-power" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" d="M5.578 4.437a5 5 0 1 0 4.922.044l.5-.866a6 6 0 1 1-5.908-.053l.486.875z"/>
+                                  <path fill-rule="evenodd" d="M7.5 8V1h1v7h-1z"/>
+                                </svg>Log out
+                              </a>
+                              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                              </form>      
+                           </div>
                          </center>
                          </div>
                      </div>

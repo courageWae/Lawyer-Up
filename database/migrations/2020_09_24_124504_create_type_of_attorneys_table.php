@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInvoicesTable extends Migration
+class CreateTypeOfAttorneysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateInvoicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('invoices', function (Blueprint $table) {
+        Schema::create('type_of_attorneys', function (Blueprint $table) {
             $table->id();
-            $table->string('number');
-            $table->string('package_name');
-            $table->string('category');
-            $table->string('price');
-            $table->string('issued_to');
-            $table->string('status');
-            $table->string('total_price');
+            $table->string('type');
+            $table->string('add_by');
+            $table->string('desciption');
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ class CreateInvoicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invoices');
+        Schema::dropIfExists('type_of_attorneys');
     }
 }

@@ -6,7 +6,7 @@
     <meta name="author" content="themexriver">
 
     <!-- Page Title -->
-    <title>Lexicon Support Services</title>
+    <title>{{config('app.name','Lexicon Suport Services') }}</title>
 
     <!-- Favicon and Touch Icons -->
     <link href="assets/images/favicon/favicon.png" rel="shortcut icon" type="image/png">

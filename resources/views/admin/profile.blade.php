@@ -9,7 +9,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Lexicon Support Services</title>
+  <title>{{ config('app.name','Lexicon Support Service') }}</title>
 
   <!-- Bootstrap CSS -->
   <link href="../admin/css/bootstrap.min.css" rel="stylesheet">
@@ -223,7 +223,7 @@
                           <div class="form-group">
                             <label class="col-lg-2 control-label">Password</label>
                             <div class="col-lg-6">
-                              <input type="password" class="form-control" name="password" value="{{ Auth::user()->password }}" required>
+                              <input type="password" class="form-control" name="password"  required>
                               @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -262,15 +262,15 @@
   </section>
   <!-- container section end -->
   <!-- javascripts -->
-  <script src="../admin/js/jquery.js"></script>
-  <script src="../admin/js/bootstrap.min.js"></script>
+  <script src="{{ asset('admin/js/jquery.js') }}"></script>
+  <script src="{{ asset('admin/js/bootstrap.min.js') }}"></script>
   <!-- nice scroll -->
-  <script src="../admin/js/jquery.scrollTo.min.js"></script>
-  <script src="../admin/js/jquery.nicescroll.js" type="text/javascript"></script>
+  <script src="{{ asset('admin/js/jquery.scrollTo.min.js') }}"></script>
+  <script src="{{ asset('admin/js/jquery.nicescroll.js') }}" type="text/javascript"></script>
   <!-- jquery knob -->
-  <script src="../admin/assets/jquery-knob/js/jquery.knob.js"></script>
+  <script src="{{ asset('admin/assets/jquery-knob/js/jquery.knob.js') }}"></script>
   <!--custome script for all page-->
-  <script src="../admin/js/scripts.js"></script>
+  <script src="{{ asset('admin/js/scripts.js') }}"></script>
 
   <script>
     //knob

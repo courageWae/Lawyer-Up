@@ -4,11 +4,12 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\TypeOfAttorney;
 use Illuminate\Http\Request;
 use App\TypeOfLawyer;
 use App\Message;
 use App\User;
-//use App\Lawyer;
+use App\ClientPackage;
 use App\Package;
 use Auth;
 use DB;
@@ -41,8 +42,9 @@ class adminController extends Controller
         $msg = Message::where('destination','admin')->get();
         $msgLawyer = Message::where('destination','not like',"%admin%")->get();
         $user = User::all();
-        $package = Package::latest()->get();
-       return view('admin.dashboard')->with('msg',$msg)->with('user',$user)->with('package',$package)->with('msgLawyer',$msgLawyer);	
+        $clientPackage = ClientPackage::all();
+        $packages = ClientPackage::latest()->get();
+       return view('admin.dashboard')->with('msg',$msg)->with('user',$user)->with('clientPackage',$clientPackage)->with('msgLawyer',$msgLawyer)->with('package',$packages);	
     }
 
     public function profile(){ 
@@ -95,13 +97,15 @@ class adminController extends Controller
 
         $admin->save();
 
-        return redirect('/admin_list');
+        return redirect('/admin/list');
     }
 
     public function adminDelete($id){
       $user = User::find($id);
-      $user->delete();
-      return redirect('/admin_list');
+       if($user != null){
+         $user->delete();
+       }
+      return redirect()->route('admins.list');
     }
 
     public function insurerAdd(){
@@ -134,37 +138,21 @@ class adminController extends Controller
            $insurer->photo = ' ';
        }
         $insurer->save();
-        return redirect('/insurer_list');
+        return redirect('/insurer/list');
     }
 
 
 
     public function insurerDelete($id){
-       $user = User::find($id);
-       $user->delete();
+       User::find($id)->delete();
        return redirect('/insurer_list');
     }
 
     public function lawyerAdd(){
-        $types = TypeOfLawyer::all();
+        $types = TypeOfAttorney::all();
         return view('admin.lawyerAdd')->with('types',$types);
     }
-
-    public function typeOfLawyerAdd(){
-      $types = TypeOfLawyer::all(); 
-      return view('admin.typeOfLawyerAdd')->with('types',$types);
-    }
-
-
-    public function storeTypeOfLawyer(){
-      $type = new TypeOfLawyer();
-      $type->type_of_lawyer = request('name');
-      $type->by = Auth::user()->name;
-      $type->save();
-      $types = TypeOfLawyer::all();
-      return view('admin.typeOfLawyerAdd')->with('types',$types);
-    }
-
+ 
     public function lawyerStore(Request $request){
         $this->validate(request(),[
              'name'=>'required',
@@ -205,9 +193,8 @@ class adminController extends Controller
 
 
     public function lawyerDelete($id){
-       $user = User::find($id);
-       $user->delete();
-       return redirect('/lawyer_list');
+       User::find($id)->delete();
+       return redirect('/lawyer/list');
     }
 
     public function adminList(){
@@ -230,18 +217,9 @@ class adminController extends Controller
         return view('admin.userList')->with('user',$user);
     }
 
-
     public function userDelete($id){
-      $client = User::find($id);
-      $client->delete();
-      return redirect('/user_list');
-    }
-
-    public function typeOfLawyerDelete($id){
-      $types = TypeOfLawyer::find($id);
-      $types->delete();
-      return redirect()->back();
-
+      User::find($id)->delete();
+      return redirect('/user/list');
     }
 
 }

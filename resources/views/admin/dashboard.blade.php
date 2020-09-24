@@ -9,7 +9,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Lexicon Support Service</title>
+  <title>{{ config('app.name','Lexicon Support Service') }}</title>
 
   <!-- Bootstrap CSS -->
   <link href="../admin/css/bootstrap.min.css" rel="stylesheet">
@@ -101,9 +101,9 @@
 
           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="info-box brown-bg">
-              <i class="fa fa-shopping-cart"></i>
-              <div class="count">{{ count($package) }}</div>
-              <div class="title">Purchased Packages</div>
+              <i class="fa fa-user"></i>
+              <div class="count">{{ count($user->where('role_id','1')) }}</div>
+              <div class="title">Number of Administrators</div>
             </div>
             <!--/.info-box-->
           </div>
@@ -113,20 +113,12 @@
 
 
         <!-- Today status end -->
-
-
-
         <div class="row">
 
           <div class="col-lg-9 col-md-12">
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h2><i class="fa fa-flag-o red"></i><strong>Packages </strong></h2>
-                <div class="panel-actions">
-                  <a href="#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
-                  <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-                  <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-                </div>
               </div>
               <div class="panel-body">
                 <table class="table bootstrap-datatable countries">
@@ -141,22 +133,35 @@
                       <th>Status</th>
                       <th>Approved By</th>
                       <th>Date</th>
+                      <th>Approved On</th>
                     </tr>
                   </thead>
                   <tbody>
-                    
+                   @forelse($package as $package) 
                     <tr>
+                      <td>{{ $package->package_name }}</td>
+                      <td>{{ $package->category }}</td>
+                      <td>{{ $package->price }}</td>
+                      <td>{{ $package->client_name }}</td>
+                      <td>{{ $package->client_email }}</td>
+                      <td>
+                        <a href="{{ asset('uploads/pictures/user/'.$package->photo ) }}" target = "blank">
+                          <img src="{{ asset('uploads/pictures/user/'.$package->photo ) }}" style="height:30px; margin-top:-2px;"></td> 
+                        </a>    
+                      <td><button style="background-color:#fa4b28;">{{ $package->status }}</button></td>
                       <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td><img src="/admin/img/Germany.png" style="height:30px; margin-top:-2px;"></td>   
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td>{{ $package->created_at }}</td>
+                      <td>
+                        @if($package->status != "Pending")
+                           
+                        {{$package->updated_at}}
+
+                        @endif
+                      </td>
                     </tr>
- 
+                   @empty
+                   <tr>There are no Packages <tr>
+                   @endforelse
                   </tbody>
                 </table>
               </div>
@@ -168,15 +173,15 @@
           <div class="col-md-3">
 
             <div class="social-box facebook">
-              <i class="fa fa-facebook"></i>
+              <i class="fa fa-shopping-cart"></i>
               <ul>
                 <li>
-                  <strong>0</strong>
-                  <span>Followers</span>
+                  <strong>{{ count($clientPackage->where('status','Pending')) }}</strong>
+                  <span>Pending Packages</span>
                 </li>
                 <li>
-                  <strong>0</strong>
-                  <span>Feeds Posted</span>
+                  <strong>{{ count($clientPackage->where('status','not like','%Pending%')) }}</strong>
+                  <span>Active Packages</span>
                 </li>
               </ul>
             </div>
@@ -184,24 +189,22 @@
           </div>
           
           <!--/col-->
-          <div class="col-md-3">
+          <!-- <div class="col-md-3">
 
             <div class="social-box twitter">
               <i class="fa fa-twitter"></i>
               <ul>
                 <li>
-                  <strong>0</strong>
-                  <span>followers</span>
                 </li>
                 <li>
                   <strong>0</strong>
                   <span>tweets</span>
                 </li>
               </ul>
-            </div>
-            <!--/social-box-->
+            </div> 
+            
 
-          </div>
+          </div>-->
           <!--/col-->
 
         </div>
@@ -222,10 +225,6 @@
             <div class="panel panel-default">
               <div class="panel-heading">
                 <div class="pull-left"> Messages To Administrators</div>
-                <div class="widget-icons pull-right">
-                  <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
-                  <a href="#" class="wclose"><i class="fa fa-times"></i></a>
-                </div>
                 <div class="clearfix"></div>
               </div>
 
@@ -273,10 +272,7 @@
             <div class="panel panel-default">
               <div class="panel-heading">
                 <div class="pull-left"> Messages To Lawyers</div>
-                <div class="widget-icons pull-right">
-                  <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
-                  <a href="#" class="wclose"><i class="fa fa-times"></i></a>
-                </div>
+                
                 <div class="clearfix"></div>
               </div>
 
@@ -326,32 +322,7 @@
           <div class="col-md-6 portlets">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h2><strong>Calendar</strong></h2>
-                <div class="panel-actions">
-                  <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
-                  <a href="#" class="wclose"><i class="fa fa-times"></i></a>
-                </div>
-
-              </div><br><br><br>
-              <div class="panel-body">
-                <!-- Widget content -->
-
-                <!-- Below line produces calendar. I am using FullCalendar plugin. -->
-                <div id="calendar"></div>
-
-              </div>
-            </div>
-
-          </div>
-
-          <div class="col-md-6 portlets">
-            <div class="panel panel-default">
-              <div class="panel-heading">
                 <div class="pull-left">Quick Post</div>
-                <div class="widget-icons pull-right">
-                  <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
-                  <a href="#" class="wclose"><i class="fa fa-times"></i></a>
-                </div>
                 <div class="clearfix"></div>
               </div>
               <div class="panel-body">
@@ -371,30 +342,10 @@
                       <div class="form-group">
                         <label class="control-label col-lg-2" for="content">Content</label>
                         <div class="col-lg-10">
-                          <textarea class="form-control" id="content"></textarea>
+                          <textarea class="form-control" id="content" rows="15"></textarea>
                         </div>
                       </div>
-                      <!-- Cateogry -->
-                      <div class="form-group">
-                        <label class="control-label col-lg-2">Category</label>
-                        <div class="col-lg-10">
-                          <select class="form-control">
-                                                  <option value="">- Choose Cateogry -</option>
-                                                  <option value="1">General</option>
-                                                  <option value="2">News</option>
-                                                  <option value="3">Media</option>
-                                                  <option value="4">Funny</option>
-                                                </select>
-                        </div>
-                      </div>
-                      <!-- Tags -->
-                      <div class="form-group">
-                        <label class="control-label col-lg-2" for="tags">Tags</label>
-                        <div class="col-lg-10">
-                          <input type="text" class="form-control" id="tags">
-                        </div>
-                      </div>
-
+                      
                       <!-- Buttons -->
                       <div class="form-group">
                         <!-- Buttons -->

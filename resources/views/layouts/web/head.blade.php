@@ -9,13 +9,13 @@
                                     <div>
                                         <i class="fa fa-location-arrow"></i>
                                         <div class="details">
-                                            <p>5523 Research Park Drive, Suite 110</p>
+                                            <p>John Nii Owoo Street 10</p>
                                         </div>
                                     </div>
                                     <div>
                                         <i class="fa fa-phone"></i>
                                         <div class="details">
-                                            <p>+012 (3546) 547</p>
+                                            <p>+2331234321</p>
                                         </div>
                                     </div>
                                 </div>

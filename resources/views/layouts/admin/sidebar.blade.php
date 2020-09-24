@@ -33,6 +33,7 @@ sidebar start-->
               <li><a class="" href="{{ route('insurers.list') }}">Show Insurers</a></li>
               <li><a class="" href="{{ route('lawyers.list') }}">Show Lawyers</a></li>
               <li><a class="" href="{{ route('users.list') }}">Show User</a></li>
+              <li><a class="" href="{{ route('type.show') }}">Type of Lawyers</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -42,7 +43,8 @@ sidebar start-->
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
             <ul class="sub">
-              <li><a class="" href="{{ route('type.add') }}">Lawyer field</a></li>
+              <li><a class="" href="{{ route('type.index') }}">Add Type of Lawyer</a></li>
+              <li><a class="" href="{{ route('reference') }}">Reference Codes</a></li>
             </ul>
           </li>
 

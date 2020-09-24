@@ -9,7 +9,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Lexicon Support Services</title>
+  <title>{{ config('app.name','Lexicon Support Service') }}</title>
 
   <!-- Bootstrap CSS -->
   <link href="{{ asset('admin/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -22,20 +22,6 @@
   <!-- Custom styles -->
   <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
   <link href="{{ asset('admin/css/style-responsive.css') }}" rel="stylesheet" />
-
-  <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
-  <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
-      <script src="js/lte-ie7.js"></script>
-    <![endif]-->
-
-    <!-- =======================================================
-      Theme Name: NiceAdmin
-      Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-      Author: BootstrapMade
-      Author URL: https://bootstrapmade.com
-    ======================================================= -->
 </head>
 
 <body>
@@ -87,20 +73,7 @@
                     <td>{{ $insurer->phone }}</td>
                     <td>{{ $insurer->created_at }}</td>
                     <td>
-                       <div>
-                        <buttton type="button"  class = "btn btn-danger but" ><i class="icon_close_alt2" ></i> DELETE</buttton>
-                      </div>
-                     <form method="post" action = "/insurer/{{ $insurer->id }}">
-                        @method('DELETE')
-                        @csrf
-                      <div class="btn-group ask"  style="padding-top: 5px;display: inline-block;">
-                        <p>Are you sure you want to delete this administrator ? </p>
-                        <button class="btn btn-success" type="submit"><i class="icon_check_alt2"></i> Yes</button>
-                      </div>
-                      </form>
-                      <div style="padding-top: 5px;" class ="no">
-                        <a class="btn btn-danger"><i class="icon_close_alt2"></i> No</a>
-                      </div>
+                      <a href="/insurer/{{$insurer->id}}" class="button delete-confirm">Delete</a>
                     </td>
                   </tr>
                   @endforeach
@@ -125,21 +98,24 @@
   <!--custome script for all page-->
   <script src="{{ asset('admin/js/scripts.js') }}"></script>
 
-  <script>
-  $(document).ready(function(){
-    $(".ask").hide();
-    $(".no").hide();
-    $(".but").click(function(){
-      $(".ask").show();
-      $(".no").show();
-    });
-    $(".no").click(function(){
-      $(".ask").hide();
-      $(".no").hide();
-    });
-  });
-</script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+<script>
+  $('.delete-confirm').on('click', function (event) {
+    event.preventDefault();
+    const url = $(this).attr('href');
+    swal({
+        title: 'Are you sure?',
+        text: 'This Insurance Company will be permanently deleted',
+        icon: 'warning',
+        buttons: ["Cancel", "Yes!"],
+    }).then(function(value) {
+        if (value) {
+            window.location.href = url;
+        }
+    });
+});
+</script>
 
 </body>
 

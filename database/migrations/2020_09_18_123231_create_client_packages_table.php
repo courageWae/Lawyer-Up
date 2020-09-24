@@ -23,6 +23,7 @@ class CreateClientPackagesTable extends Migration
             $table->string('status');
             $table->mediumText('photo');
             $table->string('verification_code')->nullable();
+            $table->string('approved_by')->nullable();
             $table->timestamps();
         });
     }

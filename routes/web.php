@@ -58,7 +58,7 @@ Route::group(['middleware'=>['user','auth'],'namespace'=>'user'],function(){
                    /// ADMIN ROUTES ////
 Route::group(['middleware'=>['admin','auth'],'namespace'=>'admin'],function(){
 	Route::get('admin/dashboard','adminController@dashboard')->name('admin.dashboard');
-	Route::get('admin/profile','adminController@profile');
+	Route::get('admin/profile','adminController@profile')->name('admin.profile');
 	Route::patch('admin/profile/{id}/edit','adminController@update');
 	Route::get('admin/add','adminController@adminAdd')->name('admin.add');
 	Route::post('admin/add','adminController@adminStore')->name('admin.store');
@@ -70,13 +70,19 @@ Route::group(['middleware'=>['admin','auth'],'namespace'=>'admin'],function(){
 	Route::get('insurer/list','adminController@insurerList')->name('insurers.list');
 	Route::get('lawyer/list','adminController@lawyerList')->name('lawyers.list');
 	Route::get('user/list','adminController@userList')->name('users.list');
-	Route::delete('/admin/{id}','adminController@adminDelete');
-	Route::delete('/insurer/{id}','adminController@insurerDelete');
-	Route::delete('/user/{id}','adminController@userDelete');
-	Route::delete('/lawyer/{id}','adminController@lawyerDelete');
-	Route::delete('typeOfLawyer/{id}','adminController@typeOfLawyerDelete');
-	Route::get('admin/typeOfLawyerAdd','adminController@typeOfLawyerAdd')->name('type.add');
-	Route::post('admin/typeOfLawyerAdd','adminController@storeTypeOfLawyer')->name('type.store');
+	Route::get('/admin/{id}','adminController@adminDelete');
+	Route::get('/insurer/{id}','adminController@insurerDelete');
+	Route::get('/user/{id}','adminController@userDelete');
+	Route::get('/lawyer/{id}','adminController@lawyerDelete');
+
+	Route::get('/typeOfLawyer/show','LawyerTypesController@show')->name('type.show');
+	Route::get('/typeOfLawyer/add','LawyerTypesController@index')->name('type.index');
+	Route::post('/typeOfLawyer/store','LawyerTypesController@store')->name('type.store');
+	Route::get('/typeOfLawyer/{id}','LawyerTypesController@destroy');
+    
+	Route::get('/references','ReferenceController@index')->name('reference');
+	Route::post('/references/store','ReferenceController@store')->name('reference.store');
+	Route::get('/references/{id}','ReferenceController@destroy');
 	
 });
 
@@ -105,4 +111,3 @@ Route::group(['middleware'=>['insurer','auth'],'namespace'=>'insurer'],function(
 
 });
 
-Route::get('/home', 'HomeController@index')->name('home');

@@ -65,7 +65,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-md-12">Phone Number</label>
+                                        <label class="col-md-12">Insurance Company</label>
                                         <div class="col-md-12">
                                           <select class = "form-control" name="insurer" required>
                                             <option selected ="selected">{{ Auth::user()->insurer }}</option>
@@ -79,7 +79,7 @@
                                     <div class="form-group">
                                         <label class="col-md-12">Password</label>
                                         <div class="col-md-12">
-                                            <input type="text" value="{{ Auth::user()->password }}" name="password" class="form-control form-control-line" required>
+                                            <input type="text" name="password" class="form-control form-control-line" required>
                                              @error('password')
                                               <span class="invalid-feedback" role="alert" style="color:red;">
                                                 <strong>{{ $message }}</strong>

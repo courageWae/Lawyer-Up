@@ -9,7 +9,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Lexicon Support Services</title>
+  <title>{{ config('app.name','Lexicon Support Service') }}</title>
 
   <!-- Bootstrap CSS -->
   <link href="{{ asset('admin/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -190,9 +190,9 @@
   <script src="{{ asset('admin/js/jquery.hotkeys.js') }}"></script>
   <script src="{{ asset('admin/js/bootstrap-wysiwyg.js') }}"></script>
   <script src="{{ asset('admin/js/bootstrap-wysiwyg-custom.js') }}"></script>
-  <script src="{{ asset('admin/js/moment.js"></script>
+  <script src="{{ asset('admin/js/moment.js') }}"></script>
   <script src="{{ asset('admin/js/bootstrap-colorpicker.js') }}"></script>
-  <script src="{{ asset('admin/js/daterangepicker.js"></script>
+  <script src="{{ asset('admin/js/daterangepicker.js') }}"></script>
   <script src="{{ asset('admin/js/bootstrap-datepicker.js') }}"></script>
   <!-- ck editor -->
   <script type="text/javascript" src="{{ asset('admin/assets/ckeditor/ckeditor.js') }}"></script>

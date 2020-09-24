@@ -128,8 +128,7 @@
                                 <h2>Lexicon Support Services</h2>
                             </div>
                             <div class="details">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-                                <p>laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+                                <p>No Write up for this section</p>
                             </div>
                         </div>
                     </div>
@@ -196,7 +195,7 @@
                                 <p>For any kind of query, contact us with the details below.</p>
                                 <ul>
                                     <li><i class="fa fa-phone"></i> +123 (569) 254 78</li>
-                                    <li><i class="fa fa-envelope"></i> info@lexiconservices.com</li>
+                                    <li><i class="fa fa-envelope"></i> info@lexiconsupport.net</li>
                                     <li><i class="fa fa-home"></i> John nii owoo street 10, Accra-Ghana</li>
                                 </ul>
                             </div>

@@ -44,7 +44,7 @@
           <div class="email"><a href="#">{{ Auth::user()->email }}</a></div>
         </div>
         <div id="invoice">
-          <h1> Invoice No:: 0{{ count($invoice) + 1 }}</h1>
+          <h1> Invoice No:: #0{{ count($invoices) + 1 }}</h1>
           <div class="date">Date of Invoice : {{ $date = now()->toDayDateTimeString() }}</div>
           <div class="date"> Due Date : {{ now()->addyear()->toDayDateTimeString() }}</div>
         </div>

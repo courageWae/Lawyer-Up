@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTypeOfLawyersTable extends Migration
+class CreateReferencesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateTypeOfLawyersTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_of_lawyers', function (Blueprint $table) {
+        Schema::create('references', function (Blueprint $table) {
             $table->id();
-            $table->string('type_of_lawyer');
             $table->string('by');
+            $table->string('phone');
+            $table->string('code');
+            $table->string('date');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateTypeOfLawyersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_of_lawyers');
+        Schema::dropIfExists('references');
     }
 }
