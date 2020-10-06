@@ -46,7 +46,7 @@
                                   <th>Category</th>
                                   <th>Price</th>
                                   <th>Status</th>
-                                  <th>Image</th>
+                                  <th>Client Image</th>
                                   <th>Date</th>
                                   <th>Confirmed By</th>
                                   <th>Date Confirmed</th>
@@ -66,9 +66,9 @@
                                     <td style="padding:10px;font-size: 15px;">{{ $clientPackage->price }}</td>
                                     <td style="padding:10px;font-size: 20px; color: red;">{{ $clientPackage->status }}</td>
                                     <td style="padding:10px;font-size: 15px;"><img src="{{ asset('/uploads/pictures/user/'.$clientPackage->photo) }}" style="width:30px; height: 30px;" alt></td>
-                                    <td style="padding:10px;font-size: 15px;">{{ $clientPackage->created_at }}</td>
+                                    <td style="padding:10px;font-size: 15px;">{{ $clientPackage->created_at->toDateString() }}</td>
                                     <td style="padding:10px;font-size: 30px; color: red;"></td> 
-                                    <td style="padding:10px;font-size: 15px;">{{ $clientPackage->updated_at }}</td>         
+                                    <td style="padding:10px;font-size: 15px;">{{ $clientPackage->updated_at->toDateString() }}</td>
                                 </tr>
                                 @empty
                                 <tr>

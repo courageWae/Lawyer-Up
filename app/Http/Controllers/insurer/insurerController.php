@@ -13,14 +13,14 @@ use DB;
 class insurerController extends Controller
 {
     //
-    public function __construct()
-    {
-        $this->middleware('insurer');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('insurer');
+    // }
 
     public function index(){
-        $clientPackage = ClientPackage::all();
-    	return view('insurer.dashboard')->with('clientPackage',$clientPackage);
+        $clientPackage = ClientPackage::where('client_insurer',Auth::user()->name)->get();
+          return view('insurer.dashboard')->with('clientPackage',$clientPackage);
     }
 
     public function profile(){

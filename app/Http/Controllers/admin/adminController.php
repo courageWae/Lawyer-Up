@@ -25,7 +25,7 @@ class adminController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('admin');
+        //$this->middleware('admin');
     }
 
      public function findAdmin(){
@@ -63,7 +63,7 @@ class adminController extends Controller
         DB::table('users')->where('id', Auth::user()->id)->update(
           ['name' => request('name'),'email'=> request('email'),'phone'=>request('phone'),'password' =>Hash::make(request('password'))]);
 
-          return redirect('/admin_profile');
+          return redirect('/admin/profile');
     }       
 
     public function adminAdd(){

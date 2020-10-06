@@ -15,10 +15,6 @@
                             <div class="col col-lg-8 col-sm-9 slide-caption">
                                 <h2>Welcome to Lexicon Support  Services. <span> SAVE TIME, SAVE MONEY</span></h2>
                                 <p>We are here to work for you 24/7. Lexicon Support Services, Shielding families and businesses!!</p>
-                                <!-- <div class="btns">
-                                    <a href="#" class="theme-btn">About us</a>
-                                    <a href="#" class="theme-btn-s2">Explore</a>
-                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -59,24 +55,10 @@
                                     <div class="details ">
                                        <div class="info">
                                             <img src="assets/images/services/img_1.jpg" alt class="bg-image">
-                                            <a href="service-single.html">
-                                                <h3>Pay-Roll Managment System</h3>
-                                            </a>
-                                            <a class="btn btn-danger" href="#"> Get Details</a>
-                                           
-                                       </div>
-                                    </div>
-                               </div>
-                            </div>
-                            <div class="grid">
-                               <div class="inner mk-bg-img">
-                                    <div class="details ">
-                                       <div class="info">
-                                            <img src="assets/images/services/img_1.jpg" alt class="bg-image">
-                                            <a href="service-single.html">
+                                            <a href="javascript:void(0)">
                                                 <h3>Skills and Management Training</h3>
                                             </a>
-                                            <a class="btn btn-danger" href="#"> Get Details</a>
+                                            <a class="btn btn-danger" href="javascript:void(0)"> Get Details</a>
                                            
                                        </div>
                                     </div>
@@ -87,10 +69,10 @@
                                     <div class="details ">
                                        <div class="info">
                                             <img src="assets/images/services/img_1.jpg" alt class="bg-image">
-                                            <a href="service-single.html">
+                                            <a href="javascript:void(0)">
                                                 <h3> Business and Startup support</h3>
                                             </a>
-                                            <a class="btn btn-danger" href="#">Get Details</a>
+                                            <a class="btn btn-danger" href="javascript:void(0)">Get Details</a>
                                            
                                        </div>
                                     </div>
@@ -101,7 +83,7 @@
                                     <div class="details ">
                                        <div class="info">
                                             <img src="assets/images/services/img_1.jpg" alt class="bg-image">
-                                            <a href="service-single.html">
+                                            <a href="{{ route('Legal_Support_Home') }}">
                                                 <h3><i class="fi flaticon-construction"></i> Legal support</h3>
                                             </a>
                                             <a class="btn btn-danger" href="{{ route('Legal_Support_Home') }}"> Get Details</a>

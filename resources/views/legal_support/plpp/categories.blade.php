@@ -31,7 +31,7 @@
                             <div class="entry-body">
                                 <center>
                                     <h3>BRONZE</h3>
-                                    <h2>GH&cent 200</h2>
+                                    <h2>GH&cent {{ $categories->Price }}</h2>
                                 </center>
                                  <hr style="height:4px; background-color: blue;">
                                 <p>
@@ -70,13 +70,13 @@
                             </div>
                         </div>
                     </div>
-                     @elseif($categories->Name == "Sliver")
+                     @elseif($categories->Name == "Silver")
                     <div class="grid">
                         <div class="entry-details">
                             <div class="entry-body">
                                 <center>
                                     <h3>SILVER</h3>
-                                    <h2>GH&cent 600</h2>
+                                    <h2>GH&cent {{ $categories->Price }}</h2>
                                 </center>
                                 <hr style="height:4px; background-color: blue;">
                                 <p>
@@ -156,7 +156,7 @@
                             <div class="entry-body">
                                 <center>
                                     <h3>GOLD</h3>
-                                    <h2>GH&cent 600</h2>
+                                    <h2>GH&cent {{ $categories->Price }}</h2>
                                 </center>
                                 <hr style="height:4px; background-color: blue;">
                                  <p>

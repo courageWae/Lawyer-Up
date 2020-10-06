@@ -87,7 +87,7 @@
                     <td>{{ $admin->phone }}</td>
                     <td>{{ $admin->created_at }}</td>
                     <td>
-                       <a href="/admin/{{$admin->id}}" class="button delete-confirm">Delete</a>
+                       <a href="/admin/{{$admin->id}}" class="btn btn-danger delete-confirm">Delete</a>
                     </td>
                   </tr>
                   @endforeach         

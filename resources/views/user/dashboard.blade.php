@@ -44,6 +44,7 @@
                                   <th>Category</th>
                                   <th>Price</th>
                                   <th>Status</th>
+
                                 </tr>
                                 @forelse($clientPackage as $clientPackage)
                                 <tr>
@@ -54,13 +55,15 @@
                                     </td>
                                     <td style="padding:10px;font-size: 20px;">{{ $clientPackage->category }}</td>
                                     <td style="padding:10px;font-size: 20px;">{{ $clientPackage->price }}</td>
-                                    <td style="padding:10px;font-size: 20px; color: red;">{{ $clientPackage->status }}</td>
+                                    <td style="padding:10px;font-size: 20px;">{{ $clientPackage->status }}</td>
+                                    <td style="padding:10px;font-size: 20px;"><a class="btn btn-primary" href = "{{ route('user.viewPackage',['id'=> $clientPackage->id]) }}">View</a></td>
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td style = "color:red;">
-                                        You Have no Active or Pending Packages
+                                    <td  colspan="4" style = "color:red;">
+                                        <center>You Have no Active or Pending Packages</center>
                                     </td>
+                                    
                                 </tr>
                                 @endforelse   
                            </tbody>
@@ -69,6 +72,5 @@
                </div> <!-- end row -->
             </div> <!-- end container -->
         </section>
-        <!-- end products-section -->       
-
+        <!-- end products-section --> 
 @endsection

@@ -5,7 +5,10 @@ namespace App\Http\Controllers\lawyer;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use MultipleIterator;
+use ArrayIterator;
 use App\Package;
+use App\Booking;
 use App\Lawyer;
 use App\user;
 use Auth;
@@ -15,7 +18,7 @@ class lawyerController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('lawyer');
+        //$this->middleware('lawyer');
     }
 
     public function findLawyer(){
@@ -29,8 +32,9 @@ class lawyerController extends Controller
     }
 
     public function index(){
-        $lawyer = self::findLawyer();	
-    	return view('lawyer.dashboard')->with('lawyer',$lawyer);
+        $lawyer = self::findLawyer();
+        $book = Booking::where('name_of_lawyer',Auth::user()->name)->get();
+    	return view('lawyer.dashboard',['lawyer'=>$lawyer, 'book'=>$book]);
     }
 
     public function profile(){
@@ -39,15 +43,13 @@ class lawyerController extends Controller
     }
 
      public function update(){
-        $lawyer = self::findlawyer();
-        
+        $lawyer = self::findlawyer();  
         $this->validate(request(),[
          'name'=>'required',
          'email' => 'required | email',
          'phone'=> 'required',
          'password' => 'required | confirmed'
         ]);
-
         
         $newDetails = [
         $lawyer->name = request('name'),
@@ -66,4 +68,26 @@ class lawyerController extends Controller
         $lawyer->update($newDetails);
         return redirect('/lawyer_profile');
     }
+
+    public function viewAppointment($id){
+        $lawyer = self::findLawyer();
+        $book = Booking::find($id);
+        return view('lawyer.view_appointment',['book'=>$book, 'lawyer'=>$lawyer]);
+    }
+
+    public function clientList(){
+        $lawyer = self::findLawyer();
+        $hasBookLawyer = Booking::where('name_of_lawyer',Auth::user()->name)->get();
+        return view('lawyer.clientList',['hasBookLawyer'=>$hasBookLawyer,'lawyer'=>$lawyer]);
+        
+    }
+
+    public function viewClient($id){
+         $lawyer = self::findLawyer();
+        $hasBookLawyer = Booking::find($id);
+        return view('lawyer.view_client',['hasBookLawyer'=>$hasBookLawyer, 'lawyer'=>$lawyer]);
+
+    }
+
+
 }

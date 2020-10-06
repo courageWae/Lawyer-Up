@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('lexicon');
 });
+
 Route::get('legalSupport/home','legalSupportController@home')->name('Legal_Support_Home');
 Route::get('legalSupport/contact','legalSupportController@contact')->name('Legal_Support_Contact');
 Route::get('legalSupport/packages','legalSupportController@packages')->name('Legal_Support_Packages');
@@ -32,6 +33,13 @@ Route::get('legalSupport/packages/plpp/categories','legalSupportController@plpp_
 Route::get('legalSupport/packages/blpp/categories','legalSupportController@blpp_categories')->name('blpp_cat');
 Route::get('/categories/checkout/{id}','Checkout@index');
 
+Route::get('/book-lawyer/{id}',"BookingController@book")->name('book');
+Route::get('get-date',"BookingController@getdate")->name('getdate');
+Route::get('build-calendar',"BookingController@build_calendar")->name('buildcalendar');
+Route::get('checkSlots',"BookingController@checkSlots")->name('checkSlots');
+Route::get('booking/{date}/{lawyer_id}',"BookingController@booking")->name('booking');
+Route::post('booking/{date}',"BookingController@submitbook")->name('submitbook');
+Route::delete('/delete/{id}/{date}', 'BookingController@destroy');
 
 ////////////////////////////////////////////////////////////////////////////////////////
                       ////MESSAGES ROUTE//////
@@ -48,7 +56,10 @@ Auth::routes();
 Route::group(['middleware'=>['user','auth'],'namespace'=>'user'],function(){
 	Route::get('user/dashboard','userController@index')->name('user.dashboard');
 	Route::get('user/profile','userController@profile')->name('user.profile');
-	Route::patch('user/profile/edit/{id}','userController@update');
+	Route::patch('/user/profile/edit/{id}','userController@update');
+	Route::get('user/appointments','userController@appointments')->name('user.appointments');
+	Route::get('user/package/{id}','userController@viewPackage')->name('user.viewPackage');
+	Route::get('user/appointments/{id}','userController@viewAppointment')->name('user.viewAppointment');
 });
 
 
@@ -59,7 +70,7 @@ Route::group(['middleware'=>['user','auth'],'namespace'=>'user'],function(){
 Route::group(['middleware'=>['admin','auth'],'namespace'=>'admin'],function(){
 	Route::get('admin/dashboard','adminController@dashboard')->name('admin.dashboard');
 	Route::get('admin/profile','adminController@profile')->name('admin.profile');
-	Route::patch('admin/profile/{id}/edit','adminController@update');
+	Route::patch('admin/profile/edit/{id}','adminController@update');
 	Route::get('admin/add','adminController@adminAdd')->name('admin.add');
 	Route::post('admin/add','adminController@adminStore')->name('admin.store');
 	Route::get('insurer/add','adminController@insurerAdd')->name('insurer.add');
@@ -91,9 +102,12 @@ Route::group(['middleware'=>['admin','auth'],'namespace'=>'admin'],function(){
 ////////////////////////////////////////////////////////////////////////////////////////////////////
                        /// LAWYERS ROUTES ///
 Route::group(['middleware'=>['lawyer','auth'],'namespace'=>'lawyer'],function(){
-	Route::get('lawyer/dashboard','lawyerController@index')->name('lawyer.dashboard');
+	Route::get('dashboard/lawyer','lawyerController@index')->name('dashboard.lawyer');
 	Route::get('lawyer/profile','lawyerController@profile')->name('lawyer.profile');
 	Route::patch('lawyer_profile_edit/{id}','lawyerController@update');
+	Route::get('/lawyer/appointment/{id}','lawyerController@viewAppointment');
+	Route::get('/lawyer/client/all','lawyerController@clientList')->name('lawyer.client.list');
+	Route::get('/lawyer/appointment/{id}','lawyerController@viewClient')->name('lawyer.client.view');
 
 
 });
@@ -103,10 +117,10 @@ Route::group(['middleware'=>['lawyer','auth'],'namespace'=>'lawyer'],function(){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
                          /// INSURER ROUTES ///
 Route::group(['middleware'=>['insurer','auth'],'namespace'=>'insurer'],function(){
-	Route::get('insurer/dashboard','insurerController@index')->name('insurer.dashboard');
-	Route::get('insurer_client_add','insurerController@clientAdd')->name('client.add');
+	Route::get('dashboard/insurer','insurerController@index')->name('dashboard.insurer');
+	Route::get('insurer/client_add','insurerController@clientAdd')->name('client.add');
 	Route::post('/clientAdd','insurerController@storeClient')->name('client.store');
-	Route::get('/insurer_profile','insurerController@profile')->name('insurer.profile');
+	Route::get('/insurer/profile','insurerController@profile')->name('insurer.profile');
 	Route::patch('/insurer_profile/{id}','insurerController@update');
 
 });

@@ -28,11 +28,12 @@
                 <div class="row products-grids">
                     <!-- PACKAGE ONE -->
                     @include('lawyer.dashbox')
-                    <div class="col col-lg-9" style ="padding-left:20px;">   
+                    <div class="col col-lg-9" style ="padding-left:20px;"> 
+                        @if(count($book))  
                         <table class="table table-striped table-bordered">
                            <thead>
                                <tr>
-                                   <th style="background-color: rgb(235, 149, 52)">My Appointments</th>
+                                   <th style="background-color: rgb(235, 149, 52)" colspan="3">My Appointments</th>
                                </tr>
                             </thead>
                             <tbody> 
@@ -48,26 +49,33 @@
                                   <th>Call Credits</th>
                                   <th>Status</th>
                                 </tr>
+                                @foreach($book as $book)
                                 <tr>
-                                    <td style="padding:10px;font-size: 20px;">                     
+                                    <td style="padding:10px;font-size: 20px;">{{ $book->name_of_client }}</td>
+                                    <td style="padding:10px;font-size: 20px;">{{ $book->phone_of_client }}</td>
+                                    <td style="padding:10px;font-size: 20px;">{{ $book->email_of_client }}</td>
+                                    <td style="padding:10px;font-size: 20px;">{{
+                                    $book->date }} 
                                     </td>
-                                    <td style="padding:10px;font-size: 20px;"></td>
-                                    <td style="padding:10px;font-size: 20px;"></td>
-                                    <td style="padding:10px;font-size: 20px;"></td>
-                                    <td style="padding:10px;font-size: 20px;"></td>
-                                    <td style="padding:10px;font-size: 20px;"></td>
-                                    
-                                    <td style="padding:10px;font-size: 20px; color: red;"></td>
-                                </tr>
-                          
-                                <tr>
-                                    <td>
-                                        You Have no Active Packages
+                                    <td style="padding:10px;font-size: 20px;">{{
+                                    $book->timeslot }}</td>
+                                    <td style="padding:10px;font-size: 20px;">{{
+                                    $book->call_credits }}
+                                    </td>      
+                                    <td style="padding:10px;font-size: 20px; color: red;">
+                                      <button class ="btn btn-danger">Accept</button>
+                                    </td>
+                                    <td style="padding:10px;font-size: 20px; color: red;">
+                                      <a class="btn btn-primary" href="/lawyer/appointment/{{$book->id}}">view</a>
                                     </td>
                                 </tr>
-                                
+                                @endforeach
                            </tbody>
                         </table>
+                        @else
+                        <center><h1>YOU HAVE NO APPOINTMENTS</strong></h1>> 
+                        @endif
+
                     </div>
                </div> <!-- end row -->
             </div> <!-- end container -->

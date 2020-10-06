@@ -87,7 +87,7 @@
                     <td>{{ $user->phone }}</td>
                     <td>{{ $user->created_at }}</td>
                     <td>
-                      <a href="/user/{{$user->id}}" class="button delete-confirm">Delete</a>
+                      <a href="/user/{{$user->id}}" class="btn btn-danger delete-confirm">Delete</a>
                     </td>
                   </tr> 
                   </tr>

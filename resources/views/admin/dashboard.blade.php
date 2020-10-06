@@ -147,9 +147,13 @@
                       <td>
                         <a href="{{ asset('uploads/pictures/user/'.$package->photo ) }}" target = "blank">
                           <img src="{{ asset('uploads/pictures/user/'.$package->photo ) }}" style="height:30px; margin-top:-2px;"></td> 
-                        </a>    
-                      <td><button style="background-color:#fa4b28;">{{ $package->status }}</button></td>
-                      <td></td>
+                        </a>
+                      @if($package->status == "Pending")     
+                      <td><p style="color:red;">{{ $package->status }}</p> </td>
+                      @else
+                      <td><p style="color:green;">{{ $package->status }}</p> </td>
+                      @endif
+                      <td>{{ $package->approved_by }}</td>
                       <td>{{ $package->created_at }}</td>
                       <td>
                         @if($package->status != "Pending")
@@ -231,9 +235,7 @@
               <div class="panel-body"style="background-color: green;">
                 <!-- Widget content -->
                 <div class="padd sscroll">
-
                   <ul class="chats">
-
                     @forelse($msg as $msg)
                     <li class="by-other" >
                       <!-- Use the class "pull-right" in avatar -->
@@ -266,110 +268,8 @@
             </div>
           </div>
           <!-- Messages to -->
-         
-         <div class="col-lg-6 portlets">
-            <!-- Widget -->
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <div class="pull-left"> Messages To Lawyers</div>
-                
-                <div class="clearfix"></div>
-              </div>
-
-              <div class="panel-body"style="background-color: green;">
-                <!-- Widget content -->
-                <div class="padd sscroll">
-
-                  <ul class="chats">
-
-                    @forelse($msgLawyer as $msgLawyer)
-                    <li class="by-other" >
-                      <!-- Use the class "pull-right" in avatar -->
-                      <div class="avatar pull-right">
-                        <img src="img/user22.png" alt="" />
-                      </div>
-
-                      <div class="chat-content">
-                        <!-- In the chat meta, first include "time" then "name" -->
-                        <div class="chat-meta">{{ $msgLawyer->created_at }}<span class="pull-right">{{ $msgLawyer->name }}</span></div>
-                        <strong>{{ $msgLawyer->message }}</strong>
-                        <div class="clearfix"><span class="pull-right" style="color:red;">Sent to: {{ $msgLawyer->destination }}</span></div>     
-
-                      </div>
-                    </li>
-                   
-                     @empty
-                    <li class="by-me">
-                      <div class="chat-content">
-                        <strong>There are no messages to display</strong>
-                      </div>
-                    </li>
-                   @endforelse
-
-                  </ul>
-
-                </div>
-              </div>
-
-
-            </div>
-          </div>
-
-
-        </div><br><br>
-
-        <div class="row">
-          <div class="col-md-6 portlets">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <div class="pull-left">Quick Post</div>
-                <div class="clearfix"></div>
-              </div>
-              <div class="panel-body">
-                <div class="padd">
-
-                  <div class="form quick-post">
-                    <!-- Edit profile form (not working)-->
-                    <form class="form-horizontal">
-                      <!-- Title -->
-                      <div class="form-group">
-                        <label class="control-label col-lg-2" for="title">Title</label>
-                        <div class="col-lg-10">
-                          <input type="text" class="form-control" id="title">
-                        </div>
-                      </div>
-                      <!-- Content -->
-                      <div class="form-group">
-                        <label class="control-label col-lg-2" for="content">Content</label>
-                        <div class="col-lg-10">
-                          <textarea class="form-control" id="content" rows="15"></textarea>
-                        </div>
-                      </div>
-                      
-                      <!-- Buttons -->
-                      <div class="form-group">
-                        <!-- Buttons -->
-                        <div class="col-lg-offset-2 col-lg-9">
-                          <button type="submit" class="btn btn-primary">Publish</button>
-                          <button type="submit" class="btn btn-danger">Save Draft</button>
-                          <button type="reset" class="btn btn-default">Reset</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-
-
-                </div>
-                <div class="widget-foot">
-                  <!-- Footer goes here -->
-                </div>
-              </div>
-            </div>
-
-          </div>
 
         </div>
-        <!-- project team & activity end -->
 
       </section>
     </section>
@@ -463,7 +363,6 @@
         });
       });
     </script>
-
 </body>
 
 </html>

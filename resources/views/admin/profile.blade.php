@@ -179,7 +179,7 @@
                         <h1> Profile Info</h1>
 
                         <!-- FORM STARTS -->
-                        <form class="form-horizontal" method="post" action="/admin_profile_edit/{{ Auth::user()->id }}">
+                        <form class="form-horizontal" method="post" action="/admin/profile/edit/{{ Auth::user()->id }}">
             
                            {{ csrf_field() }}
                            @method('PATCH')

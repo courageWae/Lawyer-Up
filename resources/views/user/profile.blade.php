@@ -41,7 +41,7 @@
                                      <div class="card">
                             <!-- Tab panes -->
                             <div class="card-body">
-                                <form class="form-horizontal form-material" method="post" action="/user_profile_edit/{{ Auth::user()->id }}">
+                                <form class="form-horizontal form-material" method="post" action="/user/profile/edit/{{ Auth::user()->id }}">
                                   {{ csrf_field() }}
                                   @method('PATCH')
                                     <div class="form-group">
@@ -79,7 +79,7 @@
                                     <div class="form-group">
                                         <label class="col-md-12">Password</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="password" class="form-control form-control-line" required>
+                                            <input type="password" name="password" class="form-control form-control-line" required>
                                              @error('password')
                                               <span class="invalid-feedback" role="alert" style="color:red;">
                                                 <strong>{{ $message }}</strong>
@@ -92,9 +92,8 @@
                                     <div class="form-group">
                                         <label class="col-md-12">Confirm Password</label>
                                         <div class="col-md-12">
-                                            <input type="text"  name="password_confirmation" class="form-control form-control-line" required>
-                                        </div>
-                                         
+                                            <input type="password"  name="password_confirmation" class="form-control form-control-line" required>
+                                        </div>   
                                     </div>
 
                                     <div class="form-group">

@@ -70,7 +70,7 @@
                             </div>
                         </div>
                     </div>
-                    @elseif($categories->Name == "Sliver")
+                    @elseif($categories->Name == "Silver")
                     <div class="grid">
                         <div class="entry-details">
                             <div class="entry-body">

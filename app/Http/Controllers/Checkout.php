@@ -17,25 +17,29 @@ class Checkout extends Controller
         $categories = Category::find($id);
 
         $client = new ClientPackage();
-    	$client->client_name = Auth::user()->name;
+        if($client->client_email != Auth::user()->email){
+    	  $client->client_name = Auth::user()->name;
         $client->client_email = Auth::user()->email;
-    	$client->package_name = $categories->package->name;
-    	$client->category = $categories->Name;
-    	$client->price = $categories->Price;
-    	$client->status = "Pending";
-    	$client->photo = Auth::user()->photo;
-    	$client->save(); 
+        $cilent->client_insurer = Auth::user()->insurer;
+    	  $client->package_name = $categories->package->name;
+    	  $client->category = $categories->Name;
+    	  $client->price = $categories->Price;
+    	  $client->status = "Pending";
+    	  $client->photo = Auth::user()->photo;
+    	  $client->save(); 
     	 
-        $invoice = new Invoice();
-        $invoice->number = count(Invoice::all())+1;
-        $invoice->package_name = $categories->package->name;
-        $invoice->category = $categories->Name;
-        $invoice->price = $categories->Price;
-        $invoice->issued_to = Auth::user()->name;
-        $invoice->status = "Unpaid";
-        $invoice->total_price = $categories->Price;
-        $invoice->save();
 
+          $invoice = new Invoice();
+          $invoice->number = count(Invoice::all())+1;
+          $invoice->package_name = $categories->package->name;
+          $invoice->category = $categories->Name;
+          $invoice->price = $categories->Price;
+          $invoice->issued_to = Auth::user()->name;
+          $invoice->status = "Unpaid";
+          $invoice->total_price = $categories->Price;
+          $invoice->save();
+
+        }
         return view('legal_support/checkout')->with('invoices',$invoices)->with('categories',$categories);
     }
 }

@@ -21,6 +21,7 @@ class CreateClientPackagesTable extends Migration
             $table->string('category');
             $table->string('price');
             $table->string('status');
+            $table->string('client_insurer');
             $table->mediumText('photo');
             $table->string('verification_code')->nullable();
             $table->string('approved_by')->nullable();

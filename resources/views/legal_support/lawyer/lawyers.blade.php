@@ -24,43 +24,23 @@
         <!-- start products-section -->
         <section class="products-section shop section-padding">
             <div class="container">
-                <div class="row products-grids">
+                <div class="row">
                     @forelse($lawyer as $lawyer)
-                    <div class="col col-md-4 col-xs-6">
-                        <div class="grid">
-                            <div class="img-holder-info-list">
-                                <div class="img-holder">                                
-                                    <img src="{{ asset('uploads/pictures/user/'. $lawyer->photo ) }}" >                          
-                                </div>
-                                <div class="info-list">
-                                    <div>
-                                        <a href="#"><i class = "fa fa-facebook"></i></a>
-                                    </div>
-                                    <div>
-                                        <a href="#"><i class = "fa fa-twitter"></i></a>
-                                    </div>
-                                    <div>
-                                        <a href="#"><i class = "fa fa-linkedin"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <p style="font-size: 20px; font-weight: bolder;">{{ $lawyer->name }}</p>
-                                <p style="font-size: 25px; font-weight: bold;">{{ $lawyer->type_of_lawyer }}</p>
-                                {{ $lawyer->email }}
-                                <hr>
-                                <div style = "display: inline-block;">
-                                   <a class="btn btn-danger" href="/legalSupport/lawyer/details/{{ $lawyer->id }}"> View Details</a>   
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @empty
-
-                    <center><h2>There no Lawyers listed</h2></center>
-
-                    @endforelse
-
+                    <div class="col col-lg-3">
+                    <div class="card" style="width: 18rem;"> 
+                      <img class="card-img-top" style = "width:100%; height:250px;"src="{{ asset('uploads/pictures/user/'. $lawyer->photo ) }}" alt="Lawyers Photo">
+                      <div class="card-body"><br>
+                        <center>
+                            <h5 class="card-title">{{ strtoupper($lawyer->name) }}</h5>
+                            <p class="card-text">{{ $lawyer->type_of_lawyer }}</p>
+                            <a href="/legalSupport/lawyer/details/{{ $lawyer->id }}" class="btn btn-danger">View Details</a>
+                        </center>
+                      </div>
+                   </div>
+               </div>
+                @empty
+                <center><h2>There no Lawyers listed</h2></center>
+                @endforelse
                 </div> <!-- end row -->
             </div> <!-- end container -->
         </section>

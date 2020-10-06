@@ -17,7 +17,7 @@ class InsurerMiddleware
      */
     public function handle($request, Closure $next)
     {
-         if(Auth::check() && Auth::user()->role->name == 'insurer'){
+        if(Auth::check() && Auth::user()->role->name == 'insurer'){
             return $next($request);
         }else{
             return redirect()->route('login');

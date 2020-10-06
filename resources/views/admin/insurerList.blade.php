@@ -73,7 +73,7 @@
                     <td>{{ $insurer->phone }}</td>
                     <td>{{ $insurer->created_at }}</td>
                     <td>
-                      <a href="/insurer/{{$insurer->id}}" class="button delete-confirm">Delete</a>
+                      <a href="/insurer/{{$insurer->id}}" class="btn btn-danger delete-confirm">Delete</a>
                     </td>
                   </tr>
                   @endforeach

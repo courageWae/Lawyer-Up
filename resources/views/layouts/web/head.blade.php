@@ -57,13 +57,13 @@
                              </div>
                              @elseif(Auth::check() && Auth::user()->role_id == 3)
                              <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
-                                <a href="{{ route('lawyer.dashboard') }}">
+                                <a href="{{ route('dashboard.lawyer') }}">
                                     <img class="card-img-top" src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" alt="Card image" width="30" height="30" style="border-radius: 20px;"> |
                                     {{ Auth::user()->name }}</a>
                              </div>
                              @elseif(Auth::check() && Auth::user()->role_id == 2)
                              <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
-                                <a href="{{ route('insurer.dashboard') }}">
+                                <a href="{{ route('dashboard.insurer') }}">
                                     <img class="card-img-top" src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" alt="Card image" width="30" height="30" style="border-radius: 20px;"> |
                                     {{ Auth::user()->name }}</a>
                              </div>
@@ -97,14 +97,7 @@
 
             <nav class="navigation navbar navbar-default">
                 <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="open-btn">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
+                    
                     <div id="navbar" class="navbar-collapse collapse navigation-holder">
                         <button class="close-navbar"><i class="fa fa-close"></i></button>
                         <ul class="nav navbar-nav">
@@ -122,67 +115,11 @@
                             <li><a href="{{ route('Legal_Support_About') }}">About</a></li>
                             <li><a href="{{ route('Legal_Support_Packages') }}">Our Plans</a></li>
                             <li><a href="{{ route('Legal_Support_Contact') }}">Contact</a></li>
-                            <!-- 
+                            <li><a href="{{ route('Legal_Support_Lawyers') }}">Book a Lawyer</a></li>
 
-                            <li class="menu-item-has-children">
-                                <a href="#">Name</a>
-                                <ul class="sub-menu">
-                                    <li><a href="service-single.html">Dashboard</a></li>
-                                    <li><a href="project-single.html">Logout</a></li>  
-                                </ul>
-                            </li> -->
-                            <!--
-                            <li class="menu-item-has-children">
-                                <a href="#">Blog</a>
-                                <ul class="sub-menu">
-                                    <li><a href="blog.html">Blog grid</a></li>
-                                    <li><a href="blog-right-sidebar.html">Blog right sidebar</a></li>
-                                    <li><a href="blog-left-sidebar.html">Blog left sidebar</a></li>
-                                    <li><a href="blog-details.html">Blog single</a></li>
-                                </ul>
-                            </li> -->
-                          
-                        </ul>
+                        </ul> 
                     </div><!-- end of nav-collapse -->
-                   <!--  <div class="cart-contact">
-                        <div class="mini-cart">
-                            <button class="cart-toggle-btn"> <i class="fi flaticon-shopping-cart"></i> Cart (2) </button>
-
-                            <div class="top-cart-content">
-                                <div class="top-cart-title">
-                                    <p>Shopping Cart</p>
-                                </div>
-                                <div class="top-cart-items">
-                                    <div class="top-cart-item clearfix">
-                                        <div class="top-cart-item-image">
-                                            <a href="#"><img src="assets/images/shop/small/1.jpg" alt="Blue Round-Neck Tshirt"></a>
-                                        </div>
-                                        <div class="top-cart-item-des">
-                                            <a href="#">Blue Round-Neck Tshirt</a>
-                                            <span class="top-cart-item-price">$19.99</span>
-                                            <span class="top-cart-item-quantity">x 2</span>
-                                        </div>
-                                    </div>
-                                    <div class="top-cart-item clearfix">
-                                        <div class="top-cart-item-image">
-                                            <a href="#"><img src="assets/images/shop/small/6.jpg" alt="Light Blue Denim Dress"></a>
-                                        </div>
-                                        <div class="top-cart-item-des">
-                                            <a href="#">Light Blue Denim Dress</a>
-                                            <span class="top-cart-item-price">$24.99</span>
-                                            <span class="top-cart-item-quantity">x 3</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="top-cart-action clearfix">
-                                    <span class="fleft top-checkout-price">$114.95</span>
-                                    <a href="#" class="theme-btn">View Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                       <a href="{{ route('Legal_Support_Packages') }}" class="theme-btn-s2 request-quote">Get a Plan</a>
-
+                    <a href="{{ route('Legal_Support_Packages') }}" class="theme-btn-s2 request-quote">Get a Plan</a> 
                 </div><!-- end of container -->
             </nav> <!-- end navigation -->
         </header>
