@@ -39,9 +39,15 @@
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
+
+            @if(session()->has('message'))
+              <div class="alert {{session('alert') ?? 'alert-success'}}">
+               {{ session('message') }}
+              </div>
+            @endif
             <h3 class="page-header"><i class="fa fa-table"></i> Table</h3>
             <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="{{ route('Legal_Support_Home') }}">Home</a></li>
+              <li><i class="fa fa-home"></i><a href="{{ route('legal.home') }}">Home</a></li>
               <li><i class="fa fa-table"></i>Table</li>
               <li><i class="fa fa-th-list"></i>List of Insurers</li>
             </ol>
@@ -73,7 +79,9 @@
                     <td>{{ $insurer->phone }}</td>
                     <td>{{ $insurer->created_at }}</td>
                     <td>
-                      <a href="/insurer/{{$insurer->id}}" class="btn btn-danger delete-confirm">Delete</a>
+                      <a href="{{ route('insurer.view',['insurer'=>$insurer->id]) }}" class="btn btn-primary">view</a>
+                      <a href="{{ route('insurer.delete',['insurer'=>$insurer->id]) }}" class="btn btn-danger delete-confirm">Delete</a>
+
                     </td>
                   </tr>
                   @endforeach

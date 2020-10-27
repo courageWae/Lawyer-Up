@@ -12,19 +12,15 @@ use DB;
 
 class insurerController extends Controller
 {
-    //
-    // public function __construct()
-    // {
-    //     $this->middleware('insurer');
-    // }
+    
+    public function __construct()
+    {
+        $this->middleware('insurer');
+    }
 
     public function index(){
         $clientPackage = ClientPackage::where('client_insurer',Auth::user()->name)->get();
           return view('insurer.dashboard')->with('clientPackage',$clientPackage);
-    }
-
-    public function profile(){
-    	return view('insurer.profile');
     }
 
     public function clientAdd(){
@@ -42,6 +38,7 @@ class insurerController extends Controller
         $client->name = request('name');
         $client->email = request('email');
         $client->phone = request('phone');
+        $client->insurer = Auth::user()->name;
         $client->role_id = request('role_id');
         $client->password = password_hash(request('password'), PASSWORD_DEFAULT);
 
@@ -56,7 +53,7 @@ class insurerController extends Controller
            $client->photo = ' ';
        }
         $client->save();
-        return ;
+        return redirect()->route('insurer.client.list');
     }
 
     public function update(){
@@ -66,10 +63,26 @@ class insurerController extends Controller
          'email' => 'required | email',
          'phone'=> 'required',
         ]); 
-
         DB::table('users')->where('id', Auth::user()->id)->update(
           ['name' => request('name'),'email'=> request('email'),'phone'=>request('phone'),'password' =>Hash::make(request('password'))]);
+          return redirect()->back();
+    }
 
-          return redirect('/insurer_profile');
+    public function clientList(){
+      $client = User::where('insurer',Auth::user()->name)->get();
+      return view('insurer.clientList',['client'=>$client]);
+    }
+
+    public function clientView($id){
+      $client = User::find($id);
+      return view('insurer.clientView',['client'=>$client]);
+    }
+
+    public function destroy($id){
+      $user = User::find($id);
+       if(isset($user)){
+         $user->delete();
+       }
+      return redirect()->back();
     }    
 }

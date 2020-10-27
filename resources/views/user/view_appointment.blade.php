@@ -28,23 +28,21 @@
                 <div class="row products-grids">
                     <!-- PACKAGE ONE -->
                     @include('user.dashBox')
+                    @php($lawyer = App\User::find($booking->lawyer_id))
                     <div class="col col-lg-8" style ="padding-left:20px;">   
-                        <div class="jumbotron">
-                          <h1 class="display-4">Appointment Details</h1>
-                          <hr class="my-4">
-                          <p class="lead"><strong>Name of Lawyer :</strong>{{ $book->name_of_lawyer }}</p>
-                          <p><strong>Type of Lawyer  :</strong>{{ $book->type_of_lawyer }}</p>
-                          <p><strong>Call Credits  :</strong>{{ $book->call_credits }}</p>
-                          <p><strong>Date  :</strong>
-                            {{ $book->date }}
-                          </p>
-                          <p><strong>Time  :</strong>
-                            {{ $book->timeslot }}
-                          </p>
-                          <p><strong>Status :</strong>
-                            {{ $book->status }}
-                          </p>
-                        </div>
+                       <h3>Name of Lawyer</h3>
+                       <div class = "well well-sm">{{ $lawyer->name }}</div>
+                       <h3>Type of Lawyer</h3>
+                       <div class = "well well-sm">{{ $lawyer->type_of_lawyer }}</div>
+                       <h3>Call Credits</h3>
+                       <div class = "well well-sm">{{ $booking->credits }}</div>
+                       <h3>Date of Booking</h3>
+                       <div class = "well well-sm">{{ $booking->date }}</div>
+                       <h3>Booking Time</h3>
+                       <div class = "well well-sm">{{ $booking->timeslot }}</div>
+                       <h3>Status</h3>
+                       <div class = "well well-sm">{{ $booking->status }}</div>
+
                     </div>
                </div> <!-- end row -->
             </div> <!-- end container -->

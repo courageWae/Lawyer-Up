@@ -1,6 +1,6 @@
-@extends('/layouts/web/master')
+@extends('layouts/web/master')
 @section('head')
-   @include('/layouts/web/head')
+   @include('layouts/web/head')
 @endsection
 @section('content')
 
@@ -26,60 +26,75 @@
         <section class="products-section shop section-padding">
             <div class="container">
                 <div class="row products-grids">
+                   @if(session()->has('message'))
+                    <div class="alert {{session('alert') ?? 'alert-success'}}">
+                     {{ session('message') }}
+                    </div>
+                   @endif
+
                     <!-- PACKAGE ONE -->
-                    @include('lawyer.dashbox')
-                    <div class="col col-lg-9" style ="padding-left:20px;"> 
-                        @if(count($book))  
+                    @include('lawyer.dashBox')
+                    <div class="col col-lg-8" style ="padding-left:20px;"> 
                         <table class="table table-striped table-bordered">
                            <thead>
-                               <tr>
-                                   <th style="background-color: rgb(235, 149, 52)" colspan="3">My Appointments</th>
+                               <tr style="background-color:rgb(245, 197, 66);">
+                                   <th colspan="5">My Appointments</th>
                                </tr>
                             </thead>
-                            <tbody> 
+                            <tbody>            
                                <tr>
-                                   <th colspan="7" style="padding:15px;"><span class="label label-warning" style="padding:5px;font-size: 15px;">Recent</span></th>
+                                   <th colspan="5" style="padding:15px;"><span class="label label-warning" style="padding:5px;font-size: 15px;"></span></th>
                                </tr>
                                <tr>
                                   <th>Name of Client</th>
-                                  <th>Phone Number of Client</th>
-                                  <th>Email of Client</th>
-                                  <th>Date Booked</th>
+                                  <th>Client Phone Number</th>
+                                  <th>Email</th>
                                   <th>Expectance</th>
                                   <th>Call Credits</th>
-                                  <th>Status</th>
+                                  <th>Action</th>
+
                                 </tr>
-                                @foreach($book as $book)
+                                
+                                @isset($lawyerAppointment)
+                                @foreach($lawyerAppointment as $lawyerAppointment)
+                                @php($client = App\User::find($lawyerAppointment->user_id))
                                 <tr>
-                                    <td style="padding:10px;font-size: 20px;">{{ $book->name_of_client }}</td>
-                                    <td style="padding:10px;font-size: 20px;">{{ $book->phone_of_client }}</td>
-                                    <td style="padding:10px;font-size: 20px;">{{ $book->email_of_client }}</td>
-                                    <td style="padding:10px;font-size: 20px;">{{
-                                    $book->date }} 
+                                    <td style="padding:10px;font-size: 15px;">
+                                     {{ $client->name }}                  
                                     </td>
-                                    <td style="padding:10px;font-size: 20px;">{{
-                                    $book->timeslot }}</td>
-                                    <td style="padding:10px;font-size: 20px;">{{
-                                    $book->call_credits }}
-                                    </td>      
-                                    <td style="padding:10px;font-size: 20px; color: red;">
-                                      <button class ="btn btn-danger">Accept</button>
+                                    <td style="padding:5px;font-size: 15px;">{{ $client->phone }}</td>
+                                    <td style="padding:5px;font-size: 15px;">{{ $client->email }}</td>
+                                    <td style="padding:5px;font-size: 15px;">{{ $lawyerAppointment->timeslot }}</td>
+                                    <td style="padding:5px;font-size: 15px;">{{ $lawyerAppointment->credits }}</td>
+                                    
+                                    <td style="padding:10px;font-size: 15px;">
+                                      @if($lawyerAppointment->status == "pending")
+                                      <a class="btn btn-warning delete-confirm" href = "{{ route('lawyer.approve',['book'=>$lawyerAppointment->id])}}">Meet Appointment
+                                      </a>
+                                      @else
+                                      <button class="btn btn-success">{{ $lawyerAppointment->status }}</button>
+                                      @endif   
                                     </td>
-                                    <td style="padding:10px;font-size: 20px; color: red;">
-                                      <a class="btn btn-primary" href="/lawyer/appointment/{{$book->id}}">view</a>
+                                    <td style="padding:10px;font-size: 15px;">
+                                      <a class="btn btn-primary" href = "{{ route('lawyer.appointment',['appointment'=>$lawyerAppointment->id]) }}">View</a>
                                     </td>
                                 </tr>
                                 @endforeach
+                                @endisset 
+                                @empty($lawyerAppointment)
+                                <tr>
+                                  <td  colspan="4" style = "color:red;">
+                                    <center>You Have no Active or Pending Packages</center>
+                                  </td>     
+                                </tr>
+                                @endempty 
                            </tbody>
                         </table>
-                        @else
-                        <center><h1>YOU HAVE NO APPOINTMENTS</strong></h1>> 
-                        @endif
-
                     </div>
                </div> <!-- end row -->
             </div> <!-- end container -->
         </section>
-        <!-- end products-section -->       
+        <!-- end products-section --> 
+         
 
 @endsection

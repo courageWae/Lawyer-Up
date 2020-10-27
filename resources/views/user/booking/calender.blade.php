@@ -1,6 +1,6 @@
 <?php
 function build_calendar($month, $year) { 
-   include("includes/db.php");
+   //include("includes/db.php");
      $daysOfWeek = array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
 	 
      $firstDayOfMonth = mktime(0,0,0,$month,1,$year);

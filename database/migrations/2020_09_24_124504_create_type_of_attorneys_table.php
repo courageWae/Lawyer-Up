@@ -15,9 +15,9 @@ class CreateTypeOfAttorneysTable extends Migration
     {
         Schema::create('type_of_attorneys', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
-            $table->string('add_by');
-            $table->string('desciption');
+            $table->string('name');
+            $table->string('by');
+            $table->string('description');
             $table->timestamps();
         });
     }

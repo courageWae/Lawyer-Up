@@ -22,10 +22,10 @@ class RedirectIfAuthenticated
             return redirect()->route('admin.dashboard');
         }
         elseif(Auth::guard($guard)->check() && Auth::user()->role->name == 'insurer'){
-            return redirect()->route('dashboard.insurer');
+            return redirect()->route('insurer.dashboard');
         }
         elseif(Auth::guard($guard)->check() && Auth::user()->role->name == 'lawyer'){
-            return redirect()->route('dashboard.lawyer');
+            return redirect()->route('lawyer.dashboard');
         }
         elseif(Auth::guard($guard)->check() && Auth::user()->role->name == 'user'){
             return redirect()->route('user.dashboard');

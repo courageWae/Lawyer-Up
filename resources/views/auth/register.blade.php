@@ -20,8 +20,7 @@
         <!-- end page-title -->
 
 
-
-<section class="contact-pg-section section-padding">
+         <section class="contact-pg-section section-padding">
             <div class="container">
                 <div class="row">
                     <div class="col col-xs-12">
@@ -35,12 +34,7 @@
                               @csrf
                              <!-- Hidden fields -->
                             <input type="hidden" name="role_id" value="4">
-                            <input type="hidden" name="address" value="null">
-                            <input type="hidden" name="house_address" value="null">
-                            <input type="hidden" name="education" value="null">
-                            <input type="hidden" name="experience" value="null">
-                            <input type="hidden" name="personal_statement"value="null">
-                            <input type="hidden" name="type_of_lawyer" value="null">
+                        
 
                           <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -87,12 +81,13 @@
                             <label for="insurer" class="col-md-4 col-form-label text-md-right">{{ __('Insurer') }}</label>
                             <div class="col-md-8">
                                 <select class = "form-control" name="insurer" required>
-                                    <option disabled="disabled" selected="selected">-- CHOOSE AN INSURER --</option>
-                                    @if(count(\App\User::where('role_id',2)->get()))
-                                    @foreach((\App\User::where('role_id',2)->get()) as $insurer)
-                                    <option>{{ $insurer->name }}</option>
-                                    @endforeach
-                                    @endif
+                                    <option selected disabled>-- CHOOSE AN INSURER --</option>
+                                    @php($insurer = \App\User::where('role_id',2)->get())
+                                    @isset($insurer)
+                                     @foreach($insurer as $insurer)
+                                      <option>{{ $insurer->name }}</option>
+                                     @endforeach
+                                    @endisset
                                 </select>
                                  @error('insurer')
                                     <span class="invalid-feedback" role="alert">
@@ -126,9 +121,8 @@
 
                         <div class="form-group row">
                             <label for="photo" class="col-md-4 col-form-label text-md-right">{{ __('Upload a Photo') }}</label>
-
                             <div class="col-md-8">
-                                <input id="photo" type="file" class="form-control @error('photo') is-invalid @enderror" name="photo" required>
+                                <input id="photo" type="file" class="form-control @error('photo') is-invalid @enderror" name="photo">
                             </div>
                         </div>
                          <hr style = " background-color:rgb(235, 210, 52); height: 3px;">

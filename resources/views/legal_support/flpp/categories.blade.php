@@ -10,7 +10,7 @@
                     <div class="col col-xs-12">
                         <h2>Categories</h2>
                         <ol class="breadcrumb">
-                            <li><a href="{{ route('Legal_Support_Packages') }}">Packages</a></li>
+                            <li><a href="{{ route('legal.home') }}">Packages</a></li>
                             <li>FLPP</li>
                         </ol>
                     </div>
@@ -24,14 +24,15 @@
         <section class="blog-grid-section section-padding">
             <div class="container">
                 <div class="news-grids">
+                  @isset($categories)
                   @foreach($categories as $categories)
-                    @if($categories->Name == "Bronze")
+                    @if($categories->name == "bronze")
                     <div class="grid">                   
                         <div class="entry-details">
                             <div class="entry-body">
                                 <center>
-                                    <h3>{{ strtoupper($categories->Name) }}</h3>
-                                    <h2>GH&cent {{ $categories->Price }}</h2>
+                                    <h3>{{ strtoupper($categories->name) }}</h3>
+                                    <h2>GH&cent {{ $categories->price }}</h2>
                                 </center>
                                   <hr style="height:4px; background-color: blue;">
                                 <p>
@@ -59,24 +60,24 @@
                                  Contingency Discount for Legal Casse ( 10%)
                                 </p>   
                                 <hr>
-
-                                @if(Auth::check() && auth()->user()->role_id == 4 )
-                                <a class ="btn btn-success" href="/categories/checkout/{{ $categories->id }}">Purchase Plan</a>
-                                @elseif(Auth::check() && (auth()->user()->role_id == 3) && (auth()->user()->role_id == 2) && (auth()->user()->role_id == 1))
-                                <h2>SORRY YOU CAN'T HAVE ACCESS TO THIS SERVICE</h2>
-                                @else
+                                @auth
+                                  @if(Auth::user()->role_id == 4)
+                                   <a class ="btn btn-success" href="{{ route('user.invoice',['category'=>$categories->id]) }}">Purchase Plan</a>
+                                  @endif 
+                                @endauth
+                                @guest
                                 <a class ="btn btn-success" href="/login">Purchase Plan</a>
-                                @endif
+                                @endguest
                             </div>
                         </div>
                     </div>
-                    @elseif($categories->Name == "Silver")
+                    @elseif($categories->name == "silver")
                     <div class="grid">
                         <div class="entry-details">
                             <div class="entry-body">
                                 <center>
-                                    <h3>{{ strtoupper($categories->Name) }}</h3>
-                                    <h2>GH&cent{{ $categories->Price }}</h2>
+                                    <h3>{{ strtoupper($categories->name) }}</h3>
+                                    <h2>GH&cent{{ $categories->price }}</h2>
                                 </center>
                                  <hr style="height:4px; background-color: blue;">
                                 <p>
@@ -140,23 +141,24 @@
                                   Contigency discount for legal cases (15%) 
                                 </p>
                                 <hr>
-                                 @if(Auth::check() && auth()->user()->role_id == 4 )
-                                <a class ="btn btn-success" href="/categories/checkout/{{ $categories->id }}">Purchase Plan</a>
-                                @elseif(Auth::check() && (auth()->user()->role_id == 3) && (auth()->user()->role_id == 2) && (auth()->user()->role_id == 1))
-                                <h2>SORRY YOU CAN'T HAVE ACCESS TO THIS SERVICE</h2>
-                                @else
+                                @auth
+                                  @if(Auth::user()->role_id == 4)
+                                   <a class ="btn btn-success" href="{{ route('user.invoice',['category'=>$categories->id]) }}">Purchase Plan</a>
+                                  @endif 
+                                @endauth
+                                @guest
                                 <a class ="btn btn-success" href="/login">Purchase Plan</a>
-                                @endif
+                                @endguest
                             </div>
                         </div>
                     </div>
-                    @elseif($categories->Name == "Gold")
+                    @elseif($categories->name == "gold")
                     <div class="grid">
                         <div class="entry-details">
                             <div class="entry-body">
                                  <center>
-                                    <h3>{{ strtoupper($categories->Name) }}</h3>
-                                    <h2>GH&cent {{ $categories->Price }}</h2>
+                                    <h3>{{ strtoupper($categories->name) }}</h3>
+                                    <h2>GH&cent {{ $categories->price }}</h2>
                                 </center>
                                  <hr style="height:4px; background-color: blue;">
                                 <p>
@@ -233,19 +235,20 @@
                                   Contigency discount for legal cases (20%) 
                                 </p>
                                 <hr>
-                                @if(Auth::check() && auth()->user()->role_id == 4 )
-                                <a class ="btn btn-success" href="/categories/checkout/{{ $categories->id }}">Purchase Plan</a>
-                                @elseif(Auth::check() && (auth()->user()->role_id == 3) && (auth()->user()->role_id == 2) && (auth()->user()->role_id == 1))
-                                <h2>SORRY YOU CAN'T HAVE ACCESS TO THIS SERVICE</h2>
-                                @else
+                                @auth
+                                  @if(Auth::user()->role_id == 4)
+                                   <a class ="btn btn-success" href="{{ route('user.invoice',['category'=>$categories->id]) }}">Purchase Plan</a>
+                                  @endif 
+                                @endauth
+                                @guest
                                 <a class ="btn btn-success" href="/login">Purchase Plan</a>
-                                @endif
-
+                                @endguest
                             </div>
                         </div>
                     </div>
                     @endif 
-                  @endforeach  
+                  @endforeach 
+                  @endisset 
                 </div> <!-- end news-grids -->
             </div> <!-- end container -->
         </section>

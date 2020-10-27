@@ -57,13 +57,13 @@
                              </div>
                              @elseif(Auth::check() && Auth::user()->role_id == 3)
                              <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
-                                <a href="{{ route('dashboard.lawyer') }}">
+                                <a href="{{ route('lawyer.dashboard') }}">
                                     <img class="card-img-top" src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" alt="Card image" width="30" height="30" style="border-radius: 20px;"> |
                                     {{ Auth::user()->name }}</a>
                              </div>
                              @elseif(Auth::check() && Auth::user()->role_id == 2)
                              <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
-                                <a href="{{ route('dashboard.insurer') }}">
+                                <a href="{{ route('insurer.dashboard') }}">
                                     <img class="card-img-top" src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" alt="Card image" width="30" height="30" style="border-radius: 20px;"> |
                                     {{ Auth::user()->name }}</a>
                              </div>
@@ -110,16 +110,16 @@
                                 </a>
                             </li>
                             <li>
-                            <a href="{{ route('Legal_Support_Home') }}">Home</a>
+                            <a href="{{ route('legal.home') }}">Home</a>
                             </li>
-                            <li><a href="{{ route('Legal_Support_About') }}">About</a></li>
-                            <li><a href="{{ route('Legal_Support_Packages') }}">Our Plans</a></li>
-                            <li><a href="{{ route('Legal_Support_Contact') }}">Contact</a></li>
-                            <li><a href="{{ route('Legal_Support_Lawyers') }}">Book a Lawyer</a></li>
+                            <li><a href="{{ route('legal.about') }}">About</a></li>
+                            <li><a href="{{ route('legal.plans') }}">Our Plans</a></li>
+                            <li><a href="{{ route('legal.contact') }}">Contact</a></li>
+                            <li><a href="{{ route('legal.lawyers') }}">Book a Lawyer</a></li>
 
                         </ul> 
                     </div><!-- end of nav-collapse -->
-                    <a href="{{ route('Legal_Support_Packages') }}" class="theme-btn-s2 request-quote">Get a Plan</a> 
+                    <a href="{{ route('legal.plans') }}" class="theme-btn-s2 request-quote">Get a Plan</a> 
                 </div><!-- end of container -->
             </nav> <!-- end navigation -->
         </header>

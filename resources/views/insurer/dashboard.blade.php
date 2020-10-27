@@ -22,69 +22,61 @@
         <!-- end page-title -->
 
 
-        <!-- start products-section -->
+         <!-- start products-section -->
         <section class="products-section shop section-padding">
             <div class="container">
                 <div class="row products-grids">
                     <!-- PACKAGE ONE -->
                     @include('insurer.dashBox')
-                    </div>
                     <div class="col col-lg-8" style ="padding-left:20px;">   
                         <table class="table table-striped table-bordered">
                            <thead>
                                <tr style="background-color:rgb(245, 197, 66);">
-                                   <th colspan="3">My Packages</th>
+                                   <th colspan="4">My Appointments</th>
                                </tr>
                             </thead>
-                            <tbody>
+                            <tbody>            
                                <tr>
-                                   <th colspan="3" style="padding:15px;"><span class="label label-danger" style="padding:5px;font-size: 15px;">All Client Packages</span></th>
+                                   <th colspan="4" style="padding:15px;"><span class="label label-warning" style="padding:5px;font-size: 15px;"></span></th>
                                </tr>
                                <tr>
-                                  <th>Clients Name</th>
-                                  <th>Package Name</th>
-                                  <th>Category</th>
-                                  <th>Price</th>
-                                  <th>Status</th>
-                                  <th>Client Image</th>
-                                  <th>Date</th>
-                                  <th>Confirmed By</th>
-                                  <th>Date Confirmed</th>
+                                  <th>Name of Client</th>
+                                  <th>Phone</th>
+                                  <th>Email</th>
+                                  <th>Expectance</th>
+                                  <th>Call Credits</th>
+                                  <th>Action</th>
 
                                 </tr>
-                                @if(count($clientPackage))
-                                @forelse($clientPackage as $clientPackage) 
+                                @@forelse($clientPackage as $clientPackage)
                                 <tr>
-                                    <td style="padding:10px;font-size: 15px;">{{ $clientPackage->client_name }}</td>
-                                    <td style="padding:10px;font-size: 15px;">
+                                    <td style="padding:10px;font-size: 20px;">
                                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5 8 5.961 14.154 3.5 8.186 1.113zM15 4.239l-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z"/>
-                                        </svg>
-                                        &nbsp&nbsp{{ $clientPackage->package_name }}
+                                        </svg> @{{ $clientPackage->package_name }}                  
                                     </td>
-                                    <td style="padding:10px;font-size: 15px;">{{ $clientPackage->category }}</td>
-                                    <td style="padding:10px;font-size: 15px;">{{ $clientPackage->price }}</td>
-                                    <td style="padding:10px;font-size: 20px; color: red;">{{ $clientPackage->status }}</td>
-                                    <td style="padding:10px;font-size: 15px;"><img src="{{ asset('/uploads/pictures/user/'.$clientPackage->photo) }}" style="width:30px; height: 30px;" alt></td>
-                                    <td style="padding:10px;font-size: 15px;">{{ $clientPackage->created_at->toDateString() }}</td>
-                                    <td style="padding:10px;font-size: 30px; color: red;"></td> 
-                                    <td style="padding:10px;font-size: 15px;">{{ $clientPackage->updated_at->toDateString() }}</td>
+                                    <td style="padding:10px;font-size: 20px;">@{{ $clientPackage->category }}</td>
+                                    <td style="padding:10px;font-size: 20px;">@{{ $clientPackage->price }}</td>
+                                    <td style="padding:10px;font-size: 20px;">@{{ $clientPackage->status }}</td>
+                                    <td></td>
+                                    <td style="padding:10px;font-size: 20px;">
+                                      <a class="btn btn-primary" href = "">View</a>
+                                    </td>
                                 </tr>
-                                @empty
+                                @@empty
                                 <tr>
-                                    <td>
-                                        You Have no Active Packages
+                                    <td  colspan="4" style = "color:red;">
+                                        <center>You Have no Active or Pending Packages</center>
                                     </td>
+                                    
                                 </tr>
-                                @endforelse
-                                @endif
-                                
+                                @@endforelse   
                            </tbody>
                         </table>
                     </div>
                </div> <!-- end row -->
             </div> <!-- end container -->
         </section>
-        <!-- end products-section -->       
+        <!-- end products-section -->     
 
 @endsection

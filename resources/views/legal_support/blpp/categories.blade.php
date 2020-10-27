@@ -10,7 +10,7 @@
                     <div class="col col-xs-12">
                         <h2>Categories</h2>
                         <ol class="breadcrumb">
-                            <li><a href="{{ route('Legal_Support_Packages') }}">Packages</a></li>
+                            <li><a href="{{ route('legal.home') }}">Packages</a></li>
                             <li>BLPP</li>
                         </ol>
                     </div>
@@ -26,14 +26,13 @@
             <div class="container">
                 <div class="news-grids">
                     @foreach($categories as $categories)
-                      @if($categories->Name == "Bronze")
-                    <div class="grid">
-                        
+                      @if($categories->name == "bronze")
+                    <div class="grid">  
                         <div class="entry-details">
                             <div class="entry-body">
                               <center>
-                                    <h3>{{ strtoupper($categories->Name) }}</h3>
-                                    <h2>GH&cent {{ $categories->Price }}</h2>
+                                    <h3>{{ strtoupper($categories->name) }}</h3>
+                                    <h2>GH&cent {{ $categories->price }}</h2>
                                 </center>
                                  <hr style="height:4px; background-color: blue;">
                                 <p>
@@ -51,13 +50,13 @@
                             </div>
                         </div>
                     </div>
-                     @elseif($categories->Name == "Silver")
+                     @elseif($categories->name == "silver")
                     <div class="grid">
                         <div class="entry-details">
                             <div class="entry-body">
                               <center>
-                                    <h3>{{ strtoupper($categories->Name) }}</h3>
-                                    <h2>GH&cent {{ $categories->Price }}</h2>
+                                    <h3>{{ strtoupper($categories->name) }}</h3>
+                                    <h2>GH&cent {{ $categories->price }}</h2>
                                 </center>
                                  <hr style="height:4px; background-color: blue;">
                                 <p>Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
@@ -72,13 +71,13 @@
                             </div>
                         </div>
                     </div>
-                     @elseif($categories->Name == "Gold")
+                     @elseif($categories->name == "gold")
                     <div class="grid">
                         <div class="entry-details">
                             <div class="entry-body">
                                 <center>
-                                    <h3>{{ strtoupper($categories->Name) }}</h3>
-                                    <h2>GH&cent {{ $categories->Price }}</h2>
+                                    <h3>{{ strtoupper($categories->name) }}</h3>
+                                    <h2>GH&cent {{ $categories->price }}</h2>
                                 </center>                                
                                  <hr style="height:4px; background-color: blue;">
                                 <p>Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>

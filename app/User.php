@@ -40,4 +40,12 @@ class User extends Authenticatable
     public function role(){
        return $this->belongsTo('App\Role');
     }
+
+    public function package(){
+        return $this->hasMany('App\ClientPackage');
+    }
+    
+    public function booking(){
+        return $this->hasMany('App\Booking');
+    }
 }

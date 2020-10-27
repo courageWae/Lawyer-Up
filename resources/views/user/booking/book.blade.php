@@ -36,30 +36,6 @@ function timeslots($duration,$cleanup,$start,$end){
 
   <body>
     <div class="container">
-    	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <div class="navbar-header">
-             <a class="navbar-brand" href="#"><img src="{{asset('assets/images/logo-2.png')}} " height ="40px" width="100px" alt/></a>
-          </div>
-          <div class="collapse navbar-collapse" id="navbarNav">
-             <ul class="navbar-nav">
-               <li class="nav-item">
-                 <a class="nav-link" href="{{ route('Legal_Support_Home') }}">Home <span class="sr-only">(current)</span></a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="{{ route('Legal_Support_About') }}">About</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="{{ route('Legal_Support_Lawyers') }}">Lawyers</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="{{ route('book',['id'=>Session::get('lawyer_id')]) }}">Calendar</a>
-               </li>
-             </ul>
-          </div>
-        </nav>
 
         <h1 class="text-center">Book for Date: <?php echo date('m/d/Y', strtotime($date)); ?></h1><hr>
         <div class="col-md-12">
@@ -81,18 +57,20 @@ function timeslots($duration,$cleanup,$start,$end){
 			<?php } ?>
         </div><hr><p>
 		  <center>
-		  	  @foreach($booking as $booking)
-		  	    @if($booking->email_of_client == auth()->user()->email)
+		  	 @isset($newClientBooking)
+		  	  @foreach($newClientBooking as $newClientBooking)
+		  	    @if($newClientBooking)
 		  	     <div>
 		  	       <button class = "btn btn-primary" onclick="document.getElementById('but').style.display ='block' "> Cancel Booking</button>
 		  	     </div><br>
-		  	     <form method="POST" action="/delete/{{$booking->id}}/{{$date}}">
+		  	     <form method="POST" action="/delete/{{$newClientBooking->id}}/{{$date}}">
 		  	     	{{ csrf_field() }}
 		  	     	@method('delete')
 		           <button style ="display:none;" class="btn btn-danger" type="submit" id="but">Are You Sure ?</button>
 		         </form>
 		        @endif  
-		      @endforeach 
+		      @endforeach
+		     @endisset  
 		  </center>
     </div>
 	<div id="myModal" class="modal fade" role="dialog">
@@ -143,14 +121,7 @@ function timeslots($duration,$cleanup,$start,$end){
 			required readonly>
 		</div>
         
-	    <input type="hidden" name="status" id="lname" value = "Pending">
-	    <input type="hidden" name="user_id"  value = "{{ Auth::user()->id }}">
 	    <input type="hidden" name="lawyer_id"  value = "{{ Session::get('lawyer_id') }}">
-	    <input type="hidden" name ="lawyer_phone" value="{{ Session::get('lawyer_phone') }}">
-	    <input type="hidden" name ="lawyer_email" value = "{{Session::get('lawyer_email') }}">
-	    <input type="hidden" name ="lawyer_photo" value = "{{Session::get('lawyer_photo') }}">
-	    <input type="hidden" name ="client_photo" value = "{{ Auth::user()->photo }}">
-        
 
 		<div class="form-group">
 		    <button class ="btn btn-primary" type="submit">Send</button>
@@ -179,41 +150,7 @@ function timeslots($duration,$cleanup,$start,$end){
 		$("#myModal").modal("show");	
 	})
 	</script>
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<script>
-  $('.delete-confirm').on('click', function (event) {
-    event.preventDefault();
-    const url = $(this).attr('href');
-    swal({
-        title: 'Are you sure?',
-        text: 'Your Booking Will Be Deleted',
-        icon: 'warning',
-        buttons: ["Cancel", "Yes!"],
-    }).then(function(value) {
-        if (value) {
-            window.location.href = url;
-        }
-    });
-});
-</script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-$('.delete-confirm').on('click', function (event) {
-    event.preventDefault();
-    const url = $(this).attr('href');
-    swal({
-        title: 'Are you sure?',
-        text: 'This record and it`s details will be permanantly deleted!',
-        icon: 'warning',
-        buttons: ["Cancel", "Yes!"],
-    }).then(function(value) {
-        if (value) {
-            window.location.href = url;
-        }
-    });
-});
-</script>
     </body>
 
 </html>

@@ -10,7 +10,7 @@
                     <div class="col col-xs-12">
                         <h2>Categories</h2>
                         <ol class="breadcrumb">
-                            <li><a href="{{ route('Legal_Support_Packages') }}">Packages</a></li>
+                            <li><a href="{{ route('legal.home') }}">Packages</a></li>
                             <li>PLPP</li>
                         </ol>
                     </div>
@@ -24,14 +24,14 @@
             <div class="container">
                 <div class="news-grids">
                     @foreach($categories as $categories)
-                     @if($categories->Name == "Bronze")
+                     @if($categories->name == "bronze")
                     <div class="grid">
                         
                         <div class="entry-details">
                             <div class="entry-body">
                                 <center>
                                     <h3>BRONZE</h3>
-                                    <h2>GH&cent {{ $categories->Price }}</h2>
+                                    <h2>GH&cent {{ $categories->price }}</h2>
                                 </center>
                                  <hr style="height:4px; background-color: blue;">
                                 <p>
@@ -70,13 +70,13 @@
                             </div>
                         </div>
                     </div>
-                     @elseif($categories->Name == "Silver")
+                     @elseif($categories->name == "silver")
                     <div class="grid">
                         <div class="entry-details">
                             <div class="entry-body">
                                 <center>
                                     <h3>SILVER</h3>
-                                    <h2>GH&cent {{ $categories->Price }}</h2>
+                                    <h2>GH&cent {{ $categories->price }}</h2>
                                 </center>
                                 <hr style="height:4px; background-color: blue;">
                                 <p>
@@ -150,13 +150,13 @@
                             </div>
                         </div>
                     </div>
-                    @elseif($categories->Name == "Gold")
+                    @elseif($categories->name == "gold")
                     <div class="grid">
                         <div class="entry-details">
                             <div class="entry-body">
                                 <center>
                                     <h3>GOLD</h3>
-                                    <h2>GH&cent {{ $categories->Price }}</h2>
+                                    <h2>GH&cent {{ $categories->price }}</h2>
                                 </center>
                                 <hr style="height:4px; background-color: blue;">
                                  <p>

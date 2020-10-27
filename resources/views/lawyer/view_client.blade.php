@@ -1,4 +1,4 @@
-@extends('/layouts/web/master')
+@extends('layouts/web/master')
 @section('head')
    @include('/layouts/web/head')
 @endsection
@@ -28,25 +28,22 @@
                 <div class="row products-grids">
                     <!-- PACKAGE ONE -->
                     @include('lawyer.dashbox')
-                    <div class="col col-lg-9" style ="padding-left:20px;"> 
-                      <div class="jumbotron">
-                          <h1 class="display-4">Client Details</h1>
-                          <hr class="my-4">
-                          <table>
-                            <thead>
-                              <th>
-    
-                              </th>
-                              
-                            </thead>>
-                          </table>
-                          <div style="display:inline;">
-                            <p class="lead"><strong>Name of Client :</strong>{{ $hasBookLawyer->name_of_client }}</p>
-                            <p><strong>Phone of Client  :</strong> {{ $hasBookLawyer->phone_of_client }}</p>
-                            <p><strong>Email of Client  :</strong> {{ $hasBookLawyer->email_of_client }}</p>
-                          </div>
-                          
-                          
+                    @php($client = App\User::find($book->user_id))
+                    <div class="col col-lg-8" style ="padding-left:20px;"> 
+                      <h3>Client Name</h3>
+                      <div class = "well well-sm">{{ $client->name }}</div>
+                      <h3>Phone of Client</h3>
+                      <div class = "well well-sm">{{ $client->phone }}</div>
+                      <h3>Call Credits</h3>
+                      <div class = "well well-sm">{{ $book->credits }}</div>
+                      <h3>Appointment Date</h3>
+                      <div class = "well well-sm">{{ $book->date }}</div>
+                      <h3>Appointment Expectance</h3>
+                      <div class = "well well-sm">{{ $book->timeslot }} </div>
+                      <h3>Appointment Status</h3>
+                      <div class = "well well-sm">{{ $book->status }}</div>
+                      <div>
+                        <a class = "btn btn-primary btn-lg" href ="">Back</a>
                       </div>
                     </div>
                </div> <!-- end row -->

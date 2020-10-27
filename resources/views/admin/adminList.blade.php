@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
   <meta name="author" content="GeeksLabs">
-  <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+  
   <link rel="shortcut icon" href="img/favicon.png">
 
   <title>{{ config('app.name','Lexicon Support Service') }}</title>
@@ -42,20 +42,21 @@
   <!-- container section start -->
   <section id="container" class="">
     <!--header start-->
-    @include('layouts/admin/header')
+    @include('layouts.admin.header')
     <!--header end-->
 
     <!--sidebar start-->
-    @include('layouts/admin/sidebar')
+    @include('layouts.admin.sidebar')
 
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
         <div class="row">
+
           <div class="col-lg-12">
             <h3 class="page-header"><i class="fa fa-table"></i>Administrators</h3>
             <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="{{ route('Legal_Support_Home') }}">Home</a></li>
+              <li><i class="fa fa-home"></i><a href="{{ route('legal.home') }}">Home</a></li>
               <li><i class="fa fa-table"></i>Table</li>
               <li><i class="fa fa-th-list"></i>List of Administrators</li>
             </ol>
@@ -64,6 +65,11 @@
 
         <div class="row">
           <div class="col-lg-12">
+             @if(session()->has('message'))
+             <div class="alert {{session('alert') ?? 'alert-success'}}">
+              {{ session('message') }}
+             </div>
+             @endif
             <section class="panel">
               <header class="panel-heading">
                 List of Administrators
@@ -72,6 +78,7 @@
               <table class="table table-striped table-advance table-hover">
                 <tbody>
                   <tr>
+                    <th>#</th>
                     <th><i class="icon_profile"></i> Full Name</th>
                     <th><i class="icon_profile"></i> Photo</th>
                     <th><i class="icon_mail_alt"></i> Email</th>
@@ -79,17 +86,21 @@
                     <th><i class="icon_calendar"></i> Date</th>
                     <th><i class="icon_cogs"></i> Action</th>
                   </tr>
+                  @php($i=1)
                   @foreach($admin as $admin)
                   <tr>
+                    <th>{{ $i }}</th>
                     <td>{{ $admin->name }}</td>
                     <td><img src="{{ asset('/uploads/pictures/user/'.$admin->photo) }}" style="width:30px; height: 30px;" alt></td>
                     <td>{{ $admin->email }}</td>
                     <td>{{ $admin->phone }}</td>
                     <td>{{ $admin->created_at }}</td>
                     <td>
-                       <a href="/admin/{{$admin->id}}" class="btn btn-danger delete-confirm">Delete</a>
+                      <a href="{{ route('admin.view',['admin'=>$admin->id]) }}" class="btn btn-primary">View</a>
+                      <a href="{{ route('admin.delete',['admin'=>$admin->id]) }}" class="btn btn-danger delete-confirm">Delete</a>   
                     </td>
                   </tr>
+                  @php($i++)
                   @endforeach         
                 </tbody>
               </table>

@@ -29,20 +29,6 @@
   <!-- Custom styles -->
   <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
   <link href="{{ asset('admin/css/style-responsive.css') }}" rel="stylesheet" />
-
-  <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
-  <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
-      <script src="js/lte-ie7.js"></script>
-    <![endif]-->
-
-    <!-- =======================================================
-      Theme Name: NiceAdmin
-      Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-      Author: BootstrapMade
-      Author URL: https://bootstrapmade.com
-    ======================================================= -->
 </head>
 
 <body>
@@ -60,7 +46,7 @@
           <div class="col-lg-12">
             <h3 class="page-header"><i class="fa fa-file-text-o"></i> Administrator </h3>
             <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="{{ route('Legal_Support_Home') }}">Home</a></li>
+              <li><i class="fa fa-home"></i><a href="{{ route('legal.home') }}">Home</a></li>
               <li><i class="icon_document_alt"></i>Forms</li>
               <li><i class="fa fa-file-text-o"></i>New Administrator</li>
             </ol>
@@ -73,6 +59,11 @@
           <div class="col-lg-3">
           </div>
           <div class="col-lg-6">
+            @if(session()->has('message'))
+              <div class="alert {{session('alert') ?? 'alert-success'}}">
+                {{ session('message') }}
+              </div>
+            @endif
             <section class="panel">
               <header class="panel-heading">
                 New Administrator
@@ -81,7 +72,7 @@
                 <div class="form">
 
                   <!-- Administrator Forms -->
-                  <form class="form-validate form-horizontal" method="post" action="{{ route('admin.store') }}" enctype="multipart/form-data">
+                  <form class="form-validate form-horizontal" method="post" action="{{ route('admin.add') }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <input type="hidden" name="role_id" value="1">
 
@@ -90,10 +81,10 @@
                       <div class="col-lg-10">
                         <input class=" form-control"  name="name" type="text" />
                           @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                            </span>
+                          @enderror
                       </div>
                     </div>
                     
@@ -102,10 +93,10 @@
                       <div class="col-lg-10">
                         <input class="form-control "  name="email" type="email" />
                           @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                            </span>
+                          @enderror
                       </div>
                     </div>
 
@@ -114,10 +105,10 @@
                       <div class="col-lg-10">
                         <input class="form-control"  name="phone" type="phone" />
                           @error('phone')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                            </span>
+                          @enderror
                       </div>
                     </div>
 
@@ -126,10 +117,10 @@
                       <div class="col-lg-10">
                         <input class="form-control " id="password" name="password" type="password" />
                           @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                            </span>
+                          @enderror
                       </div>
                     </div>
 

@@ -33,7 +33,7 @@
                         <center>
                             <h5 class="card-title">{{ strtoupper($lawyer->name) }}</h5>
                             <p class="card-text">{{ $lawyer->type_of_lawyer }}</p>
-                            <a href="/legalSupport/lawyer/details/{{ $lawyer->id }}" class="btn btn-danger">View Details</a>
+                            <a href="{{ route('legal.lawyer.details',['lawyer'=>$lawyer->id]) }}" class="btn btn-danger">View Details</a>
                         </center>
                       </div>
                    </div>

@@ -11,7 +11,7 @@
                     <div class="col col-xs-12">
                         <h2>Personal Life Protection Plan</h2>
                         <ol class="breadcrumb">
-                            <li><a href="index-2.html">PLANS</a></li>
+                            <li><a href="{{ route('legal.home') }}">PLANS</a></li>
                             <li>PLPP</li>
                         </ol>
                     </div>
@@ -61,7 +61,7 @@
 
 
                                 <hr>
-                                <a href="{{ route('Legal_Support_Packages') }}" class="btn btn-success">View Benefits</a>
+                                <a href="{{ route('legal.plans') }}" class="btn btn-success">View Benefits</a>
                             </div>
                         </div> <!-- end service content -->
                     </div> <!-- end col -->
@@ -71,9 +71,9 @@
                             <div class="services-link-widget widget">
                                 <h2>OUR PLANS</h2>
                                 <ul>
-                                    <li><a href="{{ route('flpp') }}">Family Life Protection Plan</a></li>
-                                    <li class = "current"><a href="{{ route('plpp') }}">Personal Life Protection Plan</a></li>
-                                    <li><a href="{{ route('blpp') }}">Business Life Protection Plan</a></li>
+                                    <li><a href="{{ route('legal.plans.flpp') }}">Family Life Protection Plan</a></li>
+                                    <li class = "current"><a href="{{ route('legal.plans.plpp') }}">Personal Life Protection Plan</a></li>
+                                    <li><a href="{{ route('legal.plans.blpp') }}">Business Life Protection Plan</a></li>
                                 </ul>
                             </div>
                         </div>

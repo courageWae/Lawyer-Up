@@ -56,7 +56,12 @@
                 <div class="row">
                     <div class="col col-xs-12">
                         <!-- Contact forms -->
-                        <form class="contact-form form "  method="post" action="{{ route('legalSupport.message') }}">
+                        <form class="contact-form form "  method="get" action="{{ route('legal.message') }}">
+                             @if(session()->has('message'))
+                              <div class="alert {{session('alert') ?? 'alert-success'}}">
+                               {{ session('message') }}
+                              </div>
+                            @endif
                             {{ csrf_field() }}
                             <div class="col col-sm-6">
                                 <label for="name">Full Name</label>
@@ -74,7 +79,6 @@
                                 <label for="message">Message</label>
                                 <textarea class="form-control" id="message" name="message"></textarea>
                             </div>
-                                <input type="hidden" class="form-control" id="destination" name="destination" value="admin">
                             <div class="col col-sm-12 submit-btn">
                                 <button class="theme-btn" type="submit">Submit</button>
                             </div>

@@ -49,9 +49,9 @@
 
   <!-- container section start -->
   <section id="container" class="">
-    @include('layouts/admin/header')
+    @include('layouts.admin.header')
 
-    @include('layouts/admin/sidebar')
+    @include('layouts.admin.sidebar')
 
     <!--main content start-->
     <section id="main-content">
@@ -60,7 +60,7 @@
           <div class="col-lg-12">
             <h3 class="page-header"><i class="fa fa-file-text-o"></i> Insurance Company </h3>
             <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="{{ route('Legal_Support_Home') }}">Home</a></li>
+              <li><i class="fa fa-home"></i><a href="{{ route('legal.home') }}">Home</a></li>
               <li><i class="icon_document_alt"></i>Forms</li>
               <li><i class="fa fa-file-text-o"></i>New Insurer</li>
             </ol>
@@ -73,6 +73,11 @@
           <div class="col-lg-3">
           </div>
           <div class="col-lg-6">
+             @if(session()->has('message'))
+              <div class="alert {{session('alert') ?? 'alert-success'}}">
+                {{ session('message') }}
+              </div>
+            @endif
             <section class="panel">
               <header class="panel-heading">
                 New Insurance Company
@@ -81,7 +86,7 @@
                 <div class="form">
 
                   <!-- Administrator Forms -->
-                  <form class="form-validate form-horizontal" method="post" action="{{ route('insurer.store') }}" enctype="multipart/form-data">
+                  <form class="form-validate form-horizontal" method="post" action="{{ route('insurer.add') }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <input type="hidden" name="role_id" value="2">
 
@@ -90,10 +95,10 @@
                       <div class="col-lg-10">
                         <input class=" form-control"  name="name" type="text" />
                           @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                            </span>
+                          @enderror
                       </div>
                     </div>
                     
@@ -102,10 +107,10 @@
                       <div class="col-lg-10">
                         <input class="form-control "  name="email" type="email" />
                           @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                            </span>
+                          @enderror
                       </div>
                     </div>
 
@@ -114,10 +119,10 @@
                       <div class="col-lg-10">
                         <input class="form-control"  name="phone" type="phone" />
                           @error('phone')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                            </span>
+                          @enderror
                       </div>
                     </div>
 
@@ -126,10 +131,10 @@
                       <div class="col-lg-10">
                         <input class="form-control " id="password" name="password" type="password" />
                           @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                            </span>
+                          @enderror
                       </div>
                     </div>
 
@@ -143,7 +148,7 @@
                      <div class="form-group ">
                       <label for="photo" class="control-label col-lg-2">Upload Photo <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input class="form-control "  name="photo" type="file" />
+                        <input class="form-control" name="photo" type="file" />
                       </div>
                     </div>
 

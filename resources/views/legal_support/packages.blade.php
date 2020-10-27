@@ -26,15 +26,13 @@
         <section class="products-section shop section-padding">
             <div class="container">
                 <div class="row products-grids">
+                  @isset($packages)
                     @foreach($packages as $packages)
-                    @if($packages->id == 1)
+                    @if($packages->abbreviation == 'flpp')
                     <!-- PACKAGE ONE -->
                     <div class="col col-md-4 col-xs-6">
                         <div class="grid">
                             <div class="img-holder-info-list">
-                                <div class="img-holder">
-                                    <!-- <img src="assets/images/shop/img-4.jpg" alt class="img img-responsive"> -->
-                                </div>
                             </div>
                             <div class="product-info">
                                 <h3><a href="#">{{ strtoupper($packages->name) }}</a></h3>
@@ -64,19 +62,19 @@
                                          <hr style="width:20px;height: 2px; background-color:yellow;">
                                         <p>Legal services on misdemeanor trials</p>
                                          <hr style="width:20px;height: 2px; background-color:yellow;">
-                                        <p>Legal services on defamation and libel trail</p>
+                                        <p>Legal services on and libel trail</p>
                                          <hr style="width:20px;height: 2px; background-color:yellow;">
                                         <p>Legal services on estate litigations</p>
                                     </ul>
                                 </span>
-                                <a class="btn btn-danger" href="{{ route('flpp') }}">Read More</a> 
-                                <a class="btn btn-success" href="/legalSupport/packages/flpp/categories">Categories</a>
+                                <a class="btn btn-danger" href="{{ route('legal.plans.flpp') }}">Read More</a> 
+                                <a class="btn btn-success" href="{{ route('legal.plans.flpp.category',['category'=>$packages->id]) }}">Categories</a>
                                   
                             </div>
                         </div>
                     </div>
-                    @elseif($packages->id == 3)
-                    <!-- PACKAGE TW0 -->
+                    @elseif($packages->abbreviation == 'plpp')
+                      <!-- PACKAGE TW0 -->
                      <div class="col col-md-4 col-xs-6">
                         <div class="grid">
                             <div class="img-holder-info-list">
@@ -121,13 +119,13 @@
                                         <p>Legal services on estate litigations</p>
                                     </ul>
                                 </span>
-                                <a class="btn btn-danger" href="{{ route('blpp') }}">Read More</a>
-                                <a class="btn btn-success" href="{{ route('blpp_cat') }}">Categories</a>
+                                <a class="btn btn-danger" href="{{ route('legal.plans.plpp') }}">Read More</a>
+                                <a class="btn btn-success" href="{{ route('legal.plans.plpp.category',['category'=>$packages->id]) }}">Categories</a>
                                 
                             </div>
                         </div>
                     </div>
-                    @elseif($packages->id == 2)
+                    @elseif($packages->abbreviation == 'blpp')
                     <!-- PACKAGE THREE -->
                     <div class="col col-md-4 col-xs-6">
                         <div class="grid">
@@ -171,14 +169,14 @@
                                         <p>Legal services on estate litigations</p>
                                     </ul>
                                 </span>
-                                <a class="btn btn-danger" href="{{ route('plpp') }}">Read More</a>
-                                <a class="btn btn-success" href="{{ route('plpp_cat') }}">Categories</a> 
+                                <a class="btn btn-danger" href="{{ route('legal.plans.blpp') }}">Read More</a>
+                                <a class="btn btn-success" href="{{ route('legal.plans.blpp.category',['category'=>$packages->id]) }}">Categories</a> 
                             </div>
                         </div>
                     </div>
-                    @endif
+                     @endif
                     @endforeach
-                    
+                  @endisset
 
                 </div> <!-- end row -->
 

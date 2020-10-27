@@ -52,10 +52,12 @@
     <section id="main-content">
       <section class="wrapper">
         <div class="row">
+
           <div class="col-lg-12">
+             
             <h3 class="page-header"><i class="fa fa-table"></i> Table</h3>
             <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="{{ route('Legal_Support_Home') }}">Home</a></li>
+              <li><i class="fa fa-home"></i><a href="{{ route('legal.home') }}">Home</a></li>
               <li><i class="fa fa-table"></i>Table</li>
               <li><i class="fa fa-th-list"></i>List of Users</li>
             </ol>
@@ -63,6 +65,11 @@
         </div>
 
         <div class="row">
+           @if(session()->has('message'))
+             <div class="alert {{session('alert') ?? 'alert-success'}}">
+              {{ session('message') }}
+             </div>
+             @endif
           <div class="col-lg-12">
             <section class="panel">
               <header class="panel-heading">
@@ -79,15 +86,16 @@
                     <th><i class="icon_calendar"></i>Date</th>
                     <th><i class="icon_cogs"></i> Action</th>
                   </tr>
-                  @foreach($user as $user)
+                  @foreach($client as $client)
                   <tr>
-                    <td>{{ $user->name }}</td>
-                    <td><img src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" style="height:30px; margin-top:-2px;"></td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->phone }}</td>
-                    <td>{{ $user->created_at }}</td>
+                    <td>{{ $client->name }}</td>
+                    <td><img src="{{ asset('uploads/pictures/user/'. $client->photo ) }}" style="height:30px; margin-top:-2px;"></td>
+                    <td>{{ $client->email }}</td>
+                    <td>{{ $client->phone }}</td>
+                    <td>{{ $client->created_at }}</td>
                     <td>
-                      <a href="/user/{{$user->id}}" class="btn btn-danger delete-confirm">Delete</a>
+                      <a href="{{ route('user.view',['client'=>$client->id]) }}" class="btn btn-primary">View</a>
+                      <a href="{{ route('user.delete',['client'=>$client->id]) }}" class="btn btn-danger delete-confirm">Delete</a>
                     </td>
                   </tr> 
                   </tr>

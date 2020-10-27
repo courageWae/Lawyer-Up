@@ -191,7 +191,7 @@
                                        We are changing how legal services are accessed and delivered!!!!
                                        We understand that SME’s and start ups need certain legal services in order to grow their businesses.
                                    </p>
-                                    <a href="{{ route('blpp') }}" class="offer-details">Details <i class="fa fa-angle-right"></i></a>
+                                    <a href="{{ route('legal.plans.blpp') }}" class="offer-details">Details <i class="fa fa-angle-right"></i></a>
                                 </div>
                             </div>
                             <div class="grid">
@@ -201,7 +201,7 @@
                                     </div>
                                     <h3>Family Legal Protection Plan</h3>
                                     <p>This policy provides cover for individuals against unexpected legal costs. These legal costs are usually high and unforeseen.</p>
-                                    <a href="{{ route('flpp') }}" class="offer-details">Details <i class="fa fa-angle-right"></i></a>
+                                    <a href="{{ route('legal.plans.flpp') }}" class="offer-details">Details <i class="fa fa-angle-right"></i></a>
                                 </div>
                             </div>
                             <div class="grid">
@@ -211,7 +211,7 @@
                                     </div>
                                     <h3>Personal Legal Protection Plan</h3>
                                     <p>This policy provides cover for individuals against unexpected legal costs. These legal costs are usually high and unforeseen.</p>
-                                    <a href="{{ route('plpp') }}" class="offer-details">Details <i class="fa fa-angle-right"></i></a>
+                                    <a href="{{ route('legal.plans.plpp') }}" class="offer-details">Details <i class="fa fa-angle-right"></i></a>
                                 </div>
                             </div>
                         </div>

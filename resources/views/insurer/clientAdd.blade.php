@@ -3,9 +3,7 @@
    @include('/layouts/web/head')
 @endsection
 @section('content')
-
-
-        <!-- start page-title -->
+      <!-- start page-title -->
         <section class="page-title">
             <div class="container">
                 <div class="row">
@@ -26,9 +24,10 @@
         <section class="products-section shop section-padding">
             <div class="container">
                 <div class="row products-grids">
-                    @include('layouts/insurer/dashBox')
+                    @include('insurer.dashContainer')
                 </div>
                 <div class="col col-lg-8" style ="padding-left:20px;">
+
                   <form class="form-validate form-horizontal" method="post" action="{{ route('client.store') }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                   <table class="table table-striped table-bordered">
@@ -127,7 +126,7 @@
                           </div>
                         </td>
                       </tr>
-
+                      <input type="hidden" value = "Auth::user()->name">
                       <tr>
                         <td>
                           <div class="form-group">

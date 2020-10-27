@@ -21,7 +21,7 @@
                                     <li><a href="#">Pay-roll Management System</a></li>
                                     <li><a href="#">Skills and Management Training</a></li>
                                     <li><a href="#">Business and Startup Support</a></li>
-                                    <li><a href="{{ route('Legal_Support_Home') }}">Legal Support</a></li>
+                                    <li><a href="{{ route('legal.home') }}">Legal Support</a></li>
                                 </ul>
                             </div>
                         </div>

@@ -70,13 +70,13 @@
                 <div class="col-lg-2 col-sm-2">
                   <h4>{{ Auth::user()->name }}</h4>
                   <div class="follow-ava">
-                    <img src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" alt>
+                    <img src="{{ asset('uploads/pictures/user/'.Auth::user()->photo ) }}" alt>
                   </div>
                   <h6>Administrator</h6>
                 </div>
                 <div class="col-lg-4 col-sm-4 follow-info">
                   <p>Hello I’m {{ Auth::user()->name }}, Lexicon Support Adminstrator</p>
-                  <p>{{ $admin->email }}</p>
+                  <p>{{ Auth::user()->email }}</p>
                   <!-- <p><i class="fa fa-twitter">jenifertweet</i></p> -->
                   <h6>
                     <span><i class="icon_clock_alt"></i>{{ now()->toFormattedDateString() }}</span>
@@ -156,10 +156,10 @@
                             <p><span>Role </span>: Administrator</p>
                           </div>
                           <div class="bio-row">
-                            <p><span>Email </span>: {{ $admin->email }}</p>
+                            <p><span>Email </span>: {{ Auth::user()->email }}</p>
                           </div>
                           <div class="bio-row">
-                            <p><span>Mobile </span>: {{ $admin->phone }}</p>
+                            <p><span>Mobile </span>: {{ Auth::user()->phone }}</p>
                           </div>
                           <div class="bio-row">
                             <p><span>Country </span>: Ghana</p>
@@ -175,15 +175,18 @@
                   <!-- edit-profile -->
                   <div id="edit-profile" class="tab-pane">
                     <section class="panel">
+                      @if(session()->has('message'))
+                        <div class="alert {{session('alert') ?? 'alert-success'}}">
+                         {{ session('message') }}
+                        </div>
+                      @endif
                       <div class="panel-body bio-graph-info">
                         <h1> Profile Info</h1>
 
                         <!-- FORM STARTS -->
-                        <form class="form-horizontal" method="post" action="/admin/profile/edit/{{ Auth::user()->id }}">
-            
+                        <form class="form-horizontal" method="post" action="{{ route('admin.profile.update',['admin'=>Auth::user()->id]) }}">
                            {{ csrf_field() }}
                            @method('PATCH')
-
                           <div class="form-group">
                             <label class="col-lg-2 control-label">Full Name</label>
                             <div class="col-lg-6">
@@ -200,7 +203,7 @@
                             <label class="col-lg-2 control-label">Email</label>
                             <div class="col-lg-6">
                               <input type="text" class="form-control" name="email" value="{{ Auth::user()->email }}" required>
-                               @error('phone')
+                               @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -212,7 +215,7 @@
                             <label class="col-lg-2 control-label">Phone</label>
                             <div class="col-lg-6">
                               <input type="text" class="form-control" name="phone" value="{{ Auth::user()->phone }}" required>
-                               @error('email')
+                               @error('phone')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

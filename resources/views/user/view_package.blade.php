@@ -22,22 +22,22 @@
         <!-- end page-title -->
 
 
-        <!-- start products-section -->
+       <!-- start products-section -->
         <section class="products-section shop section-padding">
             <div class="container">
                 <div class="row products-grids">
                     <!-- PACKAGE ONE -->
                     @include('user.dashBox')
                     <div class="col col-lg-8" style ="padding-left:20px;">   
-                        <div class="jumbotron">
-                          <h1 class="display-4">Package Details</h1>
-                          <hr class="my-4">
-                          <p class="lead"><strong>Package Name :</strong> {{ $clientPackage->package_name }}</p>
-                          <p><strong>Category  :</strong>{{ $clientPackage->category }}</p>
-                          <p><strong>Package Price  :</strong> {{ $clientPackage->price }}</p>
-                          <p><strong>Package Status  :</strong> {{ $clientPackage->status }}</p>
-                          
-                        </div>
+                      <h3>Package Name</h3>
+                      <div class="well well-sm">{{ $category->package->name }}</div>
+                      <h3>Category Name</h3>
+                      <div class = "well well-sm">{{ $category->name }}</div>
+                      <h3>Category Price</h3>
+                      <div class = "well well-sm">GH&cent  {{ $category->price }}</div>
+                      <div>
+                        <a class="btn btn-primary btn-lg" href="{{ route('admin.dashboard') }}">Back</a>
+                      </div>
                     </div>
                </div> <!-- end row -->
             </div> <!-- end container -->

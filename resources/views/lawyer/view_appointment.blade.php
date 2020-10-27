@@ -28,23 +28,23 @@
                 <div class="row products-grids">
                     <!-- PACKAGE ONE -->
                     @include('lawyer.dashbox')
-                    <div class="col col-lg-9" style ="padding-left:20px;"> 
-                      <div class="jumbotron">
-                          <h1 class="display-4">Appointment Details</h1>
-                          <hr class="my-4">
-                          <p class="lead"><strong>Name of Client :</strong>{{ $book->name_of_client }}</p>
-                          <p><strong>Phone of Client  :</strong> {{ $book->phone_of_client }}</p>
-                          <p><strong>Call Credits  :</strong> {{ $book->call_credits }}</p>
-                          <p><strong>Date  :</strong>
-                            {{ $book->date }}
-                          </p>
-                          <p><strong>Time  :</strong>
-                            {{ $book->timeslot }}
-                          </p>
-                          <p><strong>Status :</strong>
-                            {{ $book->status }}
-                          </p>
-                        </div>
+                    @php($client = App\User::find($appointment->user_id))
+                    <div class="col col-lg-8" style ="padding-left:20px;"> 
+                      <h3>Client Name</h3>
+                      <div class = "well well-sm">{{ $client->name }}</div>
+                      <h3>Phone of Client</h3>
+                      <div class = "well well-sm">{{ $client->email }}</div>
+                      <h3>Call Credits</h3>
+                      <div class = "well well-sm">{{ $appointment->credits }}</div>
+                      <h3>Appointment Date</h3>
+                      <div class = "well well-sm">{{ $appointment->date }}</div>
+                      <h3>Appointment Expectance</h3>
+                      <div class = "well well-sm">{{ $appointment->timeslot }} </div>
+                      <h3>Appointment Status</h3>
+                      <div class = "well well-sm">{{ $appointment->status }} </div>
+                      <div>
+                        <a class = "btn btn-primary btn-lg" href ="{{ route('lawyer.dashboard') }}">Back</a>
+                      </div>
                     </div>
                </div> <!-- end row -->
             </div> <!-- end container -->

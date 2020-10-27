@@ -13,7 +13,7 @@
                     <div class="col col-xs-12">
                         <h2>Shop Details</h2>
                         <ol class="breadcrumb">
-                            <li><a href="{{ route('Legal_Support_Home') }}">Home</a></li>
+                            <li><a href="{{ route('legal.home') }}">Home</a></li>
                             <li>Shop Details</li>
                         </ol>
                     </div>
@@ -74,23 +74,21 @@
                                     {{ Session::put('lawyer_name',$lawyer->name) }}
                                     {{ Session::put('lawyer_type',$lawyer->type_of_lawyer)}}
                                     {{ Session::put('lawyer_id',$lawyer->id)}}
-                                    {{ Session::put('lawyer_email',$lawyer->email )}}
-                                    {{ Session::put('lawyer_photo',$lawyer->photo )}}
                                     {{ Session::put('lawyer_phone',$lawyer->phone )}}
                                     
-                                    @if(count($clientPackage) && auth()->check())
-                                      @foreach($clientPackage as $clientPackage)
-                                        @if(($clientPackage->client_email == auth()->user()->email) && (auth()->user()->role_id == 4) && ($clientPackage->status == "Active"))
+                                        @auth
+                                         @foreach($clientPackage as $clientPackage)
+                                          @if($clientPackage->status === 'Active')
                                          <div class = "p-row" style = "padding-top: 20px;">
-                                           <a class = "btn btn-success" href="{{ route('book',[$lawyer->id]) }}">Book Now</a>
+                                           <a class = "btn btn-success" href="{{ route('book',['lawyer'=>$lawyer->id]) }}">Book Now</a>
                                          </div>
-                                        @endif 
-                                      @endforeach
-                                    @else
+                                          @else
                                          <div class = "p-row" style = "padding-top: 20px;">
-                                           <a class = "btn btn-success" href="{{ route('Legal_Support_Packages') }}">Book Now</a>
+                                           <a class = "btn btn-success" href="{{ route('legal.plans') }}">Book Now</a>
                                          </div>
-                                    @endif 
+                                          @endif
+                                         @endforeach
+                                        @endauth
                                 </div>
                             </div> <!-- end option -->
                         </div> <!-- end product details -->

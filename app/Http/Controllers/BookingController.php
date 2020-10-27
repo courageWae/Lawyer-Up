@@ -16,9 +16,8 @@ class BookingController extends Controller
     {
         $this->middleware('user');
     }
-    public function book($id)
+    public function book(User $lawyer)
     {   
-    	$lawyer = User::findOrFail($id);
     	return view('user.booking.booking')->with('lawyer',$lawyer);
     }
 
@@ -173,7 +172,7 @@ class BookingController extends Controller
 	    // include("includes/db.php");
 	public function booking($date,$lawyer_id)
 	{
-	    $booking = Booking::where('email_of_client',auth()->user()->email)->get();
+	    $clientBooking = Booking::where('user_id',auth()->user()->id)->get();
 		$lawyer_id=$lawyer_id;
 		if ($date) {
 			$date = $date;
@@ -187,57 +186,56 @@ class BookingController extends Controller
 					}
 				}
 			}
-			return view('user.booking.book',['date' => $date,'bookings'=>$bookings,'booking' => $booking]);
+			return view('user.booking.book',[
+				'date' => $date,
+				'bookings'=>$bookings,
+				'clientBooking' => $clientBooking
+			]);
 		}	
 	}
 
 	public function submitbook(Request $request, $date)
 	{
-	    $booking = Booking::where('email_of_client',auth()->user()->email)->get();
-	    $BOOK = Booking::where('email_of_client',auth()->user()->email)->first();
+		$booking = new Booking();
+
+	    $newClientBooking = $clientBooking = Booking::where('user_id',auth()->user()->id)->get();
     	$date = $date;
+    	$msg = $bookings[] = " ";
 		$timeslot = $request->timeslot;
-		$stmt = Booking::where('date',$date)->where('timeslot',$timeslot)->get();
-		if ($stmt) {
-			$result = $stmt;
-			if (count($result)>0) {
+		$bookingTime = Booking::where('date',$date)->where('timeslot',$timeslot)->get();
+		if ($bookingTime) {
+			
+			//$result = $bookingTime;
+			if (count($bookingTime)>0) {
 				$msg = "<div class='alert alert-danger'>Already Taken</div>";
-				$bookings[] = " ";
 			}
-			else if($BOOK != null)
-			{   
-				if($BOOK->created_at->toDateString() == now()->toDateString())
-				{
-				  $msg = "<div class='alert alert-danger'>Sorry You Can Only Book one Lawyer a Day</div>";
-				  $bookings[] = " ";
+
+			if(count($clientBooking) != 0)
+			{
+			    foreach($clientBooking as $clientBooking)
+			    {   
+				    if($clientBooking->created_at->toDateString() == now()->toDateString())
+				    {
+				       $msg = "<div class='alert alert-danger'>Sorry You Can Only Book one Lawyer a Day</div>";
+			        }
 			    }
 			}
 			else
 			{
-				
-				$stmt = new Booking;
-				$stmt->name_of_client = $request->fname;
-				$stmt->user_id = $request->user_id;
-				$stmt->email_of_client = $request->email;
-				$stmt->phone_of_client = $request->phone;
-				$stmt->photo_of_client = $request->client_photo;
-				$stmt->phone_of_lawyer = $request->lawyer_phone;
-				$stmt->email_of_lawyer = $request->lawyer_email;
-				$stmt->photo_of_lawyer = $request->lawyer_photo;
-				$stmt->name_of_lawyer = $request->lname;
-				$stmt->lawyer_id = $request->lawyer_id;
-				$stmt->type_of_lawyer = $request->type;
-				$stmt->call_credits = $request->credits;
-				$stmt->status = $request->status;
-				$stmt->date = $date;
-				$stmt->timeslot = $request->timeslot;
-				$stmt->save();
-
+				Booking::create([
+					'user_id'=>auth()->user()->id,
+					'lawyer_id'=>$request->lawyer_id,
+					'status'=>"Scheduled",
+					'timeslot'=>$request->timeslot,
+					'date'=>$date,
+					'credits'=>$request->credits,
+				]);
 				$msg = "<div class='alert alert-success'>You Booked a Lawyer Successfully</div>";
     			$bookings[] = $timeslot;
 			}
 		}
-		return view('user.booking.book',['date' => $date,'bookings'=>$bookings, 'msg' => $msg, 'booking' => $booking]);
+		return view('user.booking.book',
+			['date'=>$date,'bookings'=>$bookings,'msg'=>$msg,'newClientBooking'=>$newClientBooking]);
 
 	}
       

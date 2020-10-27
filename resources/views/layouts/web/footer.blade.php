@@ -18,8 +18,8 @@
                             <div class="widget service-links-widget">
                                 <h3>Our Plans</h3>
                                 <ul>
-                                    <li><a href="{{ route('flpp') }}">Family Life Protection Plan</a></li>
-                                    <li><a href="{{ route('plpp') }}">Personal Life Protection Plan</a></li>
+                                    <li><a href="{{ route('legal.plans.flpp') }}">Family Life Protection Plan</a></li>
+                                    <li><a href="{{ route('legal.plans.plpp') }}">Personal Life Protection Plan</a></li>
                                     <li><a href="#">Business Life Protection Plan</a></li>
                                 </ul>
                             </div>
@@ -29,9 +29,9 @@
                             <div class="widget quick-links-widget">
                                 <h3>Navigation</h3>
                                 <ul>
-                                    <li><a href="{{ route('Legal_Support_Home') }}">Home</a></li>
-                                    <li><a href="{{ route('Legal_Support_About') }}">About</a></li>
-                                    <li><a href="{{ route('Legal_Support_Contact') }}">Contact Us</a></li>
+                                    <li><a href="{{ route('legal.home') }}">Home</a></li>
+                                    <li><a href="{{ route('legal.about') }}">About</a></li>
+                                    <li><a href="{{ route('legal.contact') }}">Contact Us</a></li>
                                 </ul>
                             </div> 
                         </div>

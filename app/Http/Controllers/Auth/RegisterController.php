@@ -50,19 +50,13 @@ class RegisterController extends Controller
     
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+       return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone' =>['required'],
-            'role_id' => ['required'],
-            'insurer' =>['required'],
-            // 'address'=>['required'],
-            // 'house_address'=>['required'],
-            // 'education'=>['required'],
-            // 'experience'=>['required'],
-            // 'type_of_lawyer'=>['required'],
-            // 'personal_statement'=>['required']
+            'role_id' =>['required'],
+            'insurer'=>['required'],
         ]);
     }
 
@@ -72,33 +66,25 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+     protected function create(array $data)
     {
-      if(request()->hasFile('photo')){
+        if(request()->hasFile('photo')){
            $file = request()->file('photo');
            $extension = $file->getClientOriginalExtension(); //getting image exension
            $filename = time().'.'.$extension;
            $file->move('uploads/pictures/user/',$filename);
-           request()->photo =$filename;
+           $data['photo'] =$filename;
         }else{
-           return $request;
-           $user->photo = '../assets/images/holder.jpg';
+           $data['photo'] = " ";
        }
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'photo'=>request()->photo,
             'phone' => $data['phone'],
+            'photo'=> $data['photo'],
             'role_id' => $data['role_id'],
-            'insurer' => $data['insurer'],
-            'address'=>$data['address'],
-            'house_address'=>$data['house_address'],
-            'education'=>$data['education'],
-            'experience'=>$data['experience'],
-            'type_of_lawyer'=>$data['type_of_lawyer'],
-            'personal_statement'=>$data['personal_statement']
+            'insurer' => $data['insurer'],     
         ]);
-
     }
 }

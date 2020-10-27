@@ -55,11 +55,58 @@
           <div class="col-lg-12">
             <h3 class="page-header"><i class="fa fa-table"></i>Add Lawyer Type</h3>
             <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="{{ route('Legal_Support_Home') }}">Home</a></li>
+              <li><i class="fa fa-home"></i><a href="{{ route('legal.home') }}">Home</a></li>
               <li><i class="fa fa-table"></i>Table</li>
               <li><i class="fa fa-th-list"></i>Add Lawyer Types</li>
             </ol>
           </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-3"></div>
+
+          <div class="col-lg-6">
+            @if(session()->has('message'))
+              <div class="alert {{session('alert') ?? 'alert-success'}}">
+               {{ session('message') }}
+              </div>
+            @endif
+            <section class="panel">
+              <header class="panel-heading">
+                List
+              </header>
+              <div class="panel-body">
+                <!-- Tables -->
+                <table class="table table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type of Lawyer</th>
+                    <th>Description</th>
+                    <th>Added By</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>  
+                @isset($type) 
+                  @foreach($type as $type)  
+                  <tr>
+                    <td>{{ $type->name }}</td>
+                    <td>{{ $type->description }}</td>
+                    <td>{{ $type->by }}</td>
+                    <td>{{ $type->created_at }}</td>
+                    <td>
+                      <a href="{{ route('typeOfLawyer.delete',['typeOfLawyer'=>$type->id]) }}" class="btn btn-danger delete-confirm">Delete</a>
+                    </td>
+                  </tr>
+                  @endforeach
+                @endisset       
+                </tbody>
+              </table>
+                
+              </div>
+            </section>   
+          </div>
+          <div class="col-lg-3"></div>
         </div>
 
         <div class="row">
@@ -74,13 +121,13 @@
                 <div class="form">
 
                   <!-- Administrator Forms -->
-                  <form class="form-validate form-horizontal" method="post" action="{{ route('type.store') }}">
+                  <form class="form-validate form-horizontal" method="post" action="{{ route('type.lawyer.add') }}">
                     {{ csrf_field() }}
-
+                    <input type="hidden" name="by" value="{{ auth()->user()->id }}">
                     <div class="form-group ">
                       <label for="type" class="control-label col-lg-2">Type Of Lawyer <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input class=" form-control"  name="type" type="text" />
+                        <input class=" form-control"  name="name" type="text" />
                       </div>
                     </div>
 

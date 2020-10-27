@@ -83,10 +83,10 @@
                                     <div class="details ">
                                        <div class="info">
                                             <img src="assets/images/services/img_1.jpg" alt class="bg-image">
-                                            <a href="{{ route('Legal_Support_Home') }}">
+                                            <a href="{{ route('legal.home') }}">
                                                 <h3><i class="fi flaticon-construction"></i> Legal support</h3>
                                             </a>
-                                            <a class="btn btn-danger" href="{{ route('Legal_Support_Home') }}"> Get Details</a>
+                                            <a class="btn btn-danger" href="{{ route('legal.home') }}"> Get Details</a>
                                        </div>
                                     </div>
                                </div>
@@ -191,7 +191,12 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipi scing elit, sed do eiusmod tempor incidi dunt ut labore et dolore magna aliqua.</p>
 
                         <div class="contact-form-s1 form">
-                            <form method="post" class="wpcf7-form contact-validation-active" action="{{ route('lexicon.message') }}">
+                             @if(session()->has('message'))
+                              <div class="alert {{session('alert') ?? 'alert-success'}}">
+                               {{ session('message') }}
+                              </div>
+                            @endif
+                            <form method="get" class="wpcf7-form contact-validation-active" action="{{ route('legal.message') }}">
                                 {{ csrf_field() }}
                                 <div>
                                     <label for="name">Name</label>
@@ -209,9 +214,6 @@
                                     <label>Message</label>
                                     <textarea rows="20" placeholder="Send us a message" name="message"></textarea>
                                 </div>
-
-                                <input type="hidden" value = "admin" name="destination">
-
                                 <div class="submit-btn-wrap">
                                     <input value="Submit" class="theme-btn wpcf7-submit" type="submit">
                                 </div>

@@ -2,7 +2,7 @@
 <html>
 
 <head
-><title>calendar</title>
+><title>{{ config('App.Name','Lexicon Support Services') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -106,30 +106,6 @@
 
 <body>
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <div class="navbar-header">
-             <a class="navbar-brand" href="#"><img src="{{asset('assets/images/logo-2.png')}} " height ="40px" width="100px" alt/></a>
-          </div>
-          <div class="collapse navbar-collapse" id="navbarNav">
-             <ul class="navbar-nav">
-               <li class="nav-item">
-                 <a class="nav-link" href="{{ route('Legal_Support_Home') }}">Home <span class="sr-only">(current)</span></a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="{{ route('Legal_Support_About') }}">About</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="{{ route('Legal_Support_Lawyers') }}">Lawyers</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="{{ route('book',['id' => Session::get('lawyer_id')]) }}">Calendar</a>
-               </li>
-             </ul>
-          </div>
-        </nav>
         <div class="row">
             <div class="col-md-12">
             <div id="calendar" ></div>

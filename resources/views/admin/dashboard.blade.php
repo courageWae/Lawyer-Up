@@ -47,11 +47,11 @@
   <section id="container" class="">
 
     <!-- Header -->
-    @include('layouts/admin/header')
+    @include('layouts.admin.header')
     <!-- End Header -->
 
     <!--sidebar start-->
-    @include('layouts/admin/sidebar')
+    @include('layouts.admin.sidebar')
     <!--sidebar end-->
 
     <!--main content start-->
@@ -62,7 +62,7 @@
           <div class="col-lg-12">
             <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
             <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="{{ route('Legal_Support_Home') }}">Home</a></li>
+              <li><i class="fa fa-home"></i><a href="">Home</a></li>
               <li><i class="fa fa-laptop"></i>Dashboard</li>
             </ol>
           </div>
@@ -121,6 +121,7 @@
                 <h2><i class="fa fa-flag-o red"></i><strong>Packages </strong></h2>
               </div>
               <div class="panel-body">
+                @isset($package)
                 <table class="table bootstrap-datatable countries">
                   <thead>
                     <tr>
@@ -131,43 +132,42 @@
                       <th>Clients Email</th>
                       <th>Clients Photo</th>
                       <th>Status</th>
-                      <th>Approved By</th>
                       <th>Date</th>
                       <th>Approved On</th>
                     </tr>
                   </thead>
                   <tbody>
-                   @forelse($package as $package) 
+                    @foreach($package as $package)
+
+                     @php($isClient = \App\User::find($package->user_id))
+                     @php($isClientCategory = \App\Category::find($package->category_id))
                     <tr>
-                      <td>{{ $package->package_name }}</td>
-                      <td>{{ $package->category }}</td>
-                      <td>{{ $package->price }}</td>
-                      <td>{{ $package->client_name }}</td>
-                      <td>{{ $package->client_email }}</td>
+                      <td>{{ $isClientCategory->Package->name }}</td>
+                      <td>{{ $isClientCategory->name }}</td>
+                      <td>{{ $isClientCategory->price }}</td>
+                      <td>{{ $isClient->name }}</td>
+                      <td>{{ $isClient->email }}</td>
                       <td>
-                        <a href="{{ asset('uploads/pictures/user/'.$package->photo ) }}" target = "blank">
-                          <img src="{{ asset('uploads/pictures/user/'.$package->photo ) }}" style="height:30px; margin-top:-2px;"></td> 
+                        <a href="{{ asset('uploads/pictures/user/'.$isClient->photo ) }}" target = "blank">
+                          <img src="{{ asset('uploads/pictures/user/'.$isClient->photo ) }}" style="height:30px; margin-top:-2px;"></td> 
                         </a>
-                      @if($package->status == "Pending")     
+
+                      @if($package->status == "pending")     
                       <td><p style="color:red;">{{ $package->status }}</p> </td>
                       @else
                       <td><p style="color:green;">{{ $package->status }}</p> </td>
                       @endif
-                      <td>{{ $package->approved_by }}</td>
                       <td>{{ $package->created_at }}</td>
                       <td>
-                        @if($package->status != "Pending")
-                           
+                      @if($package->status != "pending")   
                         {{$package->updated_at}}
-
-                        @endif
+                      @endif
                       </td>
                     </tr>
-                   @empty
-                   <tr>There are no Packages <tr>
-                   @endforelse
+                    @endforeach      
                   </tbody>
                 </table>
+                @endisset
               </div>
 
             </div>
@@ -180,11 +180,11 @@
               <i class="fa fa-shopping-cart"></i>
               <ul>
                 <li>
-                  <strong>{{ count($clientPackage->where('status','Pending')) }}</strong>
+                  <strong>{{ count($countPackage->where('status','pending')) }}</strong>
                   <span>Pending Packages</span>
                 </li>
                 <li>
-                  <strong>{{ count($clientPackage->where('status','not like','%Pending%')) }}</strong>
+                  <strong>{{ count($countPackage->where('status','not like','%pending%')) }}</strong>
                   <span>Active Packages</span>
                 </li>
               </ul>
@@ -240,7 +240,7 @@
                     <li class="by-other" >
                       <!-- Use the class "pull-right" in avatar -->
                       <div class="avatar pull-right">
-                        <img src="img/user22.png" alt="" />
+                        <img src="{{asset('assets/images/holder.png')}}" alt="" style="height: 40px; width:40px"/>
                       </div>
 
                       <div class="chat-content">
@@ -250,8 +250,7 @@
                         <div class="clearfix"></div>
                       </div>
                     </li>
-                   
-                     @empty
+                    @empty
                     <li class="by-me">
                       <div class="chat-content">
                         <strong>There are no messages to display</strong>

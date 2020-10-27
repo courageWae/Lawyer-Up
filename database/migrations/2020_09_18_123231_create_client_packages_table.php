@@ -15,16 +15,9 @@ class CreateClientPackagesTable extends Migration
     {
         Schema::create('client_packages', function (Blueprint $table) {
             $table->id();
-            $table->string('client_name');
-            $table->string('client_email');
-            $table->string('package_name');
-            $table->string('category');
-            $table->string('price');
+            $table->string('user_id');
+            $table->string('category_id');
             $table->string('status');
-            $table->string('client_insurer');
-            $table->mediumText('photo');
-            $table->string('verification_code')->nullable();
-            $table->string('approved_by')->nullable();
             $table->timestamps();
         });
     }

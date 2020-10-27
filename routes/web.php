@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\TypeOfAttorney;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,25 +16,32 @@ use Illuminate\Support\Facades\Route;
 
 
 // ALL USERS CAN ACCESS THIS PAGES
-Route::get('/', function () {
-    return view('lexicon');
+Auth::routes();
+Route::view('/','lexicon');
+
+Route::name('legal.')->prefix('legalSupport')->group(function(){
+	Route::get('home','LegalSupportController@home')->name('home');
+    Route::get('contact','LegalSupportController@contact')->name('contact');
+    Route::get('message','MessageController')->name('message');
+    Route::get('packages','LegalSupportController@packages')->name('plans');
+    Route::get('about','LegalSupportController@about')->name('about');
+    Route::get('lawyers','LegalSupportController@lawyers')->name('lawyers');
+    Route::get('lawyer/details/{lawyer}','LegalSupportController@show_lawyer')->name('lawyer.details');
+
+    Route::name('plans.')->prefix('plans')->group(function(){
+        Route::get('flpp','LegalSupportController@flpp')->name('flpp');
+        Route::get('plpp','LegalSupportController@plpp')->name('plpp');
+        Route::get('blpp','LegalSupportController@blpp')->name('blpp');
+        Route::get('flpp/categories/{category}','LegalSupportController@flpp_categories')->name('flpp.category');
+        Route::get('plpp/categories/{category}','LegalSupportController@plpp_categories')->name('plpp.category');
+        Route::get('blpp/categories/{category}','LegalSupportController@blpp_categories')->name('blpp.category');
+    });
 });
 
-Route::get('legalSupport/home','legalSupportController@home')->name('Legal_Support_Home');
-Route::get('legalSupport/contact','legalSupportController@contact')->name('Legal_Support_Contact');
-Route::get('legalSupport/packages','legalSupportController@packages')->name('Legal_Support_Packages');
-Route::get('legalSupport/about','legalSupportController@about')->name('Legal_Support_About');
-Route::get('legalSupport/lawyers','legalSupportController@lawyers')->name('Legal_Support_Lawyers');
-Route::get('legalSupport/lawyer/details/{id}','legalSupportController@showLawyer');
-Route::get('legalSupport/packages/family_life_protection_plan','legalSupportController@flpp')->name('flpp');
-Route::get('legalSupport/packages/personal_life_protection_plan','legalSupportController@plpp')->name('plpp');
-Route::get('legalSupport/packages/business_life_protection_plan','legalSupportController@blpp')->name('blpp');
-Route::get('legalSupport/packages/flpp/categories','legalSupportController@flpp_categories');
-Route::get('legalSupport/packages/plpp/categories','legalSupportController@plpp_categories')->name('plpp_cat');
-Route::get('legalSupport/packages/blpp/categories','legalSupportController@blpp_categories')->name('blpp_cat');
-Route::get('/categories/checkout/{id}','Checkout@index');
 
-Route::get('/book-lawyer/{id}',"BookingController@book")->name('book');
+
+
+Route::get('book-lawyer/{lawyer}',"BookingController@book")->name('book');
 Route::get('get-date',"BookingController@getdate")->name('getdate');
 Route::get('build-calendar',"BookingController@build_calendar")->name('buildcalendar');
 Route::get('checkSlots',"BookingController@checkSlots")->name('checkSlots');
@@ -41,87 +49,72 @@ Route::get('booking/{date}/{lawyer_id}',"BookingController@booking")->name('book
 Route::post('booking/{date}',"BookingController@submitbook")->name('submitbook');
 Route::delete('/delete/{id}/{date}', 'BookingController@destroy');
 
-////////////////////////////////////////////////////////////////////////////////////////
-                      ////MESSAGES ROUTE//////
-Route::post('/lexicon/message','messagesController')->name('lexicon.message');
-Route::post('/legalSupport/message','messagesController')->name('legalSupport.message');
-Route::post('/lawyer/message','messagesController')->name('lawyer.message');
 
 
-
-Auth::routes();
-
-/////////////////////////////////////////////////////////////////////////////////////
-                        ///// USERS ROUTE ///////////
-Route::group(['middleware'=>['user','auth'],'namespace'=>'user'],function(){
-	Route::get('user/dashboard','userController@index')->name('user.dashboard');
-	Route::get('user/profile','userController@profile')->name('user.profile');
-	Route::patch('/user/profile/edit/{id}','userController@update');
-	Route::get('user/appointments','userController@appointments')->name('user.appointments');
-	Route::get('user/package/{id}','userController@viewPackage')->name('user.viewPackage');
-	Route::get('user/appointments/{id}','userController@viewAppointment')->name('user.viewAppointment');
+/* USERS ROUTE */
+Route::group(['middleware'=>['user','auth'],'prefix'=>'user'],function(){
+	Route::get('dashboard','UserController@dashboard')->name('user.dashboard');
+	Route::get('profile','UserController@profile')->name('user.profile');
+	Route::get('profile/edit','UserController@show_profile')->name('user.profile.edit');
+	Route::patch('profile/edit/{user}','UserController@update_profile')->name('user.profile.update');
+	Route::get('plan/purchase/invoice/{category}','InvoiceController@index')->name('user.invoice');
+   
+	Route::get('appointments','UserController@appointments')->name('user.appointments');
+	Route::get('package/{category}','UserController@package_details')->name('user.viewPackage');
+	Route::get('appointments/{booking}','UserController@view_appointment')->name('user.viewAppointment');
 });
 
 
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////
-                   /// ADMIN ROUTES ////
-Route::group(['middleware'=>['admin','auth'],'namespace'=>'admin'],function(){
-	Route::get('admin/dashboard','adminController@dashboard')->name('admin.dashboard');
-	Route::get('admin/profile','adminController@profile')->name('admin.profile');
-	Route::patch('admin/profile/edit/{id}','adminController@update');
-	Route::get('admin/add','adminController@adminAdd')->name('admin.add');
-	Route::post('admin/add','adminController@adminStore')->name('admin.store');
-	Route::get('insurer/add','adminController@insurerAdd')->name('insurer.add');
-	Route::post('insurer/add','adminController@insurerStore')->name('insurer.store');
-	Route::get('lawyer/add','adminController@lawyerAdd')->name('lawyer.add');
-	Route::post('lawyer/add','adminController@lawyerStore')->name('lawyer.store');
-	Route::get('admin/list','adminController@adminList')->name('admins.list');
-	Route::get('insurer/list','adminController@insurerList')->name('insurers.list');
-	Route::get('lawyer/list','adminController@lawyerList')->name('lawyers.list');
-	Route::get('user/list','adminController@userList')->name('users.list');
-	Route::get('/admin/{id}','adminController@adminDelete');
-	Route::get('/insurer/{id}','adminController@insurerDelete');
-	Route::get('/user/{id}','adminController@userDelete');
-	Route::get('/lawyer/{id}','adminController@lawyerDelete');
-
-	Route::get('/typeOfLawyer/show','LawyerTypesController@show')->name('type.show');
-	Route::get('/typeOfLawyer/add','LawyerTypesController@index')->name('type.index');
-	Route::post('/typeOfLawyer/store','LawyerTypesController@store')->name('type.store');
-	Route::get('/typeOfLawyer/{id}','LawyerTypesController@destroy');
-    
-	Route::get('/references','ReferenceController@index')->name('reference');
-	Route::post('/references/store','ReferenceController@store')->name('reference.store');
-	Route::get('/references/{id}','ReferenceController@destroy');
-	
+/* ADMIN ROUTES */
+Route::group(['middleware'=>['admin','auth'],'prefix'=>'admin'],function(){
+	Route::get('dashboard','AdminController@dashboard')->name('admin.dashboard');
+	Route::get('profile','AdminController@profile')->name('admin.profile');
+    Route::patch('profile/{admin}','AdminController@update_profile')->name('admin.profile.update');
+    Route::match(['get','post'],'add/new/admin','AdminController@add_admin')->name('admin.add');
+	Route::match(['get','post'],'add/new/lawyer','AdminController@add_lawyer')->name('lawyer.add');
+	Route::match(['get','post'],'add/new/insurer','AdminController@add_insurer')->name('insurer.add');
+	Route::get('list/of/administrators','AdminController@list_admin')->name('admin.list');
+	Route::get('delete/admin/{admin}','AdminController@delete_admin')->name('admin.delete');
+	Route::get('view/admin/{admin}','AdminController@view_admin')->name('admin.view');
+	Route::get('list/of/insurer','AdminController@list_insurer')->name('insurer.list');
+	Route::get('delete/insurer/{insurer}','AdminController@delete_insurer')->name('insurer.delete');
+	Route::get('view/insurer/{insurer}','AdminController@view_insurer')->name('insurer.view');
+    Route::get('list/of/lawyers','AdminController@list_lawyer')->name('lawyer.list');
+	Route::get('view/lawyers/{lawyer}','AdminController@view_lawyer')->name('lawyer.view');
+	Route::get('delete/lawyer/{lawyer}','AdminController@delete_lawyer')->name('lawyer.delete');
+	Route::get('list/of/clients','AdminController@list_user')->name('user.list');
+	Route::get('view/user/{client}','AdminController@view_user')->name('user.view');
+	Route::get('delete/user/{client}','AdminController@delete_user')->name('user.delete');
+	Route::match(['get','post'],'add/type/of/lawyer','AdminController@type_of_lawyer_add')->name('type.lawyer.add');
+	Route::get('delete/type/of/lawyer/{typeOfLawyer}','AdminController@delete_typeOfLawyer')->name('typeOfLawyer.delete');
 });
 
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-                       /// LAWYERS ROUTES ///
-Route::group(['middleware'=>['lawyer','auth'],'namespace'=>'lawyer'],function(){
-	Route::get('dashboard/lawyer','lawyerController@index')->name('dashboard.lawyer');
-	Route::get('lawyer/profile','lawyerController@profile')->name('lawyer.profile');
-	Route::patch('lawyer_profile_edit/{id}','lawyerController@update');
-	Route::get('/lawyer/appointment/{id}','lawyerController@viewAppointment');
-	Route::get('/lawyer/client/all','lawyerController@clientList')->name('lawyer.client.list');
-	Route::get('/lawyer/appointment/{id}','lawyerController@viewClient')->name('lawyer.client.view');
-
-
+/* LAWYER ROUTES */
+Route::group(['middleware'=>['lawyer','auth'],'prefix'=>'lawyer'],function(){
+	Route::get('dashboard','LawyerController@dashboard')->name('lawyer.dashboard');
+	Route::get('list/of/client','LawyerController@list_client')->name('lawyer.list.client');
+	Route::get('profile','LawyerController@profile')->name('lawyer.profile');
+	Route::get('profile/{lawyer}','LawyerController@show_profile')->name('lawyer.show.profile');
+	Route::patch('profile/{lawyer}','LawyerController@update_profile')->name('lawyer.update.profile');
+	Route::get('appointments/{appointment}','LawyerController@view_appointment')->name('lawyer.appointment');
+	Route::get('clients/{id}/view','LawyerController@view_client')->name('lawyer.view.client');
+	Route::get('clients/appointment/approve/{book}','LawyerController@approve_appointment')->name('lawyer.approve');
 });
 
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
                          /// INSURER ROUTES ///
-Route::group(['middleware'=>['insurer','auth'],'namespace'=>'insurer'],function(){
-	Route::get('dashboard/insurer','insurerController@index')->name('dashboard.insurer');
-	Route::get('insurer/client_add','insurerController@clientAdd')->name('client.add');
-	Route::post('/clientAdd','insurerController@storeClient')->name('client.store');
-	Route::get('/insurer/profile','insurerController@profile')->name('insurer.profile');
-	Route::patch('/insurer_profile/{id}','insurerController@update');
-
+Route::group(['middleware'=>['insurer','auth'],'prefix'=>'insurer'],function(){
+	Route::get('dashboard','InsurerController@dashboard')->name('insurer.dashboard');
+ 	Route::get('profile','InsurerController@profile')->name('insurer.profile');
+ 	Route::get('profile/{insurer}','InsurerController@show_profile')->name('insurer.show.profile');
+ 	Route::patch('profile/{insurer}','InsurerController@update_profile')->name('insurer.update.profile');
+ 	Route::get('list/of/client','InsurerController@list_client')->name('insurer.list.client');
 });
+
+
+
+
 

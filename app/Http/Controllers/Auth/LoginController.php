@@ -31,9 +31,9 @@ class LoginController extends Controller
       if(auth()->user()->role_id == 1){
         return route('admin.dashboard');
       }elseif(auth()->user()->role_id == 2){
-        return route('dashboard.insurer');
+        return route('insurer.dashboard');
       }elseif(auth()->user()->role_id == 3){
-        return route('dashboard.lawyer');
+        return route('lawyer.dashboard');
       }elseif(auth()->user()->role_id == 4){
         return route('user.dashboard');
       }  

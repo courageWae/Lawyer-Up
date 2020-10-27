@@ -49,9 +49,9 @@
 
   <!-- container section start -->
   <section id="container" class="">
-    @include('layouts/admin/header')
+    @include('layouts.admin.header')
 
-    @include('layouts/admin/sidebar')
+    @include('layouts.admin.sidebar')
 
     <!--main content start-->
     <section id="main-content">
@@ -60,7 +60,7 @@
           <div class="col-lg-12">
             <h3 class="page-header"><i class="fa fa-file-text-o"></i> Lawyer</h3>
             <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="{{ route('Legal_Support_Home') }}">Home</a></li>
+              <li><i class="fa fa-home"></i><a href="{{ route('legal.home') }}">Home</a></li>
               <li><i class="icon_document_alt"></i>Forms</li>
               <li><i class="fa fa-file-text-o"></i>New Lawyer</li>
             </ol>
@@ -73,39 +73,45 @@
           <div class="col-lg-3">
           </div>
           <div class="col-lg-6">
+             @if(session()->has('message'))
+                <div class="alert {{session('alert') ?? 'alert-success'}}">
+                  {{ session('message') }}
+                </div>
+              @endif
             <section class="panel">
               <header class="panel-heading">
                 New Lawyer
               </header>
               <div class="panel-body">
                 <div class="form">
-
                   <!-- Administrator Forms -->
-                  <form class="form-validate form-horizontal" method="post" action="{{ route('lawyer.store') }}" enctype="multipart/form-data">
+                  <form class="form-validate form-horizontal" method="post" action="{{ route('lawyer.add') }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <input type="hidden" name="role_id" value="3">
+                    <input type="hidden" name="insurer" value="Null">
+
 
                     <div class="form-group ">
                       <label for="name" class="control-label col-lg-2">Full name <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input class=" form-control"  name="name" type="text" />
+                        <input class=" form-control"  name="name" type="text"  required />
                           @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                            </span>
+                          @enderror
                       </div>
                     </div>
                     
                     <div class="form-group ">
                       <label for="email" class="control-label col-lg-2">Email <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input class="form-control "  name="email" type="email" />
+                        <input class="form-control" name="email" type="email" required />
                           @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                            </span>
+                          @enderror
                       </div>
                     </div>
 
@@ -114,44 +120,45 @@
                       <div class="col-lg-10">
                         <input class="form-control"  name="phone" type="phone" />
                           @error('phone')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                            </span>
+                          @enderror
                       </div>
                     </div>
 
                     <div class="form-group ">
                       <label for="address" class="control-label col-lg-2">Address<span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input class=" form-control"  name="address" type="address" />
+                        <input class=" form-control" name="address" type="address" required />
                           @error('address')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                            </span>
+                          @enderror
                       </div>
                     </div>
 
                     <div class="form-group ">
                       <label for="house_address" class="control-label col-lg-2">House Address<span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input class=" form-control"  name="house_address" type="address" />
+                        <input class=" form-control"  name="house_address" type="address" required />
                           @error('house_address')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                            </span>
+                          @enderror
                       </div>
                     </div>
 
                     <div class="form-group ">
                       <label for="type_of_lawyer" class="control-label col-lg-2">Type of Lawyer<span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <select name="type_of_lawyer" class="form-control">
+                        <select name="type_of_lawyer" class="form-control" required>
                           <option selected="selected" disabled="disabled">--  CHOOSE A TYPE OF LAWYER</option>
+                          @php($types = \App\TypeOfAttorney::all())
                           @foreach($types as $types)
-                          <option>{{ $types->type }}</option>
+                          <option>{{ $types->name }}</option>
                           @endforeach
                         </select>
                       </div>
@@ -162,53 +169,53 @@
                       <div class="col-lg-10">
                         <textarea class = "form-control" rows = "10" placeholder="My personals tatement" name="personal_statement"></textarea>
                           @error('personal_statement')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                            </span>
+                          @enderror
                       </div>
                     </div>
 
                     <div class="form-group ">
                       <label for="education" class="control-label col-lg-2">Education History<span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <textarea class = "form-control" rows = "10" placeholder="Education History" name="education"></textarea>
+                        <textarea class = "form-control" rows = "10" placeholder="Education History" name="education" required></textarea>
                           @error('education')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                            </span>
+                          @enderror
                       </div>
                     </div>
 
                     <div class="form-group ">
                       <label for="experience" class="control-label col-lg-2">Experience <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <textarea class = "form-control" rows = "5" placeholder="Your Experience" name="experience"></textarea>
+                        <textarea class = "form-control" rows = "5" placeholder="Your Experience" name="experience" required></textarea>
                           @error('experience')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                            </span>
+                          @enderror
                       </div>
                     </div>
 
                     <div class="form-group ">
                       <label for="password" class="control-label col-lg-2">Password <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input class="form-control" id="password" name="password" type="password" />
+                        <input class="form-control" id="password" name="password" type="password" required />
                           @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                            </span>
+                          @enderror
                       </div>
                     </div>
 
                     <div class="form-group ">
                       <label for="confirm_password" class="control-label col-lg-2">Confirm Password <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input class="form-control " id="confirm_password" name="password_confirmation" type="password" />
+                        <input class="form-control " id="confirm_password" name="password_confirmation" type="password" required/>
                       </div>
                     </div>
                     

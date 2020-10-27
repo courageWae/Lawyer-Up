@@ -23,19 +23,6 @@
   <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
   <link href="{{ asset('admin/css/style-responsive.css') }}" rel="stylesheet" />
 
-  <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
-  <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
-      <script src="js/lte-ie7.js"></script>
-    <![endif]-->
-
-    <!-- =======================================================
-      Theme Name: NiceAdmin
-      Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-      Author: BootstrapMade
-      Author URL: https://bootstrapmade.com
-    ======================================================= -->
 </head>
 
 <body>
@@ -100,8 +87,12 @@
                     <td>{{ $lawyer->personal_statement }}</td>
                     <td>{{ $lawyer->created_at }}</td>
                     <td>
+                      <a href="{{ route('lawyer.view',['lawyer'=>$lawyer->id]) }}" class="btn btn-primary">View</a>
+                    </td>
+                    <td>
                       <a href="/lawyer/{{$lawyer->id}}" class="btn btn-danger delete-confirm">Delete</a>
                     </td>
+                    
                   </tr> 
                   @endforeach
 

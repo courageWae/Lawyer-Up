@@ -22,7 +22,7 @@
         <!-- end page-title -->
 
 
-        <!-- start products-section -->
+         <!-- start products-section -->
         <section class="products-section shop section-padding">
             <div class="container">
                 <div class="row products-grids">
@@ -47,27 +47,25 @@
                                   <th>Time</th>
                                   <th>Status</th>
                                 </tr>
-                                @forelse($book as $book)
+                                @isset($booking)
+                                 @foreach($booking as $booking)
+                                  @php( $lawyer = App\User::find($booking->lawyer_id))         
                                 <tr>
-                                    <td style="padding:10px;font-size: 20px;">
-                                         {{ $book->name_of_lawyer }}                  
+                                    
+                                    <td style="padding:10px;font-size: 20px;">{{ $lawyer->name }}</td>
+                                    <td style="padding:10px;font-size: 20px;">{{ $lawyer->type_of_lawyer}}                
                                     </td>
-                                    <td style="padding:10px;font-size: 20px;">{{ $book->type_of_lawyer }}</td>
-                                    <td style="padding:10px;font-size: 20px;">{{ $book->call_credits }}</td>
-                                    <td style="padding:10px;font-size: 20px;">{{ $book->date }}</td>
-                                    <td style="padding:10px;font-size: 20px;">{{ $book->timeslot }}</td>
-                                    <td style="padding:10px;font-size: 20px;">{{ $book->status }}</td>
+                                    <td style="padding:10px;font-size: 20px;">{{ $booking->credits }}</td>
+                                    <td style="padding:10px;font-size: 20px;">{{ $booking->date }}</td>
+                                    <td style="padding:10px;font-size: 20px;">{{ $booking->timeslot }}</td>
+                                    <td style="padding:10px;font-size: 20px;">{{ $booking->status }}</td>
                                     <td style="padding:10px;font-size: 20px;">
-                                      <a class="btn btn-primary"href = "{{ route('user.viewAppointment',['id'=>$book->id]) }}" >View</a>
+                                      <a class="btn btn-primary" href = "{{ route('user.viewAppointment',['booking'=>$booking->id]) }}" >View
+                                      </a>
                                     </td>
                                 </tr>
-                                @empty
-                                <tr>
-                                    <td colspan="6" style = "color:red;">
-                                        <center>YOU HAVE NO APPOINTMENT SCHEDULED</center>
-                                    </td>
-                                </tr>
-                                @endforelse   
+                                @endforeach
+                                @endisset
                            </tbody>
                         </table>
                     </div>

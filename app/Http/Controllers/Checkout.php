@@ -13,6 +13,7 @@ use DB;
 class Checkout extends Controller
 {
      public function index($id){
+
         $invoices = Invoice::all();
         $categories = Category::find($id);
 
@@ -20,7 +21,7 @@ class Checkout extends Controller
         if($client->client_email != Auth::user()->email){
     	  $client->client_name = Auth::user()->name;
         $client->client_email = Auth::user()->email;
-        $cilent->client_insurer = Auth::user()->insurer;
+        $client->client_insurer = Auth::user()->insurer;
     	  $client->package_name = $categories->package->name;
     	  $client->category = $categories->Name;
     	  $client->price = $categories->Price;
