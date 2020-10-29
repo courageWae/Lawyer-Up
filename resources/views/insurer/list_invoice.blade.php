@@ -1,6 +1,6 @@
-@extends('/layouts/web/master')
+@extends('layouts.web.master')
 @section('head')
-   @include('/layouts/web/head')
+   @include('layouts.web.head')
 @endsection
 @section('content')
 
@@ -32,30 +32,42 @@
                         <table class="table table-striped table-bordered">
                            <thead>
                               <tr style="background-color:rgb(245, 197, 66);">
-                                <th colspan="5">List of Clients</th>
+                                <th colspan="10">List of Clients</th>
                               </tr>
                             </thead>
                             <tbody>            
                                <tr>
-                                  <th colspan="5" style="padding:15px;"><span class="label label-warning" style="padding:5px;font-size: 15px;"></span></th>
+                                  <th colspan="10" style="padding:15px;"><span class="label label-warning" style="padding:5px;font-size: 15px;"></span></th>
                                </tr>
                                <tr>
                                   <th>#</th>
                                   <th>Name of Client</th>
-                                  <th>Phone</th>
                                   <th>Email</th>
+                                  <th>Phone</th>
+                                  <th>Package Name</th>
+                                  <th>Category</th>
+                                  <th>Price</th>
+                                  <th>Total Price</th>
+                                  <th>Status</th>
                                   <th>Actions</th>
                                 </tr>
                                 @php ($i = 1)
-                                @isset($client)
-                                 @foreach($client as $client)
+                                @isset($allClientInvoice)
+                                 @foreach($allClientInvoice as $allClientInvoice)
+                                  @php($client = App\User::find($allClientInvoice->user_id))
+                                  @php($package = App\Category::find($allClientInvoice->category_id))
                                 <tr>
                                   <td>{{ $i }}</td>
                                   <td>{{ $client->name }}</td>
                                   <td>{{ $client->email }}</td>
                                   <td>{{ $client->phone }}</td>
+                                  <td>{{ $package->package->name }}</td>
+                                  <td>{{ $package->name }}</td>
+                                  <td>{{ $package->price }}</td>
+                                  <td>{{ $allClientInvoice->total }}</td>
+                                  <td>{{ $allClientInvoice->status }}</td>
                                   <td>
-                                    <a class="btn btn-primary" href="{{ route('insurer.view.client',['client'=>$client->id]) }}">View</a>
+                                    <a class="btn btn-primary" href="{{ route('insurer.view.invoice',['clientInvoice'=>$allClientInvoice->id]) }}">View</a>
                                   </td>
                                 </tr>
                                  @php($i++)

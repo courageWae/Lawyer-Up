@@ -32,7 +32,7 @@
                         <table class="table table-striped table-bordered">
                            <thead>
                                <tr style="background-color:rgb(245, 197, 66);">
-                                   <th colspan="4">My Appointments</th>
+                                  <th colspan="4">Client Packages</th>
                                </tr>
                             </thead>
                             <tbody>            

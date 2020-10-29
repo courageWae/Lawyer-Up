@@ -40,13 +40,14 @@
                                  Land Litigation
                                 </p>    
                                 <hr>
-                                @if(Auth::check() && auth()->user()->role_id == 4 )
-                                <a class ="btn btn-success" href="/categories/checkout/{{ $categories->id }}">Purchase Plan</a>
-                                @elseif(Auth::check() && (auth()->user()->role_id == 3) && (auth()->user()->role_id == 2) && (auth()->user()->role_id == 1))
-                                <h2>SORRY YOU CAN'T HAVE ACCESS TO THIS SERVICE</h2>
-                                @else
+                                @auth
+                                  @if(Auth::user()->role_id == 4)
+                                   <a class ="btn btn-success" href="{{ route('user.invoice',['category'=>$categories->id]) }}">Purchase Plan</a>
+                                  @endif 
+                                @endauth
+                                @guest
                                 <a class ="btn btn-success" href="/login">Purchase Plan</a>
-                                @endif   
+                                @endguest   
                             </div>
                         </div>
                     </div>
@@ -61,13 +62,14 @@
                                  <hr style="height:4px; background-color: blue;">
                                 <p>Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
                                 <hr>
-                                 @if(Auth::check() && auth()->user()->role_id == 4 )
-                                <a class ="btn btn-success" href="/categories/checkout/{{ $categories->id }}">Purchase Plan</a>
-                                @elseif(Auth::check() && (auth()->user()->role_id == 3) && (auth()->user()->role_id == 2) && (auth()->user()->role_id == 1))
-                                <h2>SORRY YOU CAN'T HAVE ACCESS TO THIS SERVICE</h2>
-                                @else
+                                @auth
+                                  @if(Auth::user()->role_id == 4)
+                                   <a class ="btn btn-success" href="{{ route('user.invoice',['category'=>$categories->id]) }}">Purchase Plan</a>
+                                  @endif 
+                                @endauth
+                                @guest
                                 <a class ="btn btn-success" href="/login">Purchase Plan</a>
-                                @endif
+                                @endguest
                             </div>
                         </div>
                     </div>
@@ -82,13 +84,14 @@
                                  <hr style="height:4px; background-color: blue;">
                                 <p>Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
                                 <hr>
-                                 @if(Auth::check() && auth()->user()->role_id == 4 )
-                                <a class ="btn btn-success" href="/categories/checkout/{{ $categories->id }}">Purchase Plan</a>
-                                @elseif(Auth::check() && (auth()->user()->role_id == 3) && (auth()->user()->role_id == 2) && (auth()->user()->role_id == 1))
-                                <h2>SORRY YOU CAN'T HAVE ACCESS TO THIS SERVICE</h2>
-                                @else
+                                @auth
+                                  @if(Auth::user()->role_id == 4)
+                                   <a class ="btn btn-success" href="{{ route('user.invoice',['category'=>$categories->id]) }}">Purchase Plan</a>
+                                  @endif 
+                                @endauth
+                                @guest
                                 <a class ="btn btn-success" href="/login">Purchase Plan</a>
-                                @endif
+                                @endguest
                             </div>
                         </div>
                     </div>

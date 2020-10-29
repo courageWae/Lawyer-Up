@@ -52,6 +52,16 @@ class AdminController extends Controller
         $admin->password = password_hash($request->password, PASSWORD_DEFAULT);
         $admin->role_id = $request->role_id;
 
+        if($request->hasFile('photo')){
+            $file = $request->file('photo');
+            $extension = $file->getClientOriginalExtension(); //getting image exension
+            $filename = time().'.'.$extension;
+            $file->move('uploads/pictures/user/',$filename);
+            $admin->photo =$filename;
+        }else{
+            $admin->photo = ' ';
+        }
+
         $admin->save();
         return redirect()->back()->with(['message' => ' Administrator Created Successfully', 'alert' => 'alert-success']);
 
@@ -114,6 +124,16 @@ class AdminController extends Controller
         $lawyer->experience = $request->experience;
         $lawyer->personal_statement = $request->personal_statement;
 
+        if($request->hasFile('photo')){
+            $file = $request->file('photo');
+            $extension = $file->getClientOriginalExtension(); //getting image exension
+            $filename = time().'.'.$extension;
+            $file->move('uploads/pictures/user/',$filename);
+            $lawyer->photo =$filename;
+            }else{
+                $lawyer->photo = ' ';
+            }
+
         $lawyer->save();
         return redirect()->back()->with(['message' => 'New Lawyer Created Successfully', 'alert' => 'alert-success']);
 
@@ -155,6 +175,16 @@ class AdminController extends Controller
             $insurer->photo = $request->photo;
             $insurer->role_id = $request->role_id;
             $insurer->password = password_hash($request->password, PASSWORD_DEFAULT);
+
+            if($request->hasFile('photo')){
+               $file = $request->file('photo');
+               $extension = $file->getClientOriginalExtension(); //getting image exension
+               $filename = time().'.'.$extension;
+               $file->move('uploads/pictures/user/',$filename);
+               $insurer->photo =$filename;
+            }else{
+                $insurer->photo = ' ';
+            }
 
             $insurer->save();
             return redirect()->back()->with(['message' => 'New Insurer Created Successfully', 'alert' => 'alert-success']);

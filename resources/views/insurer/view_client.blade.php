@@ -1,11 +1,9 @@
-@extends('layouts.web.master')
+@extends('/layouts/web/master')
 @section('head')
-   @include('layouts.web.head')
+   @include('/layouts/web/head')
 @endsection
 @section('content')
-
-
-        <!-- start page-title -->
+      <!-- start page-title -->
         <section class="page-title">
             <div class="container">
                 <div class="row">
@@ -26,21 +24,22 @@
         <section class="products-section shop section-padding">
             <div class="container">
                 <div class="row products-grids">
-                    <!-- PACKAGE ONE -->
                     @include('insurer.dashBox')
-                    <div class="col col-lg-8" style ="padding-left:20px;">   
-                      <h3>Full Name</h3>
-                      <div class="well well-sm">{{ Auth::user()->name }}</div>
-                      <h3>Email Address</h3>
-                      <div class = "well well-sm">{{ Auth::user()->email }}</div>
-                      <h3>Phone Number</h3>
-                      <div class = "well well-sm">{{ Auth::user()->phone }}</div>
-
-                      <div class = "btn btn-primary">Edit</div>
+                  <div class="col col-lg-8" style ="padding-left:20px;">
+                    <h3>Clients Name</h3>
+                    <div class = "well well-sm">{{ $client->name }}</div>
+                    <h3>Clients Email</h3>
+                    <div class = "well well-sm">{{ $client->email }}</div>
+                    <h3>Clients Phone</h3>
+                    <div class = "well well-sm">{{ $client->phone }}</div>
+                    <div>
+                      <a class = "btn btn-primary btn-lg" href="{{ route('insurer.list.client') }}">Back</a>
                     </div>
-               </div> <!-- end row -->
+                  </div> 
+                  
+                </div> <!-- end row -->
             </div> <!-- end container -->
         </section>
-        <!-- end products-section -->      
+        <!-- end products-section -->       
 
 @endsection

@@ -57,7 +57,7 @@
                                 </p>
 
                                 <!-- HOW IT WORKS -->
-                                @include('layouts/web/how')
+                                @include('layouts.web.how')
 
 
                                 <hr>

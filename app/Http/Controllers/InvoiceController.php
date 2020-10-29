@@ -12,9 +12,7 @@ class InvoiceController extends Controller
     public function index( Category $category){ 
         $isPackageStatus = ClientPackage::where('user_id',auth()->user()->id);
         $invoice = Invoice::all();
-        // if(count(ClientPackage::all()) == 0){
-        // 	self::store_client_package($category);
-        // }
+        
         if($isPackageStatus->value('status') != 'Active'){
             self::store_client_package($category);
         }
@@ -23,7 +21,7 @@ class InvoiceController extends Controller
         	self::store_client_package($category);  	
         }
         
-    	return view('invoice',['category'=>$category,'invoice'=>$invoice]);
+    	return view('user.invoice',['category'=>$category,'invoice'=>$invoice]);
     }
 
     public function store_client_package($category){

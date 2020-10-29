@@ -49,31 +49,34 @@
                           
                         </div>
                         <div class="col col-sm-3">
-                            @if(Auth::check() && Auth::user()->role_id == 4)
+                            @auth
+                              @if(Auth::user()->role_id == 4)
                              <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
                                 <a href="{{ route('user.dashboard') }}">
-                                <img class="card-img-top" src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" alt="Card image" width="30" height="30" style="border-radius: 20px;"> |
+                                <img class="card-img-top" src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" alt width="30" height="30" style="border-radius: 20px;">
                                {{ Auth::user()->name }}</a>
                              </div>
-                             @elseif(Auth::check() && Auth::user()->role_id == 3)
+                              @elseif(Auth::user()->role_id == 3)
                              <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
                                 <a href="{{ route('lawyer.dashboard') }}">
                                     <img class="card-img-top" src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" alt="Card image" width="30" height="30" style="border-radius: 20px;"> |
                                     {{ Auth::user()->name }}</a>
                              </div>
-                             @elseif(Auth::check() && Auth::user()->role_id == 2)
+                             @elseif(Auth::user()->role_id == 2)
                              <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
                                 <a href="{{ route('insurer.dashboard') }}">
                                     <img class="card-img-top" src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" alt="Card image" width="30" height="30" style="border-radius: 20px;"> |
                                     {{ Auth::user()->name }}</a>
                              </div>
-                             @elseif(Auth::check() && Auth::user()->role_id == 1)
+                             @elseif(Auth::user()->role_id == 1)
                              <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
                                 <a href="{{ route('admin.dashboard') }}">
                                     <img class="card-img-top" src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" alt="Card image" width="30" height="30" style="border-radius: 20px;"> |
                                     {{ Auth::user()->name }}</a>
-                             </div>   
-                            @else
+                             </div>
+                             @endif   
+                            @endauth
+                            @guest
                             <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
                               <span>
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -87,8 +90,7 @@
                                 </svg>
                                 <a href="/register"> Register</a></span>
                            </div>
-                           
-                            @endif
+                           @endguest
                         </div>
                     </div>
                 </div>
