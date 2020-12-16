@@ -1,10 +1,10 @@
-@extends('layouts/web/master')
+@extends('layouts.web.master')
 @section('head')
-   @include('layouts/web/head')
+   @include('layouts.web.head')
 @endsection
 @section('banner')
 
- @include('layouts/web/slider')
+ @include('layouts.web.slider')
 
 @endsection
 @section('content')
@@ -22,7 +22,7 @@
                     </div>
                     <div class="col col-lg-3 col-md-3">
                        <div class="all-service-link">
-                            <a href="#" class="theme-btn">See Plans</a>
+                            <a href="{{ route('legal.plans') }}" class="theme-btn">See Plans</a>
                        </div>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                       <hr style="width:60px;">
 
                       <div class="col col-lg-3 col-md-4"> 
-                          <img src = "../assets/images/book.png">   
+                          <img src = "{{ asset('assets/images/book.png') }}">   
                       </div>
                       <div class="col col-lg-9 col-md-4"> 
                          <h5>BEST CASE STRATEGY</h5>
@@ -114,19 +114,19 @@
                    <hr style = "width:100px; float:left; background-color:rgb(235, 210, 52); height: 3px;">
                     <div class = "col col-lg-12">
                       <div class="col col-md-3">
-                        <img src="../assets/images/consent.png" ><br>
+                        <img src="{{ asset('assets/images/consent.png') }}" ><br>
                         <div style="margin-top:20px;">Pick a plan that best suits the needs of your business</div>
                       </div> 
                       <div class="col col-md-3">
-                        <img src="../assets/images/insure.png" >
+                        <img src="{{ asset('assets/images/insure.png') }}" >
                         <div style="margin-top:20px;">Select your trusted insurer from a list of our insurance partners</div>
                       </div> 
                       <div class="col col-md-3">
-                        <img src="../assets/images/forms.png" >
+                        <img src="{{ asset('assets/images/forms.png') }}" >
                         <div style="margin-top:20px;">Fill out the required details and submit. You will receive a welcome confirmation email or text from us.</div>
                       </div> 
                       <div class="col col-md-3">
-                        <img src="../assets/images/congrat.png" >
+                        <img src="{{ asset('assets/images/congrat.png') }}" >
                         <div style="margin-top:20px;">Congratulations, Start using the lexicon platform </div>
                       </div>                
                     </div>   
@@ -175,7 +175,7 @@
                                We offer a wide range of packages to suit your Personal, Family and Business legal protection plans
                            </p>
                            
-                            <a href="#" class="theme-btn read-more">See Plans</a>
+                            <a href="{{ route('legal.plans') }}" class="theme-btn read-more">See Plans</a>
                         </div>
                     </div>
                     <div class="col col-md-8">
@@ -220,128 +220,6 @@
             </div> <!-- end container -->
         </section>
         <!-- end offer -->  
-
-
-        <!-- recent-project --> 
-        <section class="recent-projects section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col col-lg-8 col-lg-offset-2">
-                        <div class="section-title-s2">
-                            <h2>Recent Projects</h2>
-                            <p>We have no projects yet</p>
-                        </div>
-                    </div>
-                </div> <!-- end row -->
-            </div>
-
-            <!-- <div class="row">
-                <div class="col col-xs-12">
-                    <div class="recent-projects-grids">
-                        <div class="grid">
-                            <div class="project-img">
-                                <img src="assets/images/projects/img-1.jpg" alt>
-                            </div>
-                            <div class="project-info">
-                                <div class="inner-info">
-                                    <a href="#"><h3>Chemical Refinery</h3></a>
-                                    <div class="tags">Michigan, US</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid">
-                            <div class="project-img">
-                                <img src="assets/images/projects/img-2.jpg" alt>
-                            </div>
-                            <div class="project-info">
-                                <div class="inner-info">
-                                    <a href="#"><h3>Chemical Refinery</h3></a>
-                                    <div class="tags">Michigan, US</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid">
-                            <div class="project-img">
-                                <img src="assets/images/projects/img-3.jpg" alt>
-                            </div>
-                            <div class="project-info">
-                                <div class="inner-info">
-                                    <a href="#"><h3>Chemical Refinery</h3></a>
-                                    <div class="tags">Michigan, US</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid">
-                            <div class="project-img">
-                                <img src="assets/images/projects/img-4.jpg" alt>
-                            </div>
-                            <div class="project-info">
-                                <div class="inner-info">
-                                    <a href="#"><h3>Chemical Refinery</h3></a>
-                                    <div class="tags">Michigan, US</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid">
-                            <div class="project-img">
-                                <img src="assets/images/projects/img-5.jpg" alt>
-                            </div>
-                            <div class="project-info">
-                                <div class="inner-info">
-                                    <a href="#"><h3>Chemical Refinery</h3></a>
-                                    <div class="tags">Michigan, US</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid">
-                            <div class="project-img">
-                                <img src="assets/images/projects/img-2.jpg" alt>
-                            </div>
-                            <div class="project-info">
-                                <div class="inner-info">
-                                    <a href="#"><h3>Chemical Refinery</h3></a>
-                                    <div class="tags">Michigan, US</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid">
-                            <div class="project-img">
-                                <img src="assets/images/projects/img-3.jpg" alt>
-                            </div>
-                            <div class="project-info">
-                                <div class="inner-info">
-                                    <a href="#"><h3>Chemical Refinery</h3></a>
-                                    <div class="tags">Michigan, US</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid">
-                            <div class="project-img">
-                                <img src="assets/images/projects/img-4.jpg" alt>
-                            </div>
-                            <div class="project-info">
-                                <div class="inner-info">
-                                    <a href="#"><h3>Chemical Refinery</h3></a>
-                                    <div class="tags">Michigan, US</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid">
-                            <div class="project-img">
-                                <img src="assets/images/projects/img-5.jpg" alt>
-                            </div>
-                            <div class="project-info">
-                                <div class="inner-info">
-                                    <a href="#"><h3>Chemical Refinery</h3></a>
-                                    <div class="tags">Michigan, US</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-        </section>
-        <!-- end recent-project -->
 
 
         <!-- start about-us-faq 
@@ -435,19 +313,13 @@
                     <div class="col col-xs-12">
                         <hr>
                         <div class="partners-slider">
-
+                            @inject('user','App\User')
+                            
+                            @foreach($user->Insurer()->get() as $insurer)
                             <div class="grid">
-                                <img src="assets/images/partners/star.png" alt>
+                                <img src="{{ asset('uploads/pictures/user/'.$insurer->photo) }}" alt>
                             </div>
-                            <div class="grid">
-                                <img src="assets/images/partners/serene.png" alt>
-                            </div>
-                            <div class="grid">
-                                <img src="assets/images/partners/bima.jpg" alt>
-                            </div>
-                            <div class="grid">
-                                <img src="assets/images/partners/enterprise.png" alt>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div> <!-- end row -->

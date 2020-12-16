@@ -42,7 +42,7 @@
                     <div class="row">
                         <div class="col col-sm-3">
                             <div class="site-logo">
-                                <a href="index-2.html"><img src="../assets/images/logo-2.png" alt></a>
+                                <a href="index-2.html"><img src="{{ asset('assets/images/logo-2.png') }}" alt></a>
                             </div>
                         </div>
                         <div class="col col-sm-6">
@@ -51,9 +51,8 @@
                         <div class="col col-sm-3">
                             @if(Auth::check())
                              <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
-                                <a href="javascript:void(0)">{{ Auth::user()->name }}</a>
-                             </div>
-                                
+                                <a href="{{ route('lawyer.dashboard') }}">{{ Auth::user()->name }}</a>
+                             </div>    
                             @else
                             <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
                               <span>
@@ -98,20 +97,18 @@
                                 </a>
                             </li>
                             <li>
-                            <a href="{{ route('Legal_Support_Home') }}">Home</a>
+                            <a href="{{ route('legal.home') }}">Home</a>
                             </li>
-                            <li><a href="{{ route('Legal_Support_About') }}">About</a></li>
-                            <li><a href="{{ route('Legal_Support_Packages') }}">Our Plans</a></li>
-                            <li><a href="{{ route('Legal_Support_Contact') }}">Contact</a></li>
-                            <!-- 
-
+                            <li><a href="{{ route('legal.about') }}">About</a></li>
+                            <li><a href="{{ route('legal.contact') }}">Contact</a></li>    
                             <li class="menu-item-has-children">
-                                <a href="#">Name</a>
+                                <a href="#">Services</a>
                                 <ul class="sub-menu">
-                                    <li><a href="service-single.html">Dashboard</a></li>
-                                    <li><a href="project-single.html">Logout</a></li>  
+                                    <li><a href="{{ route('legal.home') }}">Legal Support</a></li>
+                                    <li><a href="{{ route('training.home') }}">Skills and Management Training</a></li>
+                                    <li><a href="#">Business and Startup Support</a></li> 
                                 </ul>
-                            </li> -->
+                            </li>
                             <!--
                             <li class="menu-item-has-children">
                                 <a href="#">Blog</a>
@@ -162,7 +159,7 @@
                             </div>
                         </div>
                     </div> -->
-                       <a href="{{ route('Legal_Support_Packages') }}" class="theme-btn-s2 request-quote">Get a Plan</a>
+                      
 
                 </div><!-- end of container -->
             </nav> <!-- end navigation -->

@@ -1,6 +1,6 @@
-@extends('layouts/web/master')
+@extends('layouts.web.master')
 @section('head')
-   @include('layouts/web/head')
+   @include('layouts.web.head')
 @endsection
 @section('content')
    <!-- start page-title -->
@@ -8,10 +8,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col col-xs-12">
-                        <h2>Register with us</h2>
+                        <h2>Password Reset</h2>
                         <ol class="breadcrumb">
-                            <li><a href="index-2.html">Home</a></li>
-                            <li>Register</li>
+                            <li><a href="{{ route('legal.home') }}">Home</a></li>
+                            <li>Password Reset</li>
                         </ol>
                     </div>
                 </div> <!-- end row -->

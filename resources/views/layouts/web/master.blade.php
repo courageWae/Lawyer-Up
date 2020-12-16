@@ -2,7 +2,7 @@
 <html lang="en">
 
 <!-- index 19:57:41 GMT -->
-@include('layouts/web/style')
+@include('layouts.web.style')
 
 <body>
     <!-- start page-wrapper -->
@@ -10,7 +10,7 @@
         <!-- start preloader -->
         <div class="preloader">
             <div class="preloader-inner">
-                <img src="{{ asset('assets/images/preloader.gif') }}" alt>
+                <h3>Lexicon Support Services</h3>
             </div>
         </div>
         <!-- end preloader -->
@@ -22,8 +22,8 @@
         <!-- END CONTENT -->
     </div>
     <!-- end of page-wrapper -->
-    @include('layouts/web/script')
-    @include('layouts/web/footer')
+    @include('layouts.web.script')
+    @include('layouts.web.footer')
 </body>
 
 <!-- index 19:57:41 GMT -->

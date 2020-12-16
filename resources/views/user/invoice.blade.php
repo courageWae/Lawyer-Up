@@ -6,13 +6,13 @@
 
 @section('user_email',Auth::user()->email)
 
-@section('package_name',strtoupper($category->package->name))
+@section('package_name',strtoupper($category_alias->package->name))
 
-@section('category_name',strtoupper($category->name))
+@section('category_name',strtoupper($category_alias->name))
 
-@section('category_price',$category->price)
+@section('category_price',$category_alias->price)
 
-@section('category_price_2',$category->price)
+@section('category_price_2',$category_alias->price)
 
 @section('print_button')
 <div style="float:right" class = "no-print";>

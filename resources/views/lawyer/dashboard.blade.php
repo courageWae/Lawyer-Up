@@ -1,18 +1,38 @@
-@extends('layouts/web/master')
+@extends('layouts.lawyer.master')
 @section('head')
-   @include('layouts/web/head')
+   @include('layouts.lawyer.head')
 @endsection
 @section('content')
 
+
+@push('sweet-alert')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+  $('.delete-confirm').on('click', function (event) {
+    event.preventDefault();
+    const url = $(this).attr('href');
+    swal({
+        title: 'Are you sure?',
+        text: 'This Appointment will be Approved',
+        icon: 'warning',
+        buttons: ["Cancel", "Yes!"],
+    }).then(function(value) {
+        if (value) {
+            window.location.href = url;
+        }
+    });
+});
+</script>
+@endpush
 
         <!-- start page-title -->
         <section class="page-title">
             <div class="container">
                 <div class="row">
                     <div class="col col-xs-12">
-                        <h2>DashBoard</h2>
+                        <h2>{{ Auth::user()->name }}</h2>
                         <ol class="breadcrumb">
-                            <li><a href="index-2.html">Home</a></li>
+                            <li><a href="{{ route('legal.home') }}">Home</a></li>
                             <li>Dashboard</li>
                         </ol>
                     </div>
@@ -26,39 +46,41 @@
         <section class="products-section shop section-padding">
             <div class="container">
                 <div class="row products-grids">
-                   @if(session()->has('message'))
-                    <div class="alert {{session('alert') ?? 'alert-success'}}">
-                     {{ session('message') }}
-                    </div>
-                   @endif
+                   
 
                     <!-- PACKAGE ONE -->
                     @include('lawyer.dashBox')
-                    <div class="col col-lg-8" style ="padding-left:20px;"> 
+                    <div class="col col-lg-9" style ="padding-left:20px;">
+                          @if(session()->has('message'))
+                          <div class="alert {{session('alert') ?? 'alert-success'}}">
+                            {{ session('message') }}
+                          </div>
+                          @endif 
                         <table class="table table-striped table-bordered">
                            <thead>
                                <tr style="background-color:rgb(245, 197, 66);">
-                                   <th colspan="5">My Appointments</th>
+                                   <th colspan="8">My Appointments</th>
                                </tr>
                             </thead>
                             <tbody>            
                                <tr>
-                                   <th colspan="5" style="padding:15px;"><span class="label label-warning" style="padding:5px;font-size: 15px;"></span></th>
+                                  <th colspan="8" style="padding:15px;"><span class="label label-warning" style="padding:5px;font-size: 15px;"></span></th>
                                </tr>
                                <tr>
+                                  <th>#</th>
                                   <th>Name of Client</th>
                                   <th>Client Phone Number</th>
                                   <th>Email</th>
-                                  <th>Expectance</th>
+                                  <th>Time</th>
                                   <th>Call Credits</th>
-                                  <th>Action</th>
-
+                                  <th colspan="2">Action</th>
                                 </tr>
                                 
                                 @isset($lawyerAppointment)
                                 @foreach($lawyerAppointment as $lawyerAppointment)
                                 @php($client = App\User::find($lawyerAppointment->user_id))
                                 <tr>
+                                  <td>{{ $loop->iteration }}</td>
                                     <td style="padding:10px;font-size: 15px;">
                                      {{ $client->name }}                  
                                     </td>
@@ -68,8 +90,8 @@
                                     <td style="padding:5px;font-size: 15px;">{{ $lawyerAppointment->credits }}</td>
                                     
                                     <td style="padding:10px;font-size: 15px;">
-                                      @if($lawyerAppointment->status == "pending")
-                                      <a class="btn btn-warning delete-confirm" href = "{{ route('lawyer.approve',['book'=>$lawyerAppointment->id])}}">Meet Appointment
+                                      @if($lawyerAppointment->status == "Pending")
+                                      <a class="btn btn-warning delete-confirm" href = "{{ route('lawyer.approve',['book'=>$lawyerAppointment->id])}}">Approve Appointment
                                       </a>
                                       @else
                                       <button class="btn btn-success">{{ $lawyerAppointment->status }}</button>

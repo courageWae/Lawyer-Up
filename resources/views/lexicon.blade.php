@@ -1,19 +1,40 @@
-@extends('layouts/master')
+@extends('layouts.master')
 @section('head')
-   @include('layouts/head')
+   @include('layouts.head')
 @endsection
 @section('banner')
 <header id="header" class="site-header header-style-5">
-           
-   <!-- start of hero -->   
-        <section class="hero hero-slider-wrapper" >
+     <!-- start of hero -->   
+        <section class="hero hero-slider-wrapper">
             <div class="hero-slider hero-slider-style-1">
                 <div class="slide">
-                    <img src="assets/images/slider/slide-2.jpg" alt class="slider-bg">
+                    <img src="{{ asset('assets/images/slider/slide-1.jpg') }}" alt class="slider-bg">
                     <div class="container">
                         <div class="row">
                             <div class="col col-lg-8 col-sm-9 slide-caption">
-                                <h2>Welcome to Lexicon Support  Services. <span> SAVE TIME, SAVE MONEY</span></h2>
+                                <h2> Do you want to set up your own company? <span>Great move!!</span> </h2>
+                                <p>Join our Company Formation starter plan today to get support with incorporating a business, advice on issuing shares to shareholders, tax registration, tax compliance and many more!!!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="{{ asset('assets/images/slider/slide-1.jpg') }}" alt class="slider-bg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col col-lg-8 col-sm-9 slide-caption">
+                                <h2>Lexi <span>Payroll management plans</span></h2>
+                                <p>Our affordable Payroll management plan helps you focus on other important aspect of your business whiles lexicon takes care of your payroll issues.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="{{ asset('assets/images/slider/slide-1.jpg') }}" alt class="slider-bg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col col-lg-8 col-sm-9 slide-caption">
+                                <h2><span> SAVE TIME, SAVE MONEY</span></h2>
                                 <p>We are here to work for you 24/7. Lexicon Support Services, Shielding families and businesses!!</p>
                             </div>
                         </div>
@@ -22,6 +43,7 @@
             </div>
         </section>
         <!-- end of hero slider -->
+           
 
 @endsection
 
@@ -52,44 +74,33 @@
                         <div class="services-grids services-grid-view">
                             <div class="grid">
                                <div class="inner mk-bg-img">
-                                    <div class="details ">
-                                       <div class="info">
-                                            <img src="assets/images/services/img_1.jpg" alt class="bg-image">
-                                            <a href="javascript:void(0)">
-                                                <h3>Skills and Management Training</h3>
-                                            </a>
-                                            <a class="btn btn-danger" href="javascript:void(0)"> Get Details</a>
-                                           
-                                       </div>
+                                <a href="{{ route('training.home') }}">
+                                    <div>
+                                        <img src="assets/images/services/img_1.jpg" alt class="bg-image">
                                     </div>
-                               </div>
+                                </a>
+                               </div><br>
+                               <div><span style="font-weight: bolder;font-size:20px;">Skills and Management Training<br></span> <a href="{{ route('training.home') }}" class="btn btn-danger">Get Details</a></div>
                             </div>
                             <div class="grid">
                                <div class="inner mk-bg-img">
-                                    <div class="details ">
-                                       <div class="info">
-                                            <img src="assets/images/services/img_1.jpg" alt class="bg-image">
-                                            <a href="javascript:void(0)">
-                                                <h3> Business and Startup support</h3>
-                                            </a>
-                                            <a class="btn btn-danger" href="javascript:void(0)">Get Details</a>
-                                           
-                                       </div>
+                                <a href="{{ route('legal.home') }}">
+                                    <div>
+                                        <img src="assets/images/services/img_1.jpg" alt class="bg-image">
                                     </div>
-                               </div>
+                                </a>
+                               </div><br>
+                               <div><span style="font-weight: bolder;font-size:20px;">Business and Startup Supports<br></span><a href="#" class="btn btn-danger"> Get Details</a></div>
                             </div>
                             <div class="grid">
                                <div class="inner mk-bg-img">
-                                    <div class="details ">
-                                       <div class="info">
-                                            <img src="assets/images/services/img_1.jpg" alt class="bg-image">
-                                            <a href="{{ route('legal.home') }}">
-                                                <h3><i class="fi flaticon-construction"></i> Legal support</h3>
-                                            </a>
-                                            <a class="btn btn-danger" href="{{ route('legal.home') }}"> Get Details</a>
-                                       </div>
+                                <a href="{{ route('legal.home') }}">
+                                    <div>
+                                        <img src="assets/images/services/img_1.jpg" alt class="bg-image">
                                     </div>
-                               </div>
+                                </a>
+                               </div><br>
+                               <div><span style="font-weight: bolder;font-size:20px;">Legal Support Services<br></span> <a href="{{ route('legal.home') }}" class="btn btn-danger"> Get Details</a></div>
                             </div>
                            
                         </div> <!-- end services-grids -->
@@ -244,22 +255,16 @@
                         <div class="team-slider team-grids">
                             <div class="team-grid">
                                 <div class="member-pic-social square-hover-effect-parent">
-                                    <div class="square-hover-effect">
-                                        <span class="hover-1"></span>
-                                        <span class="hover-2"></span>
-                                        <span class="hover-3"></span>
-                                        <span class="hover-4"></span>
-                                    </div>
                                     <div class="member-pic">
                                         <img src="assets/images/team/img-1.jpg" alt>
                                     </div>
-                                    <div class="social">
+                                    <!-- <div class="social">
                                         <ul class="social-links">
                                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                             <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                                         </ul>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="member-info">
                                     <h3>Simon Martey</h3>
@@ -268,22 +273,16 @@
                             </div>
                             <div class="team-grid">
                                 <div class="member-pic-social square-hover-effect-parent">
-                                    <div class="square-hover-effect">
-                                        <span class="hover-1"></span>
-                                        <span class="hover-2"></span>
-                                        <span class="hover-3"></span>
-                                        <span class="hover-4"></span>
-                                    </div>
                                     <div class="member-pic">
                                         <img src="assets/images/team/img-3.jpg" alt>
                                     </div>
-                                    <div class="social">
+                                   <!--  <div class="social">
                                         <ul class="social-links">
                                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                             <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                                         </ul>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="member-info">
                                     <h3>Elizabeth Brew Smith</h3>
@@ -292,22 +291,16 @@
                             </div>
                             <div class="team-grid">
                                 <div class="member-pic-social square-hover-effect-parent">
-                                    <div class="square-hover-effect">
-                                        <span class="hover-1"></span>
-                                        <span class="hover-2"></span>
-                                        <span class="hover-3"></span>
-                                        <span class="hover-4"></span>
-                                    </div>
                                     <div class="member-pic">
                                         <img src="assets/images/team/img-1.jpg" alt>
                                     </div>
-                                    <div class="social">
+                                   <!--  <div class="social">
                                         <ul class="social-links">
                                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                             <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                                         </ul>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="member-info">
                                     <h3>Paul K. Anomah</h3>

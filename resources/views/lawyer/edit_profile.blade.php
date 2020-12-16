@@ -1,9 +1,8 @@
-@extends('/layouts/web/master')
+@extends('layouts.web.master')
 @section('head')
-   @include('/layouts/web/head')
+   @include('layouts.web.head')
 @endsection
 @section('content')
-
 
         <!-- start page-title -->
         <section class="page-title">
@@ -12,7 +11,7 @@
                     <div class="col col-xs-12">
                         <h2>DashBoard</h2>
                         <ol class="breadcrumb">
-                            <li><a href="index-2.html">Home</a></li>
+                            <li><a href="{{ route('legal.home') }}">Home</a></li>
                             <li>Dashboard</li>
                         </ol>
                     </div>
@@ -46,57 +45,95 @@
                                      <div class="card">
                             <!-- Tab panes -->
                             <div class="card-body">
-                              <form class="form-horizontal form-material" method="post" action="{{ route('lawyer.update.profile',['lawyer'=>$lawyer->id]) }}">
+                              <form class="form-horizontal form-material" method="post" action="{{ route('lawyer.update.profile',['lawyer'=>Auth::user()->alias]) }}" enctype="multipart/form-data">
                                   {{ csrf_field() }}
                                    @method('PATCH')
                                     <div class="form-group">
                                         <label class="col-md-12">Full Name</label>
                                         <div class="col-md-12">
-                                            <input type="text" value="{{ $lawyer->name }}" name ="name" class="form-control form-control-line" required>
+                                            <input type="text" value="{{ Auth::user()->name }}" name ="name" class="form-control @error('name') is-invalid @enderror" required>
                                         </div>
+                                        @error('name')
+                                          <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                          </span>
+                                        @enderror
                                     </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-12">User Name</label>
+                                        <div class="col-md-12">
+                                            <input type="text" value="{{ Auth::user()->user_name }}" name ="user_name" class="form-control @error('name') is-invalid @enderror" required>
+                                        </div>
+                                        @error('user_name')
+                                          <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                          </span>
+                                        @enderror
+                                    </div>
+
                                     <div class="form-group">
                                         <label for="example-email" class="col-md-12">Email Address</label>
                                         <div class="col-md-12">
-                                            <input type="email" value = "{{ $lawyer->email }}" class="form-control form-control-line" name="email" id="example-email" required>
+                                            <input type="email" value = "{{ Auth::user()->email }}"  name="email"  class="form-control" readonly>
                                         </div>
                                     </div>
 
                                      <div class="form-group">
                                         <label class="col-md-12">Phone Number</label>
                                         <div class="col-md-12">
-                                            <input type="phone" value = "{{ $lawyer->phone }}" name="phone" class="form-control form-control-line" required>
+                                            <input type="phone" value = "{{ Auth::user()->phone }}" name="phone" class="form-control @error('phone') is-invalid @enderror" required>
                                         </div>
+                                        @error('phone')
+                                          <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                          </span>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-md-12">Address</label>
                                         <div class="col-md-12">
-                                            <input type="address" value = "{{ $lawyer->address }}" name="address" class="form-control form-control-line" required>
+                                            <input type="address" value = "{{ Auth::user()->address }}" name="address" class="form-control @error('address') is-invalid @enderror" required>
                                         </div>
+                                        @error('address')
+                                          <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                          </span>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-md-12">House Address</label>
                                         <div class="col-md-12">
-                                            <input type="text" value = "{{ $lawyer->house_address }}" name="house_address" class="form-control form-control-line" required>
+                                            <input type="text" value = "{{ Auth::user()->house_address }}" name="house_address" class="form-control @error('house_address') is-invalid @enderror" required>
                                         </div>
+                                        @error('house_address')
+                                          <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                          </span>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-md-12">Education</label>
                                         <div class="col-md-12">
-                                            <input type="text" value = "{{ $lawyer->education }}" name="education" class="form-control form-control-line" required>
+                                            <textarea name="education" class="form-control @error('education') is-invalid @enderror" required rows="5">{{ Auth::user()->education }}</textarea>
                                         </div>
+                                        @error('education')
+                                          <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                          </span>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-md-12">Type Of Lawyer</label>
                                         <div class="col-md-12">
-                                          <select class = "form-control" name="type_of_lawyer" required>
+                                          <select class = "form-control" name="type_of_lawyer">
                                             @isset($type)
                                              @foreach($type as $type)
-                                              @if($type->name == $lawyer->type_of_lawyer)
+                                              @if($type->name == Auth::user()->type_of_lawyer)
                                               <option selected ="selected">{{ $type->name }}</option>
                                               @else
                                               <option>{{ $type->name }}</option>
@@ -110,34 +147,37 @@
                                     <div class="form-group">
                                         <label class="col-md-12">Experience</label>
                                         <div class="col-md-12">
-                                            <input type="text" value = "{{ $lawyer->experience }}" name="experience" class="form-control form-control-line" required>
+                                            <textarea name="experience" class="form-control @error('name') is-invalid @enderror" required rows="10">{{ Auth::user()->experience }}</textarea>
                                         </div>
+                                        @error('experience')
+                                          <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                          </span>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-md-12">Personal Statement</label>
                                         <div class="col-md-12">
-                                            <input type="text" value = "{{ $lawyer->personal_statement }}" name="personal_statement" class="form-control form-control-line" required>
+                                            <textarea name="personal_statement" class="form-control @error('personal_statement') is-invalid @enderror" required rows="5">{{ Auth::user()->personal_statement }}</textarea>
                                         </div>
+                                        @error('personal_statement')
+                                          <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                          </span>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-md-12">Password</label>
+                                        <label class="col-md-12">Upload Photo</label>
                                         <div class="col-md-12">
-                                            <input type="password" name="password" class="form-control form-control-line" required>
-                                             @error('password')
-                                              <span class="invalid-feedback" role="alert" style="color:red;">
-                                                <strong>{{ $message }}</strong>
-                                              </span>
-                                             @enderror
-                                        </div>   
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-12">Confirm Password</label>
-                                        <div class="col-md-12">
-                                            <input type="password"  name="password_confirmation" class="form-control form-control-line" required>
-                                        </div>   
+                                            <input type="file" name="photo" class="form-control @error('photo') is-invalid @enderror">
+                                        </div>
+                                        @error('photo')
+                                          <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                          </span>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group">

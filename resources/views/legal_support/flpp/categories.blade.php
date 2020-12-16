@@ -1,6 +1,6 @@
-@extends('layouts/web/master')
+@extends('layouts.web.master')
 @section('head')
-   @include('layouts/web/head')
+   @include('layouts.web.head')
 @endsection
 @section('content')
         <!-- start page-title -->
@@ -24,8 +24,8 @@
         <section class="blog-grid-section section-padding">
             <div class="container">
                 <div class="news-grids">
-                  @isset($categories)
-                  @foreach($categories as $categories)
+                  @isset($package_alias)
+                  @foreach($package_alias as $categories)
                     @if($categories->name == "bronze")
                     <div class="grid">                   
                         <div class="entry-details">
@@ -62,7 +62,7 @@
                                 <hr>
                                 @auth
                                   @if(Auth::user()->role_id == 4)
-                                   <a class ="btn btn-success" href="{{ route('user.invoice',['category'=>$categories->id]) }}">Purchase Plan</a>
+                                   <a class ="btn btn-success" href="{{ route('user.invoice',['category_alias'=>$categories->category_alias]) }}">Purchase Plan</a>
                                   @endif 
                                 @endauth
                                 @guest
@@ -143,7 +143,7 @@
                                 <hr>
                                 @auth
                                   @if(Auth::user()->role_id == 4)
-                                   <a class ="btn btn-success" href="{{ route('user.invoice',['category'=>$categories->id]) }}">Purchase Plan</a>
+                                   <a class ="btn btn-success" href="{{ route('user.invoice',['category_alias'=>$categories->category_alias]) }}">Purchase Plan</a>
                                   @endif 
                                 @endauth
                                 @guest
@@ -237,7 +237,7 @@
                                 <hr>
                                 @auth
                                   @if(Auth::user()->role_id == 4)
-                                   <a class ="btn btn-success" href="{{ route('user.invoice',['category'=>$categories->id]) }}">Purchase Plan</a>
+                                   <a class ="btn btn-success" href="{{ route('user.invoice',['category_alias'=>$categories->category_alias]) }}">Purchase Plan</a>
                                   @endif 
                                 @endauth
                                 @guest

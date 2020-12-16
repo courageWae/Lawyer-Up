@@ -4,6 +4,25 @@
 @endsection
 @section('content')
 
+@push('sweet-alert')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+  $('.delete-confirm').on('click', function (event) {
+    event.preventDefault();
+    const url = $(this).attr('href');
+    swal({
+        title: 'Are you sure?',
+        text: 'This Invoice will be permanently deleted',
+        icon: 'warning',
+        buttons: ["Cancel", "Yes!"],
+    }).then(function(value) {
+        if (value) {
+            window.location.href = url;
+        }
+    });
+});
+</script>
+@endpush
 
         <!-- start page-title -->
         <section class="page-title">
@@ -12,7 +31,7 @@
                     <div class="col col-xs-12">
                         <h2>DashBoard</h2>
                         <ol class="breadcrumb">
-                            <li><a href="index-2.html">Home</a></li>
+                            <li><a href="{{ route('legal.home') }}">Home</a></li>
                             <li>Dashboard</li>
                         </ol>
                     </div>
@@ -28,11 +47,11 @@
                 <div class="row products-grids">
                     <!-- PACKAGE ONE -->
                     @include('insurer.dashBox')
-                    <div class="col col-lg-8" style ="padding-left:20px;">   
+                    <div class="col col-lg-9" style ="padding-left:20px;">   
                         <table class="table table-striped table-bordered">
                            <thead>
                               <tr style="background-color:rgb(245, 197, 66);">
-                                <th colspan="10">List of Clients</th>
+                                <th colspan="10">List of Client Invoices</th>
                               </tr>
                             </thead>
                             <tbody>            
@@ -51,26 +70,30 @@
                                   <th>Status</th>
                                   <th>Actions</th>
                                 </tr>
-                                @php ($i = 1)
-                                @isset($allClientInvoice)
-                                 @foreach($allClientInvoice as $allClientInvoice)
-                                  @php($client = App\User::find($allClientInvoice->user_id))
-                                  @php($package = App\Category::find($allClientInvoice->category_id))
+                                @isset($clientsInvoice)
+                                 @foreach($clientsInvoice as $clientsInvoice)
+                                  @php
+                                    $client = App\User::find($clientsInvoice->user_id);
+                                    $package = App\Category::find($clientsInvoice->category_id);
+                                  @endphp
                                 <tr>
-                                  <td>{{ $i }}</td>
+                                  <td>{{ $loop->iteration }}</td>
                                   <td>{{ $client->name }}</td>
                                   <td>{{ $client->email }}</td>
                                   <td>{{ $client->phone }}</td>
                                   <td>{{ $package->package->name }}</td>
                                   <td>{{ $package->name }}</td>
                                   <td>{{ $package->price }}</td>
-                                  <td>{{ $allClientInvoice->total }}</td>
-                                  <td>{{ $allClientInvoice->status }}</td>
+                                  <td>{{ $clientsInvoice->total }}</td>
                                   <td>
-                                    <a class="btn btn-primary" href="{{ route('insurer.view.invoice',['clientInvoice'=>$allClientInvoice->id]) }}">View</a>
+                                    {{ $clientsInvoice->status }}</td>
+                                  <td>
+                                    <a class="btn btn-primary" href="{{ route('insurer.view.invoice',['invoice_alias'=>$clientsInvoice->invoice_alias]) }}">View</a>    
+                                  </td>
+                                  <td>
+                                  <a href="{{ route('insurer.delete.invoice',['invoice'=>$clientsInvoice->id]) }}" class="btn btn-danger delete-confirm">Delete</a>
                                   </td>
                                 </tr>
-                                 @php($i++)
                                  @endforeach
                                 @endisset
                            </tbody>
@@ -80,5 +103,4 @@
             </div> <!-- end container -->
         </section>
         <!-- end products-section -->     
-
 @endsection

@@ -16,7 +16,9 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('user_name')->unique();
             $table->string('email')->unique();
+            $table->string('alias')->unique();
             $table->unsignedBigInteger('role_id')->nullable();
             $table->string('insurer')->nullable();
             $table->string('phone');
@@ -31,6 +33,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -41,6 +44,8 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('users',function (Bluepring $table){
+            $table->dropSoftDeletes();
+        });
     }
 }

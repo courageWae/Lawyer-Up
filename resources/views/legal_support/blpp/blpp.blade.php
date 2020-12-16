@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-@extends('layouts/web/master')
+@extends('layouts.web.master')
 
 @section('head')
-   @include('layouts/web/head')
+   @include('layouts.web.head')
 @endsection
 @section('content')
         <!-- start page-title -->

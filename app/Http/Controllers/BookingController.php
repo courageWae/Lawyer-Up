@@ -225,7 +225,7 @@ class BookingController extends Controller
 				Booking::create([
 					'user_id'=>auth()->user()->id,
 					'lawyer_id'=>$request->lawyer_id,
-					'status'=>"Scheduled",
+					'status'=>"Pending",
 					'timeslot'=>$request->timeslot,
 					'date'=>$date,
 					'credits'=>$request->credits,

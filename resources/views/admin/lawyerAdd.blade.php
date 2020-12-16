@@ -88,13 +88,10 @@
                   <form class="form-validate form-horizontal" method="post" action="{{ route('lawyer.add') }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <input type="hidden" name="role_id" value="3">
-                    <input type="hidden" name="insurer" value="Null">
-
-
                     <div class="form-group ">
                       <label for="name" class="control-label col-lg-2">Full name <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input class=" form-control"  name="name" type="text"  required />
+                        <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" required/>
                           @error('name')
                             <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -106,7 +103,7 @@
                     <div class="form-group ">
                       <label for="email" class="control-label col-lg-2">Email <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input class="form-control" name="email" type="email" required />
+                        <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required/>
                           @error('email')
                             <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -118,7 +115,7 @@
                     <div class="form-group ">
                       <label for="phone" class="control-label col-lg-2">Phone <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input class="form-control"  name="phone" type="phone" />
+                        <input name="phone" type="phone" class="form-control @error('phone') is-invalid @enderror" required />
                           @error('phone')
                             <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -130,7 +127,7 @@
                     <div class="form-group ">
                       <label for="address" class="control-label col-lg-2">Address<span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input class=" form-control" name="address" type="address" required />
+                        <input name="address" type="address" class="form-control @error('address') is-invalid @enderror" required />
                           @error('address')
                             <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -142,7 +139,7 @@
                     <div class="form-group ">
                       <label for="house_address" class="control-label col-lg-2">House Address<span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input class=" form-control"  name="house_address" type="address" required />
+                        <input name="house_address" type="address" class="form-control @error('house_address') is-invalid @enderror" required />
                           @error('house_address')
                             <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -167,7 +164,7 @@
                     <div class="form-group ">
                       <label for="personal_statement" class="control-label col-lg-2">Per. Statement<span class="required"></span></label>
                       <div class="col-lg-10">
-                        <textarea class = "form-control" rows = "10" placeholder="My personals tatement" name="personal_statement"></textarea>
+                        <textarea rows = "10" placeholder="My personals tatement" name="personal_statement" class="form-control @error('personal_statement') is-invalid @enderror" required></textarea>
                           @error('personal_statement')
                             <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -179,7 +176,7 @@
                     <div class="form-group ">
                       <label for="education" class="control-label col-lg-2">Education History<span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <textarea class = "form-control" rows = "10" placeholder="Education History" name="education" required></textarea>
+                        <textarea rows = "10" placeholder="Education History" name="education" class="form-control @error('education') is-invalid @enderror" required></textarea>
                           @error('education')
                             <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -191,7 +188,7 @@
                     <div class="form-group ">
                       <label for="experience" class="control-label col-lg-2">Experience <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <textarea class = "form-control" rows = "5" placeholder="Your Experience" name="experience" required></textarea>
+                        <textarea rows = "5" placeholder="Your Experience" name="experience" class="form-control @error('experience') is-invalid @enderror" required></textarea>
                           @error('experience')
                             <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -203,7 +200,7 @@
                     <div class="form-group ">
                       <label for="password" class="control-label col-lg-2">Password <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input class="form-control" id="password" name="password" type="password" required />
+                        <input name="password" type="password" class="form-control @error('password') is-invalid @enderror" requiredrequired />
                           @error('password')
                             <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -222,7 +219,12 @@
                      <div class="form-group ">
                       <label for="photo" class="control-label col-lg-2">Upload Photo <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input class="form-control"  name="photo" type="file" />
+                        <input name="photo" type="file" class="form-control @error('photo') is-invalid @enderror" required />
+                         @error('photo')
+                            <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                            </span>
+                          @enderror
                       </div>
                     </div>
 

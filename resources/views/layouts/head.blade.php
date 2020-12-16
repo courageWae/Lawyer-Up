@@ -42,7 +42,7 @@
                     <div class="row">
                         <div class="col col-sm-3">
                             <div class="site-logo">
-                                <a href="index-2.html"><img src="../assets/images/logo-2.png" alt></a>
+                                <a href="index-2.html"><img src="{{ asset('assets/images/logo-2.png') }}" alt></a>
                             </div>
                         </div>
                         <div class="col col-sm-9">

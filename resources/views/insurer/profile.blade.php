@@ -12,7 +12,7 @@
                     <div class="col col-xs-12">
                         <h2>DashBoard</h2>
                         <ol class="breadcrumb">
-                            <li><a href="index-2.html">Home</a></li>
+                            <li><a href="{{ route('legal.home') }}">Home</a></li>
                             <li>Dashboard</li>
                         </ol>
                     </div>
@@ -28,15 +28,17 @@
                 <div class="row products-grids">
                     <!-- PACKAGE ONE -->
                     @include('insurer.dashBox')
-                    <div class="col col-lg-8" style ="padding-left:20px;">   
-                      <h3>Full Name</h3>
+                    <div class="col col-lg-8" style ="padding-left:20px;">
+                      <h2>Profile Details</h2><hr>  
+                      <h4>Full Name</h4>
                       <div class="well well-sm">{{ Auth::user()->name }}</div>
-                      <h3>Email Address</h3>
+                      <h4>User Name</h4>
+                      <div class="well well-sm">{{ Auth::user()->user_name }}</div>
+                      <h4>Email Address</h4>
                       <div class = "well well-sm">{{ Auth::user()->email }}</div>
-                      <h3>Phone Number</h3>
+                      <h4>Phone Number</h4>
                       <div class = "well well-sm">{{ Auth::user()->phone }}</div>
-
-                      <div class = "btn btn-primary">Edit</div>
+                      <a class = "btn btn-primary" href ="">Edit</a>
                     </div>
                </div> <!-- end row -->
             </div> <!-- end container -->

@@ -1,6 +1,6 @@
-@extends('/layouts/web/master')
+@extends('layouts.web.master')
 @section('head')
-   @include('/layouts/web/head')
+   @include('layouts.web.head')
 @endsection
 @section('content')
 
@@ -12,7 +12,7 @@
                     <div class="col col-xs-12">
                         <h2>DashBoard</h2>
                         <ol class="breadcrumb">
-                            <li><a href="index-2.html">Home</a></li>
+                            <li><a href="{{ route('legal.home') }}">Home</a></li>
                             <li>Dashboard</li>
                         </ol>
                     </div>
@@ -29,18 +29,19 @@
                     <!-- PACKAGE ONE -->
                     @include('user.dashBox')
                     @php($lawyer = App\User::find($booking->lawyer_id))
-                    <div class="col col-lg-8" style ="padding-left:20px;">   
-                       <h3>Name of Lawyer</h3>
+                    <div class="col col-lg-8" style ="padding-left:20px;"> 
+                       <h2>Appointment Details</h2><hr> 
+                       <h4>Name of Lawyer</h4>
                        <div class = "well well-sm">{{ $lawyer->name }}</div>
-                       <h3>Type of Lawyer</h3>
+                       <h4>Type of Lawyer</h4>
                        <div class = "well well-sm">{{ $lawyer->type_of_lawyer }}</div>
-                       <h3>Call Credits</h3>
+                       <h4>Call Credits</h4>
                        <div class = "well well-sm">{{ $booking->credits }}</div>
-                       <h3>Date of Booking</h3>
+                       <h4>Date of Booking</h4>
                        <div class = "well well-sm">{{ $booking->date }}</div>
-                       <h3>Booking Time</h3>
+                       <h4>Booking Time</h4>
                        <div class = "well well-sm">{{ $booking->timeslot }}</div>
-                       <h3>Status</h3>
+                       <h4>Status</h4>
                        <div class = "well well-sm">{{ $booking->status }}</div>
 
                     </div>

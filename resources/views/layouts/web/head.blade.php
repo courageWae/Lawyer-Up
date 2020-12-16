@@ -42,7 +42,7 @@
                     <div class="row">
                         <div class="col col-sm-3">
                             <div class="site-logo">
-                                <a href="index-2.html"><img src="{{ asset('assets/images/logo-2.png') }}" alt></a>
+                                <a href="/"><img src="{{ asset('assets/images/logo-2.png') }}" alt></a>
                             </div>
                         </div>
                         <div class="col col-sm-6">
@@ -50,31 +50,25 @@
                         </div>
                         <div class="col col-sm-3">
                             @auth
-                              @if(Auth::user()->role_id == 4)
+                              @if(Auth::user()->Client())
                              <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
                                 <a href="{{ route('user.dashboard') }}">
-                                <img class="card-img-top" src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" alt width="30" height="30" style="border-radius: 20px;">
+                                <img class="card-img-top" src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" alt width="30" height="30" style="border-radius:100%;">
                                {{ Auth::user()->name }}</a>
                              </div>
-                              @elseif(Auth::user()->role_id == 3)
+                              @elseif(Auth::user()->Lawyer())
                              <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
                                 <a href="{{ route('lawyer.dashboard') }}">
                                     <img class="card-img-top" src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" alt="Card image" width="30" height="30" style="border-radius: 20px;"> |
                                     {{ Auth::user()->name }}</a>
                              </div>
-                             @elseif(Auth::user()->role_id == 2)
+                             @elseif(Auth::user()->Insurer())
                              <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
                                 <a href="{{ route('insurer.dashboard') }}">
                                     <img class="card-img-top" src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" alt="Card image" width="30" height="30" style="border-radius: 20px;"> |
                                     {{ Auth::user()->name }}</a>
                              </div>
-                             @elseif(Auth::user()->role_id == 1)
-                             <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
-                                <a href="{{ route('admin.dashboard') }}">
-                                    <img class="card-img-top" src="{{ asset('uploads/pictures/user/'. Auth::user()->photo ) }}" alt="Card image" width="30" height="30" style="border-radius: 20px;"> |
-                                    {{ Auth::user()->name }}</a>
-                             </div>
-                             @endif   
+                             @endif
                             @endauth
                             @guest
                             <div style="padding-top: 30px; font-weight: bold;font-size: 20px;">
@@ -114,7 +108,7 @@
                             <li>
                             <a href="{{ route('legal.home') }}">Home</a>
                             </li>
-                            <li><a href="{{ route('legal.about') }}">About</a></li>
+                            <li><a href="{{ route('legal.about') }}">About Us</a></li>
                             <li><a href="{{ route('legal.plans') }}">Our Plans</a></li>
                             <li><a href="{{ route('legal.contact') }}">Contact</a></li>
                             <li><a href="{{ route('legal.lawyers') }}">Book a Lawyer</a></li>

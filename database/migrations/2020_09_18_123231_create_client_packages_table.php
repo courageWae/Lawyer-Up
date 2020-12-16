@@ -16,6 +16,7 @@ class CreateClientPackagesTable extends Migration
         Schema::create('client_packages', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
+            $table->string('package_id');
             $table->string('category_id');
             $table->string('status');
             $table->timestamps();

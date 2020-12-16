@@ -12,28 +12,28 @@
   <title>{{ config('app.name','Lexicon Support Service') }}</title>
 
   <!-- Bootstrap CSS -->
-  <link href="../admin/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ asset('admin/css/bootstrap.min.css') }}" rel="stylesheet">
   <!-- bootstrap theme -->
-  <link href="../admin/css/bootstrap-theme.css" rel="stylesheet">
+  <link href="{{ asset('admin/css/bootstrap-theme.css') }}" rel="stylesheet">
   <!--external css-->
   <!-- font icon -->
-  <link href="../admin/css/elegant-icons-style.css" rel="stylesheet" />
-  <link href="../admin/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="{{ asset('admin/css/elegant-icons-style.css') }}" rel="stylesheet" />
+  <link href="{{ asset('admin/css/font-awesome.min.css') }}" rel="stylesheet" />
   <!-- full calendar css-->
-  <link href="../admin/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
-  <link href="../admin/assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" />
+  <link href="{{ asset('admin/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css')}}" rel="stylesheet" />
+  <link href="{{ asset('admin/assets/fullcalendar/fullcalendar/fullcalendar.css') }}" rel="stylesheet" />
   <!-- easy pie chart-->
-  <link href="../admin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen" />
+  <link href="{{ asset('admin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css') }}" rel="stylesheet" type="text/css" media="screen" />
   <!-- owl carousel -->
   <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
-  <link href="../admin/css/jquery-jvectormap-1.2.2.css" rel="stylesheet">
+  <link href="{{ asset('admin/css/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet">
   <!-- Custom styles -->
   <link rel="stylesheet" href="css/fullcalendar.css">
-  <link href="../admin/css/widgets.css" rel="stylesheet">
-  <link href="../admin/css/style.css" rel="stylesheet">
-  <link href="../admin/css/style-responsive.css" rel="stylesheet" />
-  <link href="../admin/css/xcharts.min.css" rel=" stylesheet">
-  <link href="../admin/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+  <link href="{{ asset('admin/css/widgets.css') }}" rel="stylesheet">
+  <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
+  <link href="{{ asset('admin/css/style-responsive.css') }}" rel="stylesheet" />
+  <link href="{{ asset('admin/css/xcharts.min.css') }}" rel=" stylesheet">
+  <link href="{{ asset('admin/css/jquery-ui-1.10.4.min.css') }}" rel="stylesheet">
   <!-- =======================================================
     Theme Name: NiceAdmin
     Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -67,12 +67,12 @@
             </ol>
           </div>
         </div>
-
+        @inject('user','App\User')
         <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="info-box blue-bg">
               <i class="fa fa-users"></i>
-              <div class="count">{{ count($user->where('role_id','4')) }}</div>
+              <div class="count">{{ $user->client()->count() }}</div>
               <div class="title">Users</div>
             </div>
             <!--/.info-box-->
@@ -82,7 +82,7 @@
           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="info-box dark-bg">
               <i class="fa fa-user"></i>
-              <div class="count">{{ count($user->where('role_id','3')) }}</div>
+              <div class="count">{{ $user->Lawyer()->count() }}</div>
               <div class="title">Lawyers</div>
             </div>
             <!--/.info-box-->
@@ -92,7 +92,7 @@
           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="info-box green-bg">
               <i class="fa fa-cubes"></i>
-              <div class="count">{{ count($user->where('role_id','2')) }}</div>
+              <div class="count">{{ $user->Insurer()->count() }}</div>
               <div class="title">Insurers</div>
             </div>
             <!--/.info-box-->
@@ -102,7 +102,7 @@
           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="info-box brown-bg">
               <i class="fa fa-user"></i>
-              <div class="count">{{ count($user->where('role_id','1')) }}</div>
+              <div class="count">{{ $user->Admin()->count() }}</div>
               <div class="title">Number of Administrators</div>
             </div>
             <!--/.info-box-->
@@ -149,17 +149,17 @@
                       <td>{{ $isClient->email }}</td>
                       <td>
                         <a href="{{ asset('uploads/pictures/user/'.$isClient->photo ) }}" target = "blank">
-                          <img src="{{ asset('uploads/pictures/user/'.$isClient->photo ) }}" style="height:30px; margin-top:-2px;"></td> 
+                          <img src="{{ asset('uploads/pictures/user/'.$isClient->photo ) }}" style="height:30px; margin-top:-2px;">
                         </a>
-
-                      @if($package->status == "pending")     
+                      </td> 
+                      @if($package->status == "Inactive")     
                       <td><p style="color:red;">{{ $package->status }}</p> </td>
                       @else
                       <td><p style="color:green;">{{ $package->status }}</p> </td>
                       @endif
                       <td>{{ $package->created_at }}</td>
                       <td>
-                      @if($package->status != "pending")   
+                      @if($package->status != "Inactive")   
                         {{$package->updated_at}}
                       @endif
                       </td>
@@ -175,17 +175,17 @@
           </div>
           <!--/col-->
           <div class="col-md-3">
-
+            @inject('countPackage','App\ClientPackage')
             <div class="social-box facebook">
               <i class="fa fa-shopping-cart"></i>
               <ul>
                 <li>
-                  <strong>{{ count($countPackage->where('status','pending')) }}</strong>
-                  <span>Pending Packages</span>
+                  <strong>{{ $countPackage->Active()->count() }}</strong>
+                  <span>Active Packages</span>
                 </li>
                 <li>
-                  <strong>{{ count($countPackage->where('status','not like','%pending%')) }}</strong>
-                  <span>Active Packages</span>
+                  <strong>{{ $countPackage->InActive()->count() }}</strong>
+                  <span>Inactive Packages</span>
                 </li>
               </ul>
             </div>
@@ -228,7 +228,7 @@
             <!-- Widget -->
             <div class="panel panel-default">
               <div class="panel-heading">
-                <div class="pull-left"> Messages To Administrators</div>
+                <div class="pull-left"> Messages From Visitors</div>
                 <div class="clearfix"></div>
               </div>
 

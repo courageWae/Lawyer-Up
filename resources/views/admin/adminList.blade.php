@@ -86,10 +86,9 @@
                     <th><i class="icon_calendar"></i> Date</th>
                     <th><i class="icon_cogs"></i> Action</th>
                   </tr>
-                  @php($i=1)
                   @foreach($admin as $admin)
                   <tr>
-                    <th>{{ $i }}</th>
+                    <th>{{ $loop->iteration }}</th>
                     <td>{{ $admin->name }}</td>
                     <td><img src="{{ asset('/uploads/pictures/user/'.$admin->photo) }}" style="width:30px; height: 30px;" alt></td>
                     <td>{{ $admin->email }}</td>
@@ -100,7 +99,6 @@
                       <a href="{{ route('admin.delete',['admin'=>$admin->id]) }}" class="btn btn-danger delete-confirm">Delete</a>   
                     </td>
                   </tr>
-                  @php($i++)
                   @endforeach         
                 </tbody>
               </table>

@@ -10,7 +10,7 @@
                     <div class="col col-xs-12">
                         <h2>Log In</h2>
                         <ol class="breadcrumb">
-                            <li><a href="index-2.html">Home</a></li>
+                            <li><a href="{{ route('legal.home') }}">Home</a></li>
                             <li>Login</li>
                         </ol>
                     </div>
@@ -79,7 +79,6 @@
                                 <button type="submit" class="btn btn-success">
                                     {{ __('Login') }}
                                 </button>
-
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}

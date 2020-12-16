@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Lexicon Support Services</title>
+    <title>{{ config('app.name','Lexicon Support Services') }}</title>
     <link rel="stylesheet" href="{{ asset('style.css') }}" media="all" />
     <style>
       .print {

@@ -1,6 +1,6 @@
-@extends('layouts/web/master')
+@extends('layouts.web.master')
 @section('head')
-   @include('layouts/web/head')
+   @include('layouts.web.head')
 @endsection
 @section('content')
 
@@ -12,7 +12,7 @@
                     <div class="col col-xs-12">
                         <h2>Packages</h2>
                         <ol class="breadcrumb">
-                            <li><a href="index-2.html">Home</a></li>
+                            <li><a href="{{ route('legal.home') }} ">Home</a></li>
                             <li>packages</li>
                         </ol>
                     </div>
@@ -68,7 +68,7 @@
                                     </ul>
                                 </span>
                                 <a class="btn btn-danger" href="{{ route('legal.plans.flpp') }}">Read More</a> 
-                                <a class="btn btn-success" href="{{ route('legal.plans.flpp.category',['category'=>$packages->id]) }}">Categories</a>
+                                <a class="btn btn-success" href="{{ route('legal.plans.flpp.category',['package_alias'=>$packages->package_alias]) }}">Categories</a>
                                   
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                                     </ul>
                                 </span>
                                 <a class="btn btn-danger" href="{{ route('legal.plans.plpp') }}">Read More</a>
-                                <a class="btn btn-success" href="{{ route('legal.plans.plpp.category',['category'=>$packages->id]) }}">Categories</a>
+                                <a class="btn btn-success" href="{{ route('legal.plans.plpp.category',['package_alias'=>$packages->package_alias]) }}">Categories</a>
                                 
                             </div>
                         </div>
@@ -170,7 +170,7 @@
                                     </ul>
                                 </span>
                                 <a class="btn btn-danger" href="{{ route('legal.plans.blpp') }}">Read More</a>
-                                <a class="btn btn-success" href="{{ route('legal.plans.blpp.category',['category'=>$packages->id]) }}">Categories</a> 
+                                <a class="btn btn-success" href="{{ route('legal.plans.blpp.category',['package_alias'=>$packages->package_alias]) }}">Categories</a> 
                             </div>
                         </div>
                     </div>

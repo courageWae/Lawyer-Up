@@ -1,6 +1,6 @@
-@extends('/layouts/web/master')
+@extends('layouts.web.master')
 @section('head')
-   @include('/layouts/web/head')
+   @include('layouts.web.head')
 @endsection
 @section('content')
 
@@ -12,7 +12,7 @@
                     <div class="col col-xs-12">
                         <h2>DashBoard</h2>
                         <ol class="breadcrumb">
-                            <li><a href="index-2.html">Home</a></li>
+                            <li><a href="{{ route('legal.home') }}">Home</a></li>
                             <li>Dashboard</li>
                         </ol>
                     </div>
@@ -41,6 +41,7 @@
                                    <th colspan="4" style="padding:15px;"><span class="label label-warning" style="padding:5px;font-size: 15px;">Recent</span></th>
                                </tr>
                                <tr>
+                                  <th>#</th>
                                   <th>Name of Client</th>
                                   <th>Phone Number</th>
                                   <th>Email Address</th>
@@ -48,6 +49,7 @@
                                 </tr>
                                 @foreach($hasBookLawyer as $hasBookLawyer)
                                 <tr>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td style="padding:10px;font-size: 20px;">{{ $hasBookLawyer->name_of_client }}</td>
                                     <td style="padding:10px;font-size: 20px;">{{ $hasBookLawyer->phone_of_client }}</td>
                                     <td style="padding:10px;font-size: 20px;">{{ $hasBookLawyer->email_of_client }}</td>

@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 
 
@@ -53,6 +54,7 @@ class RegisterController extends Controller
        return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'user_name' => ['required', 'string','max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone' =>['required'],
             'role_id' =>['required'],
@@ -68,23 +70,16 @@ class RegisterController extends Controller
      */
      protected function create(array $data)
     {
-        if(request()->hasFile('photo')){
-           $file = request()->file('photo');
-           $extension = $file->getClientOriginalExtension(); //getting image exension
-           $filename = time().'.'.$extension;
-           $file->move('uploads/pictures/user/',$filename);
-           $data['photo'] =$filename;
-        }else{
-           $data['photo'] = " ";
-       }
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'phone' => $data['phone'],
-            'photo'=> $data['photo'],
-            'role_id' => $data['role_id'],
-            'insurer' => $data['insurer'],     
-        ]);
+      $insurer = User::where('name',request()->insurer)->value('id');
+      return User::create([
+        'name' => $data['name'],
+        'user_name'=>$data['user_name'],
+        'email' => $data['email'],
+        'password' => Hash::make($data['password']),
+        'alias'=> Str::slug($data['name'].$data['user_name'],'-'),
+        'phone' => $data['phone'],
+        'role_id' => $data['role_id'],
+        'insurer' => $insurer,     
+      ]);
     }
 }

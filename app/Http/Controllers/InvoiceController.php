@@ -5,41 +5,57 @@ namespace App\Http\Controllers;
 use App\ClientPackage;
 use App\Category;
 use App\Invoice;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class InvoiceController extends Controller
 {
-    public function index( Category $category){ 
-        $isPackageStatus = ClientPackage::where('user_id',auth()->user()->id);
-        $invoice = Invoice::all();
-        
-        if($isPackageStatus->value('status') != 'Active'){
-            self::store_client_package($category);
-        }
-        else if(($isPackageStatus->value('status') != 'Active') && ($isPackageStatus->value('category_id')!=$category->id))
-        {
-        	self::store_client_package($category);  	
-        }
-        
-    	return view('user.invoice',['category'=>$category,'invoice'=>$invoice]);
+    public function index(Category $category_alias){ 
+
+        ClientPackage::firstOrCreate([
+            'package_id'=>$category_alias->package->id,
+            'category_id'=>$category_alias->id,
+            'user_id'=>auth()->user()->id
+            ],
+            ['status'=>'Inactive']
+        );
+
+        Invoice::firstOrCreate([
+            'invoice_alias'=>Str::slug(auth()->user()->name.$category_alias->id,'-'),
+            'package_id'=>$category_alias->package->id,
+            'category_id'=> $category_alias->id,
+            'user_id'=> auth()->user()->id 
+             ],
+             ['status'=> 'Unpaid',
+            'total' => $category_alias->price]
+        );
+        return view('user.invoice',['category_alias'=>$category_alias,'invoice'=>Invoice::get()]);
     }
 
-    public function store_client_package($category){
+    public function list_invoice(){
+        return view('insurer.list_invoice',['clientsInvoice'=>Invoice::get()]);
+    }
 
-    	$client = new ClientPackage();
-    	$client->user_id = auth()->user()->id;
-        $client->category_id = $category->id;
-        $client->status = "Inactive";
-        $client->save();
+    public function view_invoice(Invoice $invoice_alias){
+        return view('insurer.view_invoice',['invoice_alias'=>$invoice_alias]);
+    }
 
-        $invoice = new Invoice();
-        $invoice->user_id = auth()->user()->id;
-        $invoice->category_id = $category->id;
-        $invoice->status = "Unpaid";
-        $invoice->total = $category->price;
+    // public function getInvoice(){
+    //     $invoices = [];
+    //     foreach(Invoice::all() as $clientInvoice){
+    //         $client = User::find($clientInvoice->user_id);
+    //         if($client->insurer == auth()->user()->id){
+    //             $invoices[] = $clientInvoice;
+    //         }
+    //     }
+    //     return $invoices;
+    // }
 
-        $client->save();
-        $invoice->save();
+    public function delete(Invoice $invoice){
+        $invoice->delete();
+        return redirect()->back()->with(['message'=>'Client Added Successfully','alert'=>'alert-success']);
+
     }
 
 }

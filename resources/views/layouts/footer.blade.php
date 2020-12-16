@@ -19,7 +19,7 @@
                                 <h3>Services</h3>
                                 <ul>
                                     <li><a href="#">Pay-roll Management System</a></li>
-                                    <li><a href="#">Skills and Management Training</a></li>
+                                    <li><a href="{{ route('training.home') }}">Skills and Management Training</a></li>
                                     <li><a href="#">Business and Startup Support</a></li>
                                     <li><a href="{{ route('legal.home') }}">Legal Support</a></li>
                                 </ul>

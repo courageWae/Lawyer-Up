@@ -1,7 +1,7 @@
-@extends('layouts/web/master')
+@extends('layouts.web.master')
 
 @section('head')
-   @include('layouts/web/head')
+   @include('layouts.web.head')
 @endsection
 @section('content')
         <!-- start page-title -->
@@ -11,7 +11,7 @@
                     <div class="col col-xs-12">
                         <h2>Lawyers</h2>
                         <ol class="breadcrumb">
-                            <li><a href="index-2.html">Home</a></li>
+                            <li><a href="{{ route('legal.home') }}">Home</a></li>
                             <li>Lawyers</li>
                         </ol>
                     </div>
@@ -33,7 +33,7 @@
                         <center>
                             <h5 class="card-title">{{ strtoupper($lawyer->name) }}</h5>
                             <p class="card-text">{{ $lawyer->type_of_lawyer }}</p>
-                            <a href="{{ route('legal.lawyer.details',['lawyer'=>$lawyer->id]) }}" class="btn btn-danger">View Details</a>
+                            <a href="{{ route('legal.lawyer.details',['lawyer'=>$lawyer->alias]) }}" class="btn btn-danger">View Details</a>
                         </center>
                       </div>
                    </div>

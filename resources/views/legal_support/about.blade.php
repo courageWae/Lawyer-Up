@@ -1,6 +1,6 @@
-@extends('layouts/web/master')
+@extends('layouts.web.master')
 @section('head')
-   @include('layouts/web/head')
+   @include('layouts.web.head')
 @endsection
 @section('content')
         <!-- start page-title -->
@@ -10,7 +10,7 @@
                     <div class="col col-xs-12">
                         <h2>About us</h2>
                         <ol class="breadcrumb">
-                            <li><a href="index-2.html">Home</a></li>
+                            <li><a href="{{ route('legal.home') }}">Home</a></li>
                             <li>About us</li>
                         </ol>
                     </div>
@@ -70,7 +70,7 @@
                 <div class="row">
                     <div class="col col-xs-12">
                         <h2> We are Here to Help you <span>Get the peace of mind you want and the protection you need with a legal plan for as low as GHC 50/month</span></h2>
-                        <a href="{{ route('Legal_Support_Packages') }}" class="theme-btn-s5">Get a Plan</a>
+                        <a href="{{ route('legal.plans') }}" class="theme-btn-s5">Get a Plan</a>
                     </div>
                 </div>
             </div> <!-- end container -->

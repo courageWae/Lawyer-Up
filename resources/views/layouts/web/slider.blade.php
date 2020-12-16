@@ -16,40 +16,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="slide">
-                    <img src="{{ asset('assets/images/slider/slide-1.jpg') }}" alt class="slider-bg">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col col-lg-8 col-sm-9 slide-caption">
-                                <h2>Lexi <span>Payroll management plans</span></h2>
-                                <p>Our affordable Payroll management plan helps you focus on other important aspect of your business whiles lexicon takes care of your payroll issues.</p>
-                                <div class="btns">
-                                    <a href="{{ route('legal.plans') }}" class="theme-btn">Get a Plan</a>
-                                    <a href="{{ route('legal.lawyers') }}" class="theme-btn-s2">Book a Lawyer</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="slide">
-                    <img src="{{ asset('assets/images/slider/slide-1.jpg') }}" alt class="slider-bg">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col col-lg-8 col-sm-9 slide-caption">
-                               
-
-                                <h2><span> SAVE TIME, SAVE MONEY</span></h2>
-                                <p>We are here to work for you 24/7. Lexicon Support Services, Shielding families and businesses!!</p>
-                                <div class="btns">
-                                    <a href="{{ route('legal.plans') }}" class="theme-btn">Get a Plan</a>
-                                    <a href="{{ route('legal.lawyers') }}" class="theme-btn-s2">Book a Lawyer</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
         <!-- end of hero slider -->

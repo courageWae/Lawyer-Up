@@ -1,27 +1,25 @@
-@extends('layouts/web/master')
+@extends('layouts.web.master')
 @section('head')
-   @include('layouts/web/head')
+   @include('layouts.web.head')
 @endsection
 
 @section('content')
-
 
         <!-- start page-title -->
         <section class="page-title">
             <div class="container">
                 <div class="row">
                     <div class="col col-xs-12">
-                        <h2>Shop Details</h2>
+                        <h2>Lawyer Details</h2>
                         <ol class="breadcrumb">
                             <li><a href="{{ route('legal.home') }}">Home</a></li>
-                            <li>Shop Details</li>
+                            <li>Lawyer Details</li>
                         </ol>
                     </div>
                 </div> <!-- end row -->
             </div> <!-- end container -->
         </section>        
         <!-- end page-title -->
-
 
         <!-- start sop-details-main-content -->
         <section class="shop-details-main-content section-padding">
@@ -71,24 +69,23 @@
                                       </ul>
                                     </div>
                                   
-                                    {{ Session::put('lawyer_name',$lawyer->name) }}
-                                    {{ Session::put('lawyer_type',$lawyer->type_of_lawyer)}}
-                                    {{ Session::put('lawyer_id',$lawyer->id)}}
-                                    {{ Session::put('lawyer_phone',$lawyer->phone )}}
+                                       {{ Session::put('lawyer_name',$lawyer->name) }}
+                                       {{ Session::put('lawyer_type',$lawyer->type_of_lawyer)}}
+                                       {{ Session::put('lawyer_id',$lawyer->id)}}
+                                       {{ Session::put('lawyer_phone',$lawyer->phone )}}
                                     
                                         @auth
-                                         @foreach($clientPackage as $clientPackage)
-                                          @if($clientPackage->status === 'Active')
-                                         <div class = "p-row" style = "padding-top: 20px;">
-                                           <a class = "btn btn-success" href="{{ route('book',['lawyer'=>$lawyer->id]) }}">Book Now</a>
-                                         </div>
-                                          @else
-                                         <div class = "p-row" style = "padding-top: 20px;">
-                                           <a class = "btn btn-success" href="{{ route('legal.plans') }}">Book Now</a>
-                                         </div>
-                                          @endif
-                                         @endforeach
+                                         @isset($packageStatus)
+                                           <div class = "p-row" style = "padding-top: 20px;">
+                                            <a class = "btn btn-success" href="{{ route('book',['lawyer'=>$lawyer->alias]) }}">Book Now</a>
+                                           </div>
+                                         @endisset
                                         @endauth
+                                        @guest
+                                           <div class = "p-row" style = "padding-top: 20px;">
+                                            <a class = "btn btn-success" href="{{ route('login') }}">Book Now</a>
+                                           </div>
+                                        @endguest
                                 </div>
                             </div> <!-- end option -->
                         </div> <!-- end product details -->

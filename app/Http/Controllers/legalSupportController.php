@@ -42,8 +42,8 @@ class LegalSupportController extends Controller
         return view('legal_support.flpp.flpp');
     }
 
-    public function flpp_categories(Package $category){
-        return view('legal_support.flpp.categories',['categories'=>$category->category]);
+    public function flpp_categories(Package $package_alias){
+        return view('legal_support.flpp.categories',['package_alias'=>$package_alias->category]);
     }
 
     
@@ -51,26 +51,28 @@ class LegalSupportController extends Controller
         return view('legal_support.blpp.blpp');
     }
 
-    public function blpp_categories(Package $category){
-        return view('legal_support.blpp.categories',['categories'=>$category->category]);
+    public function blpp_categories(Package $package_alias){
+        return view('legal_support.blpp.categories',['package_alias'=>$package_alias->category]);
     }
 
     public function plpp(){
         return view('legal_support.plpp.plpp');
     }
 
-    public function plpp_categories(Package $category){
-        return view('legal_support.plpp.categories',['categories'=>$category->category]);
+    public function plpp_categories(Package $package_alias){
+        return view('legal_support.plpp.categories',['package_alias'=>$package_alias->category]);
     }
 
     public function lawyers(){
-        $lawyer = User::where('role_id','3')->get();
-        return view('legal_support/lawyer/lawyers')->with('lawyer',$lawyer);
-    }
+        $lawyer = User::Lawyer()->get();
+        return view('legal_support.lawyer.lawyers')->with('lawyer',$lawyer);
+    } 
 
-    public function show_lawyer(User $lawyer){
+    public function show_lawyer(User $lawyer){ 
         return view('legal_support.lawyer.details',[
-            'lawyer'=>$lawyer,'clientPackage'=>ClientPackage::where('user_id',auth()->user()->id)->get()]);
+            'lawyer'=>$lawyer,
+            'packageStatus'=>ClientPackage::Client(auth()->user()->id)->Active()->first()
+        ]);
     }
 
 }

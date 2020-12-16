@@ -59,6 +59,7 @@
               <table class="table table-striped table-advance table-hover">
                 <tbody>
                   <tr>
+                    <th>#</th>
                     <th><i class="icon_profile"></i> Full Name</th>
                     <th><i class="icon_profile"></i> Photo</th>
                     <th><i class="icon_mail_alt"></i> Email</th>
@@ -75,6 +76,7 @@
 
                   @foreach($lawyer as $lawyer)
                   <tr>
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{ $lawyer->name }}</td>
                     <td><img src ="{{ asset('/uploads/pictures/user/'.$lawyer->photo) }}" style="width:30px; height: 30px;"></td>
                     <td>{{ $lawyer->email }}</td>

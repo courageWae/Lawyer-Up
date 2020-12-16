@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->string('price');
             $table->string('package_id');
+            $table->string('category_alias')->unique();
             $table->timestamps();
         });
     }

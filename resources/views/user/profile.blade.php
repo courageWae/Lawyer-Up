@@ -1,6 +1,6 @@
-@extends('/layouts/web/master')
+@extends('layouts.web.master')
 @section('head')
-   @include('/layouts/web/head')
+   @include('layouts.web.head')
 @endsection
 @section('content')
 
@@ -21,13 +21,15 @@
         </section>        
         <!-- end page-title -->
 
-
+        @inject('insurer','App\User')
+        @php($insurer = $insurer::find(Auth::user()->insurer))
         <section class="products-section shop section-padding">
             <div class="container">
                 <div class="row products-grids">
                     <!-- PACKAGE ONE -->
                     @include('user.dashBox')
                     <div class="col col-lg-8" style ="padding-left:20px;">   
+                      <h2>YOUR DETAILS</h2><hr>
                       <h3>Full Name</h3>
                       <div class="well well-sm">{{ Auth::user()->name }}</div>
                       <h3>Email Address</h3>
@@ -35,7 +37,10 @@
                       <h3>Phone Number</h3>
                       <div class = "well well-sm">{{ Auth::user()->phone }}</div>
                       <h3>Insurance Company</h3>
-                      <div class = "well well-sm">{{ Auth::user()->insurer }}</div>
+                      <div class = "well well-sm">{{ $insurer->name }}</div>
+                      <div> 
+                        <a class="btn btn-primary btn-lg" href="{{route('user.profile.edit')}}">{{ __('Edit') }}</a>
+                      </div>
                     </div>
                </div> <!-- end row -->
             </div> <!-- end container -->

@@ -42,11 +42,11 @@
   <!-- container section start -->
   <section id="container" class="">
     <!--header start-->
-    @include('layouts/admin/header')
+    @include('layouts.admin.header')
     <!--header end-->
 
     <!--sidebar start-->
-    @include('layouts/admin/sidebar')
+    @include('layouts.admin.sidebar')
 
     <!--main content start-->
     <section id="main-content">
@@ -79,6 +79,7 @@
               <table class="table table-striped table-advance table-hover">
                 <tbody>
                   <tr>
+                    <th>#</th>
                     <th><i class="icon_profile"></i>Full Name</th>
                     <th><i class="icon_profile"></i> Photo</th>
                     <th><i class="icon_mail_alt"></i>Email</th>
@@ -88,6 +89,7 @@
                   </tr>
                   @foreach($client as $client)
                   <tr>
+                    <td>{{ $loop->iteration}}</td>
                     <td>{{ $client->name }}</td>
                     <td><img src="{{ asset('uploads/pictures/user/'. $client->photo ) }}" style="height:30px; margin-top:-2px;"></td>
                     <td>{{ $client->email }}</td>

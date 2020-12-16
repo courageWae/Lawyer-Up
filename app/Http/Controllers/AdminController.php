@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ClientPackage;
 use App\TypeOfAttorney;
+use App\Invoice;
+use App\Project;
 use App\Message;
 use App\User;
 class AdminController extends Controller
 {
      public function dashboard(){
-
-    	$countPackage = $package = ClientPackage::cursor();
     	return view('admin.dashboard',
-    		['user'=>User::cursor(),'package'=>$package,'countPackage'=>$countPackage,'msg'=>Message::cursor()]);
+    		[
+            'package'=>ClientPackage::get(),
+            'msg'=>Message::get()
+        ]);
     }
     
     public function profile(){
@@ -22,63 +25,41 @@ class AdminController extends Controller
     }
 
     public function update_profile(Request $request, User $admin){
-    	$request->validate([
-    		'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phone' =>['required'],
-    	]);
-        if($request->has('password')){
-            $admin->password = password_hash($request->password, PASSWORD_DEFAULT);
-            $admin->update($request->except('password'));
-            $admin->update([$admin->password]);
-        }
-        return redirect()->back()->with(['message'=>'Profile Updated Successfully','alert'=>'alert-success']);
+    	app('App\Http\Controllers\FormValidator')->myValidator($request);
+        $admin->update([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'phone'=>$request->phone,
+            'password'=>password_hash($request->password, PASSWORD_DEFAULT)
+        ]);
+        return redirect()->back();
     }
 
-     /*  ADD NEW ADMIN */
     public function add_admin(Request $request){
     	if($request->isMethod('post'))
     	{
-    	   
-        self::adminAndLawyerValidator($request);
-        self::getRequestPhoto($request);
-        
-        $admin = new User();
-        $admin->name = $request->name;
-        $admin->email = $request->email;
-        $admin->phone = $request->phone;
-        $admin->photo = $request->photo;
-        $admin->password = password_hash($request->password, PASSWORD_DEFAULT);
-        $admin->role_id = $request->role_id;
-
-        if($request->hasFile('photo')){
-            $file = $request->file('photo');
-            $extension = $file->getClientOriginalExtension(); //getting image exension
-            $filename = time().'.'.$extension;
-            $file->move('uploads/pictures/user/',$filename);
-            $admin->photo =$filename;
+            app('App\Http\Controllers\FormValidator')->myValidator($request);
+            $request->validate(['email'=>['required','string','email','max:255','unique:users']]);
+            User::create([
+                'name'=>$request->name,
+                'email'=>$request->email,
+                'phone'=>$request->phone,
+                'photo'=>$request->photo,
+                'password'=>password_hash($request->password, PASSWORD_DEFAULT),
+                'role_id'=>$request->role_id
+            ]);
+            return redirect()->back()->with(['message' => ' Administrator Created Successfully', 'alert' => 'alert-success']);
         }else{
-            $admin->photo = ' ';
+     	    return view('admin.adminAdd');
         }
-
-        $admin->save();
-        return redirect()->back()->with(['message' => ' Administrator Created Successfully', 'alert' => 'alert-success']);
-
-     }else{
-     	return view('admin.adminAdd');
-     }
-
     }
 
     public function list_admin(){
-       return view('admin.adminList',['admin'=>User::where('role_id',1)->get()]);
+       return view('admin.adminList',['admin'=>User::Admin()->get()]);
     }
 
     public function delete_admin(User $admin){
-    	if($admin != null){
-    		$admin->delete();
-    	}
+    	$admin->delete();
     	return redirect()->back()->with(['message' => 'Administrator Deleted Successfully', 'alert' => 'alert-success']);
     }
 
@@ -86,64 +67,33 @@ class AdminController extends Controller
     	return view('admin.view_admin',['admin'=>$admin]);
     }
 
-
-
-
-
-    /*  ADD NEW lAWYER */
     public function add_lawyer(Request $request){
     	if($request->isMethod('post'))
     	{
-    	   $request->validate([
-    		'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phone' =>['required'],
-            'address'=>['required'],
-            'house_address'=>['required'],
-            'education'=>['required'],
-            'type_of_lawyer'=>['required'],
-            'experience'=>['required'],
-            'personal_statement'=>['required'],
-            'role_id' =>['required'],
-          ]);
-
-        self::getRequestPhoto($request);
-
-        $lawyer = new User();
-        $lawyer->name = $request->name;
-        $lawyer->email = $request->email;
-        $lawyer->phone = $request->phone;
-        $lawyer->role_id = $request->role_id;
-        $lawyer->password = password_hash($request->password, PASSWORD_DEFAULT);
-        $lawyer->photo = $request->photo;
-        $lawyer->address = $request->address;
-        $lawyer->house_address = $request->house_address;
-        $lawyer->education = $request->education;
-        $lawyer->type_of_lawyer = $request->type_of_lawyer;
-        $lawyer->experience = $request->experience;
-        $lawyer->personal_statement = $request->personal_statement;
-
-        if($request->hasFile('photo')){
-            $file = $request->file('photo');
-            $extension = $file->getClientOriginalExtension(); //getting image exension
-            $filename = time().'.'.$extension;
-            $file->move('uploads/pictures/user/',$filename);
-            $lawyer->photo =$filename;
-            }else{
-                $lawyer->photo = ' ';
-            }
-
-        $lawyer->save();
+        app('App\Http\Controllers\FormValidator')->myValidator($request);
+        $request->validate(['email'=>['required','string','email','max:255','unique:users']]);
+        User::create([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'phone'=>$request->phone,
+            'address'=>$request->address,
+            'house_address'=>$request->house_address,
+            'type_of_lawyer'=>$request->type_of_lawyer,
+            'personal_statement'=>$request->personal_statement,
+            'education'=>$request->education,
+            'experience'=>$request->experience,
+            'password'=>password_hash($request->password, PASSWORD_DEFAULT),
+            'photo'=>$request->photo,
+            'role_id'=>$request->role_id
+        ]);
         return redirect()->back()->with(['message' => 'New Lawyer Created Successfully', 'alert' => 'alert-success']);
-
-    }else{
-    	return view('admin.lawyerAdd');
-    }
-}   
+        }else{
+    	    return view('admin.lawyerAdd');
+        }
+    }   
     
     public function list_lawyer(){
-       return view('admin.lawyerList',['lawyer'=>User::where('role_id',3)->get()]);
+       return view('admin.lawyerList',['lawyer'=>User::lawyer()->get()]);
     }
 
     public function view_lawyer(User $lawyer){
@@ -151,57 +101,35 @@ class AdminController extends Controller
     }
 
     public function delete_lawyer(User $lawyer){
-    	if($lawyer != null){
-    		$lawyer->delete();
-    	}
+        $lawyer->delete();
     	return redirect()->back()->with(['message' => 'Lawyer Deleted Successfully', 'alert' => 'alert-success']);
     }
 
-
-
-
-
-   /* ADD NEW INSURER */
     public function add_insurer(Request $request){
     	if($request->isMethod('post'))
     	{
-    		self::adminAndLawyerValidator($request);
-            self::getRequestPhoto($request);
-
-            $insurer = new User();
-            $insurer->name = $request->name;
-            $insurer->email = $request->email;
-            $insurer->phone = $request->phone;
-            $insurer->photo = $request->photo;
-            $insurer->role_id = $request->role_id;
-            $insurer->password = password_hash($request->password, PASSWORD_DEFAULT);
-
-            if($request->hasFile('photo')){
-               $file = $request->file('photo');
-               $extension = $file->getClientOriginalExtension(); //getting image exension
-               $filename = time().'.'.$extension;
-               $file->move('uploads/pictures/user/',$filename);
-               $insurer->photo =$filename;
-            }else{
-                $insurer->photo = ' ';
-            }
-
-            $insurer->save();
+            app('App\Http\Controllers\FormValidator')->myValidator($request);
+            $request->validate(['email'=>['required','string','email','max:255','unique:users']]);
+            User::create([
+                'name'=>$request->name,
+                'email'=>$request->email,
+                'phone'=>$request->phone,
+                'photo'=>$request->photo,
+                'role_id'=>$request->role_id,
+                'password'=>password_hash($request->password, PASSWORD_DEFAULT)
+            ]);
             return redirect()->back()->with(['message' => 'New Insurer Created Successfully', 'alert' => 'alert-success']);
     	}else{
     		return view('admin.insurerAdd');
     	}
-
     }
 
     public function list_insurer(){
-       return view('admin.insurerList',['insurer'=>User::where('role_id',2)->get()]);
+       return view('admin.insurerList',['insurer'=>User::Insurer()->get()]);
     }
 
     public function delete_insurer(User $insurer){
-    	if($insurer != null){
-    		$insurer->delete();
-    	}
+    	$insurer->delete();
     	return redirect()->back()->with(['message' => 'Insurer Deleted Successfully', 'alert' => 'alert-success']);
     }
 
@@ -209,12 +137,8 @@ class AdminController extends Controller
     	return view('admin.view_insurer',['insurer'=>$insurer]);
     }
 
-
-
-    /* USER */
-
     public function list_user(){
-    	return view('admin.userList',['client'=>User::where('role_id',4)->get()]);
+    	return view('admin.userList',['client'=>User::Client()->get()]);
     }
 
     public function view_user(User $client){
@@ -222,54 +146,34 @@ class AdminController extends Controller
     }
 
     public function delete_user(User $client){
-    	if($client != null){
-    		$client->delete();
-    	}
+    	$client->delete();
     	return redirect()->back()->with(['message' => 'Client Deleted Successfully', 'alert' => 'alert-success']);
     }
 
-
-    /* TYPE OF LAWYER */
     public function type_of_lawyer_add(Request $request){
-    	$type = TypeOfAttorney::all();
     	if($request->isMethod('post')){
-            TypeOfAttorney::create($request->only(['name','description','by']));
+            app('App\Http\Controllers\FormValidator')->myValidator($request);
+            TypeOfAttorney::create($request->only(['name','description']));
     	    return redirect()->back()->with(
-    		['message'=>'Type of Lawyer Added Successfully','alert'=>'alert-success','type'=>$type]);
+    		['message'=>'Type of Lawyer Added Successfully','alert'=>'alert-success','type'=>TypeOfAttorney::get()]);
     	}else{
-    		return view('admin.typeOfLawyerAdd',['type'=>$type]);
+    		return view('admin.typeOfLawyerAdd',['type'=>TypeOfAttorney::get()]);
     	}	
     }
 
     public function delete_typeOfLawyer(TypeOfAttorney $typeOfLawyer){
-    	if($typeOfLawyer != null){
-    		$typeOfLawyer->delete();
-    	}
+    	$typeOfLawyer->delete();
     	return redirect()->back();
     }
 
-    public function getRequestPhoto($request){
-    	if(request()->hasFile('photo')){
-           $file = request()->file('photo');
-           $extension = $file->getClientOriginalExtension(); //getting image exension
-           $filename = time().'.'.$extension;
-           $file->move('uploads/pictures/user/',$filename);
-           $request->photo =$filename;
-           return $request->photo;
-        }else{
-           $request->photo = " ";
-           return $request->photo;
-        }
-
+    public function invoices(){
+        return view('admin.invoiceList',['invoice'=>Invoice::get()]);
     }
 
-    public function adminAndLawyerValidator(Request $request){
-    	$request->validate([
-    		'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phone' =>['required'],
-          ]);
-
+    public function projects(){
+        return view('admin.projectList',['projects'=>Project::get()]);
     }
+
+   
+
 }

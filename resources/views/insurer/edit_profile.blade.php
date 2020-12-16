@@ -1,6 +1,6 @@
-@extends('/layouts/web/master')
+@extends('layouts.web.master')
 @section('head')
-   @include('/layouts/web/head')
+   @include('layouts.web.head')
 @endsection
 @section('content')
 
@@ -12,7 +12,7 @@
                     <div class="col col-xs-12">
                         <h2>DashBoard</h2>
                         <ol class="breadcrumb">
-                            <li><a href="index-2.html">Home</a></li>
+                            <li><a href="{{ route('legal.home') }}">Home</a></li>
                             <li>Dashboard</li>
                         </ol>
                     </div>
@@ -28,7 +28,7 @@
                 <div class="row products-grids">
                     <!-- PACKAGE ONE -->
                     @include('insurer.dashBox')
-                    <div class="col col-lg-8" style ="padding-left:20px;"> 
+                    <div class="col col-lg-9" style ="padding-left:20px;"> 
                      @if(session()->has('message'))
                         <div class="alert {{session('alert') ?? 'alert-success'}}">
                           {{ session('message') }}
@@ -37,7 +37,7 @@
                         <table class="table table-striped table-bordered">
                            <thead>
                                <tr style="background-color:rgb(245, 197, 66);">
-                                   <th colspan="4">My Profile</th>
+                                   <th colspan="4">Insurer Profile</th>
                                </tr>
                             </thead>
                             <tbody>
@@ -46,45 +46,66 @@
                                      <div class="card">
                             <!-- Tab panes -->
                             <div class="card-body">
-                              <form class="form-horizontal form-material" method="post" action="{{ route('insurer.update.profile',['insurer'=>$insurer->id]) }}">
+                              <form class="form-horizontal form-material" method="post" action="{{ route('insurer.update.profile',['alias'=>auth()->user()->alias]) }}" enctype="multipart/form-data">
                                   {{ csrf_field() }}
                                    @method('PATCH')
                                     <div class="form-group">
                                         <label class="col-md-12">Full Name</label>
                                         <div class="col-md-12">
-                                            <input type="text" value="{{ $insurer->name }}" name ="name" class="form-control form-control-line" required>
+                                            <input type="text" value="{{ auth()->user()->name }}" name ="name" class="form-control @error('name') is-invalid @enderror" required>
+                                            @error('name')
+                                              <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                              </span>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-12">User Name</label>
+                                        <div class="col-md-12">
+                                            <input type="text" value="{{ auth()->user()->user_name }}" name ="user_name" class="form-control @error('user_name') is-invalid @enderror" required>
+                                            @error('user_name')
+                                              <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                              </span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="example-email" class="col-md-12">Email Address</label>
                                         <div class="col-md-12">
-                                            <input type="email" value = "{{ $insurer->email }}" class="form-control form-control-line" name="email" id="example-email" required>
+                                          <input type="email" value = "{{ auth()->user()->email }}" class="form-control @error('email') is-invalid @enderror" name="email" readonly>
+                                            @error('email')
+                                              <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                              </span>
+                                            @enderror
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-md-12">Phone Number</label>
                                         <div class="col-md-12">
-                                            <input type="phone" value = "{{ $insurer->phone }}" name="phone" class="form-control form-control-line" required>
+                                            <input type="phone" value = "{{ auth()->user()->phone }}" name="phone" class="form-control @error('phone') is-invalid @enderror" required>
+                                            @error('phone')
+                                              <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                              </span>
+                                            @enderror
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-md-12">Password</label>
+                                        <label class="col-md-12">Photo</label>
                                         <div class="col-md-12">
-                                            <input type="password" name="password" class="form-control form-control-line" required>
-                                             @error('password')
-                                              <span class="invalid-feedback" role="alert" style="color:red;">
-                                                <strong>{{ $message }}</strong>
-                                              </span>
-                                             @enderror
-                                        </div>   
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-12">Confirm Password</label>
-                                        <div class="col-md-12">
-                                            <input type="password"  name="password_confirmation" class="form-control form-control-line" required>
+                                            <input type="file"  name="photo" class="form-control @error('photo') is-invalid @enderror">
+                                            @error('photo')
+                                            <span class="invalid-feedback" role="alert">
+                                              <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>   
                                     </div>
 

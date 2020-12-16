@@ -42,11 +42,11 @@
   <!-- container section start -->
   <section id="container" class="">
     <!--header start-->
-    @include('layouts/admin/header')
+    @include('layouts.admin.header')
     <!--header end-->
 
     <!--sidebar start-->
-    @include('layouts/admin/sidebar')
+    @include('layouts.admin.sidebar')
 
   <!--main content start-->
     <section id="main-content">
@@ -79,9 +79,9 @@
                 <table class="table table-condensed">
                 <thead>
                   <tr>
+                    <th>#</th>
                     <th>Type of Lawyer</th>
                     <th>Description</th>
-                    <th>Added By</th>
                     <th>Date</th>
                     <th>Action</th>
                   </tr>
@@ -90,10 +90,10 @@
                 @isset($type) 
                   @foreach($type as $type)  
                   <tr>
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{ $type->name }}</td>
                     <td>{{ $type->description }}</td>
-                    <td>{{ $type->by }}</td>
-                    <td>{{ $type->created_at }}</td>
+                    <td>{{ $type->created_at->toDateString() }}</td>
                     <td>
                       <a href="{{ route('typeOfLawyer.delete',['typeOfLawyer'=>$type->id]) }}" class="btn btn-danger delete-confirm">Delete</a>
                     </td>
@@ -123,18 +123,27 @@
                   <!-- Administrator Forms -->
                   <form class="form-validate form-horizontal" method="post" action="{{ route('type.lawyer.add') }}">
                     {{ csrf_field() }}
-                    <input type="hidden" name="by" value="{{ auth()->user()->id }}">
                     <div class="form-group ">
                       <label for="type" class="control-label col-lg-2">Type Of Lawyer <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input class=" form-control"  name="name" type="text" />
+                        <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" required/>
+                        @error('name')
+                        <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                       </div>
                     </div>
 
                     <div class="form-group ">
                       <label for="description" class="control-label col-lg-2">Description <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <textarea class="form-control" name="description"></textarea>
+                        <textarea name="description" class="form-control @error('description') is-invalid @enderror" required></textarea>
+                        @error('description')
+                        <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                       </div>
                     </div>
 
