@@ -7,7 +7,7 @@
      <!-- start of hero -->   
         <section class="hero hero-slider-wrapper">
             <div class="hero-slider hero-slider-style-1">
-                <div class="slide">
+                {{-- <div class="slide">
                     <img src="{{ asset('assets/images/slider/slide-1.jpg') }}" alt class="slider-bg">
                     <div class="container">
                         <div class="row">
@@ -17,8 +17,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="slide">
+                </div> --}}
+                {{-- <div class="slide">
                     <img src="{{ asset('assets/images/slider/slide-1.jpg') }}" alt class="slider-bg">
                     <div class="container">
                         <div class="row">
@@ -28,7 +28,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="slide">
                     <img src="{{ asset('assets/images/slider/slide-1.jpg') }}" alt class="slider-bg">
                     <div class="container">
@@ -72,7 +72,7 @@
                 <div class="row">
                     <div class="col col-xs-12">
                         <div class="services-grids services-grid-view">
-                            <div class="grid">
+                            {{-- <div class="grid">
                                <div class="inner mk-bg-img">
                                 <a href="{{ route('training.home') }}">
                                     <div>
@@ -81,8 +81,8 @@
                                 </a>
                                </div><br>
                                <div><span style="font-weight: bolder;font-size:20px;">Skills and Management Training<br></span> <a href="{{ route('training.home') }}" class="btn btn-danger">Get Details</a></div>
-                            </div>
-                            <div class="grid">
+                            </div> --}}
+                            {{-- <div class="grid">
                                <div class="inner mk-bg-img">
                                 <a href="{{ route('legal.home') }}">
                                     <div>
@@ -91,7 +91,7 @@
                                 </a>
                                </div><br>
                                <div><span style="font-weight: bolder;font-size:20px;">Business and Startup Supports<br></span><a href="#" class="btn btn-danger"> Get Details</a></div>
-                            </div>
+                            </div> --}}
                             <div class="grid">
                                <div class="inner mk-bg-img">
                                 <a href="{{ route('legal.home') }}">

@@ -1,62 +1,56 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# Lawyer Up
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Lawyer Up is a web application that helps users to get timely access to all types of lawyers from the comfort of their homes with no paper and document hustle.
 
-## About Laravel
+It allows hourly, minute, and daily booking of lawyers.
+A client gets a personalized dashboard to manage a purchased package, booked appointments, and profile. 
+A Lawyer gets a personalized dashboard to manage appointments with clients and profiles.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The Admin Always gets a dashboard to monitor all activities in the application.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Installation
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Lawyer Up was built with the Laravel framework, so it follows a typical Laravel project installation. However, for the sake of elaboration, the below indicates how to install this project on your computer.
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Step ONE
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+# You need to install git on your computer
+git clone --branch master https://github.com/courageWae/Lawyer-Up.git
+```
+### Step TWO
 
-## Laravel Sponsors
+```bash
+cd Lawyer-Up
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+# You need to have composer installed on your computer
+composer install --ignore-platform-reqs
+```
+### Step THREE
 
-### Premium Partners
+```bash
+php artisan migrate --seed
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+## Usage
+A Client (User) creates a login account with some credentials : 
+* Name
+* User Name (Unique - There can only be one user name in the application)
+* Email Address (Unique - There can only be one email address in the application)
+* Phone Number
+* Insurer (A drop-down listing of all partnered insurance companies)
+* Password
+* Confirm Password
 
-## Contributing
+***
+After registration, the client can purchase a plan or package with a generated invoice for reference.
+The client has access to book any lawyer of choice depending on the purchased plan or package.
+The plans are of various monetary weights and duration. The duration may include monthly and yearly.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+The client may book a lawyer based on the availability of the lawyer. The lawyer indicates his/her availability on the public profile.
 
-## Code of Conduct
+### CONCLUSION
+This application is not entirely tested, it was developed out of leisure and boredom. There may be bugs lurking all over.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-#lexicon
+Have fun.
