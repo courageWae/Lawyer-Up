@@ -69,10 +69,15 @@ class LegalSupportController extends Controller
     } 
 
     public function show_lawyer(User $lawyer){ 
-        return view('legal_support.lawyer.details',[
-            'lawyer'=>$lawyer,
-            'packageStatus'=>ClientPackage::Client(auth()->user()->id)->Active()->first()
-        ]);
+        if(auth()->check()){
+            return view('legal_support.lawyer.details',[
+                'lawyer'=>$lawyer,
+                'packageStatus'=>ClientPackage::Client(auth()->user()->id)->Active()->first()
+            ]);
+        }
+
+        return view('legal_support.lawyer.details',['lawyer'=>$lawyer]);
+       
     }
 
 }

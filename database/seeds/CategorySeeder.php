@@ -16,7 +16,7 @@ class CategorySeeder extends Seeder
         DB::table('categories')->insert([
         	'name'=>'bronze',
             'price'=>300,
-            'category_alias'=>Str::slug('Family Legal Categories bronze','-'),
+            'category_alias'=> Str::slug('Family Legal Categories bronze','-'),
             'package_id'=>1
         ]);
         DB::table('categories')->insert([
@@ -36,19 +36,19 @@ class CategorySeeder extends Seeder
         DB::table('categories')->insert([
         	'name'=>'bronze',
             'price'=>300,
-            'category_alias'=>Str::slug('Peronal Legal Categories bronze','-'),
+            'category_alias'=>Str::slug('Personal Legal Categories bronze','-'),
             'package_id'=>2
         ]);
         DB::table('categories')->insert([
         	'name'=>'silver',
             'price'=>350,
-            'category_alias'=>Str::slug('Peronal Legal Categories silver','-'),
+            'category_alias'=>Str::slug('Personal Legal Categories silver','-'),
             'package_id'=>2
         ]);
         DB::table('categories')->insert([
         	'name'=>'gold',
             'price'=>400,
-            'category_alias'=>Str::slug('Peronal Legal Categories gold','-'),
+            'category_alias'=>Str::slug('Personal Legal Categories gold','-'),
             'package_id'=>2
         ]);
 

@@ -26,8 +26,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col col-md-6">
-                        <div class="shop-single-slider-wrapper">    
-                            <div><img src="{{ asset('uploads/pictures/user/'. $lawyer->photo ) }}" class="img img-responsive" alt></div>   
+                        <div class="shop-single-slider-wrapper">
+                            @if($lawyer->photo)
+                            <div>
+                                <img src="{{ asset('uploads/pictures/user/'. $lawyer->photo ) ?? asset('assets/images/user.png')}}" class="img img-responsive" alt>
+                            </div>   
+                            @else
+                            <div>
+                                <img src="{{ asset('assets/images/user.png') }}" style="width:100%; height:100%" class="img img-responsive" alt>
+                            </div>
+                            @endif
                         </div>
                     </div>
                     <div class="col col-md-6">
