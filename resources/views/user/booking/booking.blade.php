@@ -2,7 +2,7 @@
 <html>
 
 <head
-><title>{{ config('App.Name','Lexicon Support Services') }}</title>
+><title>{{ config('App.Name','Lawyer Up Services') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>

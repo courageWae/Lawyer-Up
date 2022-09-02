@@ -9,7 +9,7 @@
                                     <div>
                                         <i class="fa fa-location-arrow"></i>
                                         <div class="details">
-                                            <p>John Nii Owoo Street 10</p>
+                                            <p>Ablekuma Fanmilk</p>
                                         </div>
                                     </div>
                                     <div>

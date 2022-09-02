@@ -150,7 +150,7 @@
                       </div> 
                       <div class="col col-md-3">
                         <img src="../assets/images/call.png" >
-                        <div style="margin-top:20px;">A member of the lexicon support team will contact you to welcome you to the family.</div>
+                        <div style="margin-top:20px;">A member of the Lawyer Up team will contact you to welcome you to the family.</div>
                       </div> 
                       <div class="col col-md-3">
                         <img src="../assets/images/congrat.png" >

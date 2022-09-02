@@ -5,9 +5,9 @@
                     <div class="row">
                         <div class="col col-md-4 col-sm-6">
                             <div class="widget about-widget">
-                                <h3>Lexicon Support</h3>
+                                <h3>Lawyer Up</h3>
                                 <ul class="contact-info">
-                                    <li><i class="fa fa-home"></i>John Nii Owoo Street 10</li>
+                                    <li><i class="fa fa-home"></i>Ablekuma Fanmilk</li>
                                     <li><i class="fa fa-phone"></i> +1-(547)-257</li>
                                     <li><i class="fa fa-home"></i> Working Hours: <br>Mon-Fri (9 am - 8 pm)</li>
                                 </ul>
@@ -38,9 +38,4 @@
                     </div>
                 </div>
             </div> <!-- end upper-footer -->
-            <div class="copyright-info">
-                <div class="container">
-                    <p><a target="_blank" href="#">Powered by iTechnologies</a></p>
-                </div>
-            </div>
         </footer>

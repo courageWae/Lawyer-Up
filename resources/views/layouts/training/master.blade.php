@@ -6,7 +6,7 @@
     <div class="page-wrapper">
         <div class="preloader">
             <div class="preloader-inner">
-                <h3>Lexicon Support Services</h3>
+                <h3>Lawyer Up Services</h3>
             </div>
         </div>
         <!-- end preloader -->

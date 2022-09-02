@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{{ config('app.name','Lexicon Support Services') }}</title>
+    <title>{{ config('app.name','Lawyer Up Services') }}</title>
     <link rel="stylesheet" href="{{ asset('style.css') }}" media="all" />
     <style>
       .print {
@@ -27,7 +27,7 @@
         <img src="{{ asset('assets/images/logo-2.png') }}">
       </div>
       <div id="company">
-        <h2 class="name">Lexicon Support Services</h2>
+        <h2 class="name">Lawyer Up Services</h2>
         <div>John Nii Owoo Street</div>
         <div>+233 123456789</div>
         <div><a href="#">info@Lexiconsupportservices</a></div>

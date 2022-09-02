@@ -6,7 +6,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col col-lg-8 col-sm-9 slide-caption">
-                                    <h2>Lexicon Support<span> Services.</span></h2>
+                                    <h2>Lawyer Up<span> Services.</span></h2>
                                     <p>Skills and Management Training</p>
                             </div>
                         </div>

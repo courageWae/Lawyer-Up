@@ -7,7 +7,7 @@
                             <div class="widget about-widget">
                                 <h3>Lexi Skills and Management Training</h3>
                                 <ul class="contact-info">
-                                    <li><i class="fa fa-home"></i>John Nii Owoo Street 10</li>
+                                    <li><i class="fa fa-home"></i>Ablekuma Fanmilk</li>
                                     <li><i class="fa fa-phone"></i> +1-(547)-257</li>
                                     <li><i class="fa fa-home"></i> Working Hours: <br>Mon-Fri (9 am - 8 pm)</li>
                                 </ul>

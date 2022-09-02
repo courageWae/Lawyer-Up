@@ -35,7 +35,7 @@
                         <div class="row">
                             <div class="col col-lg-8 col-sm-9 slide-caption">
                                 <h2><span> SAVE TIME, SAVE MONEY</span></h2>
-                                <p>We are here to work for you 24/7. Lexicon Support Services, Shielding families and businesses!!</p>
+                                <p>We are here to work for you 24/7. Lawyer Up Services, Shielding families and businesses!!</p>
                             </div>
                         </div>
                     </div>
@@ -118,7 +118,7 @@
                         <div class="about-us-section">
                             <div class="section-title-s3">
                                 <span>About us</span>
-                                <h2>Lexicon Support Services</h2>
+                                <h2>Lawyer Up Services</h2>
                             </div>
                             <div class="details">
                                 <p>No Write up for this section</p>
@@ -188,8 +188,8 @@
                                 <p>For any kind of query, contact us with the details below.</p>
                                 <ul>
                                     <li><i class="fa fa-phone"></i> +123 (569) 254 78</li>
-                                    <li><i class="fa fa-envelope"></i> info@lexiconsupport.net</li>
-                                    <li><i class="fa fa-home"></i> John nii owoo street 10, Accra-Ghana</li>
+                                    <li><i class="fa fa-envelope"></i> couragea57@gmail.com</li>
+                                    <li><i class="fa fa-home"></i> Ablekuma Fanmilk, Accra-Ghana</li>
                                 </ul>
                             </div>
                         </div>
@@ -267,7 +267,7 @@
                                     </div> -->
                                 </div>
                                 <div class="member-info">
-                                    <h3>Simon Martey</h3>
+                                    <h3>Courage Waelinam Ahorttortey</h3>
                                     <p>Director of the board</p>
                                 </div>
                             </div>
@@ -285,7 +285,7 @@
                                     </div> -->
                                 </div>
                                 <div class="member-info">
-                                    <h3>Elizabeth Brew Smith</h3>
+                                    <h3>Courage Waelinam Ahorttor</h3>
                                     <p>Director of the board</p>
                                 </div>
                             </div>
@@ -303,7 +303,7 @@
                                     </div> -->
                                 </div>
                                 <div class="member-info">
-                                    <h3>Paul K. Anomah</h3>
+                                    <h3>Courage Waelinam Ahorttor</h3>
                                     <p>Director of the board</p>
                                 </div>
                             </div>

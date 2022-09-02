@@ -9,7 +9,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>{{ config('app.name','Lexicon Support Service') }}</title>
+  <title>{{ config('app.name','Lawyer Up Service') }}</title>
 
   <!-- Bootstrap CSS -->
   <link href="../admin/css/bootstrap.min.css" rel="stylesheet">
@@ -75,7 +75,7 @@
                   <h6>Administrator</h6>
                 </div>
                 <div class="col-lg-4 col-sm-4 follow-info">
-                  <p>Hello I’m {{ Auth::user()->name }}, Lexicon Support Adminstrator</p>
+                  <p>Hello I’m {{ Auth::user()->name }}, Lawyer Up Adminstrator</p>
                   <p>{{ Auth::user()->email }}</p>
                   <!-- <p><i class="fa fa-twitter">jenifertweet</i></p> -->
                   <h6>
