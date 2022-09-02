@@ -41,9 +41,9 @@
                     </div>
                 </div>
             </div> <!-- end upper-footer -->
-            <div class="copyright-info">
+            {{-- <div class="copyright-info">
                 <div class="container">
                     <p><a target="_blank" href="#">Powered by iTechnologies</a></p>
                 </div>
-            </div>
+            </div> --}}
         </footer>

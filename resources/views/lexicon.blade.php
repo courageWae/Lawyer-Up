@@ -199,7 +199,7 @@
                         <div class="section-title-white">
                             <h2>CONTACT US NOW</h2>
                         </div>   
-                        <p>Lorem ipsum dolor sit amet, consectetur adipi scing elit, sed do eiusmod tempor incidi dunt ut labore et dolore magna aliqua.</p>
+                        <p>Contact me</p>
 
                         <div class="contact-form-s1 form">
                              @if(session()->has('message'))
