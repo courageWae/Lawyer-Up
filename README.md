@@ -40,6 +40,10 @@ php artisan
 ```
 
 ## Usage
+To be able to approve booked appointments , you will need to logged in as an Administrator. the application comes with a dummy addministration with credentials below.
+* Email : admin@admin.com
+* Password : 1234567890
+
 A Client (User) creates a login account with some credentials : 
 * Name
 * User Name (Unique - There can only be one user name in the application)
