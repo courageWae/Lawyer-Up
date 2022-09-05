@@ -8,6 +8,16 @@ A Lawyer gets a personalized dashboard to manage appointments with clients and p
 
 The Admin Always gets a dashboard to monitor all activities in the application.
 
+## Tech Stack:
+
+* Php
+* Javascript
+* Laravel
+* Mysql
+* Material Icon
+* Html
+* Css
+
 ## Installation
 
 Lawyer Up was built with the Laravel framework, so it follows a typical Laravel project installation. However, for the sake of elaboration, the below indicates how to install this project on your computer.
