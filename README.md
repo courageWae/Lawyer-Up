@@ -46,8 +46,14 @@ php artisan key:generate
 
 ```bash
 php artisan migrate --seed
-php artisan 
 ```
+
+### Step FIVE
+
+```bash
+php artisan serve
+```
+Host the application on http://127.0.0.1:8000
 
 ## Usage
 To be able to approve booked appointments , you will need to logged in as an Administrator. the application comes with a dummy addministration with credentials below.
